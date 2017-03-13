@@ -1,4 +1,4 @@
-ComPlatform development language : C, C++<br/>
+Platform development language : C, C++<br/>
 Compiler : MS Visual Studio 2017
 
-ÀÌÈÄ Ãß°¡ÇÒ ³»¿ë °áÁ¤½Ã ¸Ş¸ğÀåÀ¸·Î ¼öÁ¤ÇÏ½Ã¸é µË´Ï´Ù.
+ì´í›„ ì¶”ê°€í•  ë‚´ìš© ê²°ì •ì‹œ ë©”ëª¨ì¥ìœ¼ë¡œ ìˆ˜ì •í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
