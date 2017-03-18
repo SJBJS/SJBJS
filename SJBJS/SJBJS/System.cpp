@@ -1,7 +1,7 @@
 #include "System.h"
+
 SystemClass::SystemClass()
 {
-	child = new ChildWindows(m_hInstance);
 }
 
 SystemClass::SystemClass(const SystemClass & ref)
@@ -10,7 +10,6 @@ SystemClass::SystemClass(const SystemClass & ref)
 
 SystemClass::~SystemClass()
 {
-	delete child;
 }
 
 bool SystemClass::Initialize()
@@ -67,13 +66,13 @@ bool SystemClass::InitializeWindows()
 	WndClass.hCursor = LoadCursor(NULL, IDC_ARROW);			//마우스 커서 지정.
 	WndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);		//아이콘 지정.
 	WndClass.hInstance = m_hInstance;					//윈도우 클래스를 등록하는 프로그램의 번호로 WinMain의 hInstance를 주면 된다.
-	WndClass.lpfnWndProc = SystemClass::WndProc;					//메세지를 처리할 함수.(중요!)
+	WndClass.lpfnWndProc = WndProc;					//메세지를 처리할 함수.(중요!)
 	WndClass.lpszClassName = m_applicationName;				//프로그램 클래스의 이름 등록.
 	WndClass.lpszMenuName = NULL;					//프로그램이 사용할 메뉴를 지정한다.
 	WndClass.style = CS_HREDRAW | CS_VREDRAW;			//윈도우 스타일(윈도우가 어떤 형태를 갖을 지의 값들)
 	RegisterClass(&WndClass);					//WndClass 특성을 저장.
 
-												// 윈도우 생성.
+	// 윈도우 생성.
 	m_hwnd = CreateWindow(m_applicationName, m_applicationName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, m_hInstance, NULL);
 
 	// 윈도우 표시.
@@ -91,7 +90,6 @@ LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPA
 {
 	switch (iMessage) {
 	case WM_CREATE:
-		child->Initialize(hWnd);
 		return 0;
 	case WM_TIMER:
 		return 0;
@@ -109,7 +107,6 @@ LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPA
 	case WM_LBUTTONDOWN:
 		return 0;
 	}
-
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
 }
 
