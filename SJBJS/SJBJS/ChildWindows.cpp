@@ -59,7 +59,10 @@ bool ChildWindows::InitializeWindows(HWND hWndParent)
 	WndClass.lpszMenuName = NULL;
 	WndClass.lpszClassName = m_applicationName;
 	RegisterClass(&WndClass);
-	m_hwnd = CreateWindow(m_applicationName, m_applicationName, WS_POPUPWINDOW | WS_CAPTION, 100, 100, 320, 200, hWndParent, (HMENU)0, m_hInstance, NULL);
+
+
+	GetClientRect(hWndParent, &rectView);
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right / 8 - 1, rectView.bottom, hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }
@@ -67,4 +70,10 @@ bool ChildWindows::InitializeWindows(HWND hWndParent)
 bool ChildWindows::Frame()
 {
 	return false;
+}
+
+void ChildWindows::resize(HWND hWndParent)
+{
+	GetClientRect(hWndParent, &rectView);
+	MoveWindow(m_hwnd, 0, 0, rectView.right / 8 - 1, rectView.bottom, TRUE);
 }

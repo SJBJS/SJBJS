@@ -7,6 +7,7 @@ private:
 	HWND m_hwnd;
 	LPCTSTR m_applicationName;
 	HINSTANCE m_hInstance;
+	RECT rectView;
 
 public:
 	ChildWindows(HINSTANCE hInstance);
@@ -15,6 +16,7 @@ public:
 	bool Initialize(HWND hWndParent);
 	void Run();
 	void Shutdown();
+	void resize(HWND hWndParent);
 
 	HWND GetHwnd()const;
 
