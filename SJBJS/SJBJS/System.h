@@ -3,13 +3,14 @@
 #ifndef __SYSTEMCLASS_H_
 #define __SYSTEMCLASS_H_
 #include <Windows.h>
+#include"ChildWindows.h"
 class SystemClass
 {
 private:
 	HWND m_hwnd;
 	LPCTSTR m_applicationName;
 	HINSTANCE m_hInstance;
-
+	ChildWindows *child;
 public:
 	SystemClass();
 	SystemClass(const SystemClass &ref);
