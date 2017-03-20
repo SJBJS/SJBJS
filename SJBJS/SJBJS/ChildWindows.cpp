@@ -10,7 +10,8 @@ ChildWindows::~ChildWindows(){}
 
 bool ChildWindows::Initialize(HWND hWndParent)
 {
-	if (!InitializeWindows(hWndParent))
+	m_hWndParent = hWndParent;
+	if (!InitializeWindows())
 		return false;
 	ChildHandle = this;
 	return true;
@@ -45,7 +46,7 @@ LRESULT ChildWindows::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return ChildHandle->MessageHandler(hWnd, msg, wParam, lParam);
 }
 
-bool ChildWindows::InitializeWindows(HWND hWndParent)
+bool ChildWindows::InitializeWindows()
 {
 	WNDCLASS WndClass;
 	WndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -61,8 +62,8 @@ bool ChildWindows::InitializeWindows(HWND hWndParent)
 	RegisterClass(&WndClass);
 
 
-	GetClientRect(hWndParent, &rectView);
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right / 8 - 1, rectView.bottom, hWndParent, NULL, m_hInstance, NULL);
+	GetClientRect(m_hWndParent, &rectView);
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right / 8 - 1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }
@@ -72,8 +73,8 @@ bool ChildWindows::Frame()
 	return false;
 }
 
-void ChildWindows::resize(HWND hWndParent)
+void ChildWindows::resize()
 {
-	GetClientRect(hWndParent, &rectView);
+	GetClientRect(m_hWndParent, &rectView);
 	MoveWindow(m_hwnd, 0, 0, rectView.right / 8 - 1, rectView.bottom, TRUE);
 }

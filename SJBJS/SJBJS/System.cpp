@@ -93,12 +93,14 @@ LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPA
 	case WM_CREATE:
 		child->Initialize(hWnd);
 		return 0;
+	case WM_ACTIVATE:
+		return 0;
 	case WM_TIMER:
 		return 0;
 	case WM_PAINT:
 		return 0;
 	case WM_SIZE:
-		child->resize(hWnd);
+		child->resize();
 		return 0;
 	case WM_CHAR:
 		switch (wParam)

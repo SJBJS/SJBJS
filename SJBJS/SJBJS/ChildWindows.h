@@ -5,6 +5,7 @@
 class ChildWindows {
 private:
 	HWND m_hwnd;
+	HWND m_hWndParent;
 	LPCTSTR m_applicationName;
 	HINSTANCE m_hInstance;
 	RECT rectView;
@@ -16,7 +17,7 @@ public:
 	bool Initialize(HWND hWndParent);
 	void Run();
 	void Shutdown();
-	void resize(HWND hWndParent);
+	void resize();
 
 	HWND GetHwnd()const;
 
@@ -25,7 +26,7 @@ public:
 	static ChildWindows * had;
 private:
 	ChildWindows(const ChildWindows &ref);
-	bool InitializeWindows(HWND hWndParent);
+	bool InitializeWindows();
 	bool Frame();
 };
 
