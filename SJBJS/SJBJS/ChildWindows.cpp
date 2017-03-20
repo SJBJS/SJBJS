@@ -34,7 +34,7 @@ LRESULT ChildWindows::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LP
 {
 	switch(iMessage) {
 	case WM_CREATE:
-		break;
+		return 0;
 	case WM_DESTROY:
 		return 0;
 	}
@@ -63,7 +63,7 @@ bool ChildWindows::InitializeWindows()
 
 
 	GetClientRect(m_hWndParent, &rectView);
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right / 8 - 1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right *0.1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }
@@ -76,5 +76,5 @@ bool ChildWindows::Frame()
 void ChildWindows::resize()
 {
 	GetClientRect(m_hWndParent, &rectView);
-	MoveWindow(m_hwnd, 0, 0, rectView.right / 8 - 1, rectView.bottom, TRUE);
+	MoveWindow(m_hwnd, 0, 0, rectView.right *0.1, rectView.bottom, TRUE);
 }

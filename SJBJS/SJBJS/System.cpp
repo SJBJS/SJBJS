@@ -89,6 +89,9 @@ bool SystemClass::Frame()
 
 LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
+
+	PAINTSTRUCT ps;
+	HDC hdc;
 	switch (iMessage) {
 	case WM_CREATE:
 		child->Initialize(hWnd);
@@ -98,6 +101,8 @@ LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPA
 	case WM_TIMER:
 		return 0;
 	case WM_PAINT:
+		hdc = BeginPaint(m_hwnd, &ps);
+		EndPaint(m_hwnd, &ps);
 		return 0;
 	case WM_SIZE:
 		child->resize();
