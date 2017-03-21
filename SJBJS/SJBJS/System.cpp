@@ -69,7 +69,7 @@ bool SystemClass::InitializeWindows()
 	WndClass.hInstance = m_hInstance;					//윈도우 클래스를 등록하는 프로그램의 번호로 WinMain의 hInstance를 주면 된다.
 	WndClass.lpfnWndProc = SystemClass::WndProc;					//메세지를 처리할 함수.(중요!)
 	WndClass.lpszClassName = m_applicationName;				//프로그램 클래스의 이름 등록.
-	WndClass.lpszMenuName = NULL;					//프로그램이 사용할 메뉴를 지정한다.
+	WndClass.lpszMenuName = MAKEINTRESOURCE(IDR_MENU);					//프로그램이 사용할 메뉴를 지정한다.
 	WndClass.style = CS_HREDRAW | CS_VREDRAW;			//윈도우 스타일(윈도우가 어떤 형태를 갖을 지의 값들)
 	RegisterClass(&WndClass);					//WndClass 특성을 저장.
 

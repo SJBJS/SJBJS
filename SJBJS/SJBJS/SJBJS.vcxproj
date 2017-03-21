@@ -146,7 +146,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildWindows.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="System.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

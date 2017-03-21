@@ -4,6 +4,7 @@
 #define __SYSTEMCLASS_H_
 #include <Windows.h>
 #include"ChildWindows.h"
+#include "resource.h"
 class SystemClass
 {
 private:
