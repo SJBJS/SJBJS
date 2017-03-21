@@ -69,7 +69,7 @@ bool ChildWindows::InitializeWindows()
 
 	GetClientRect(m_hWndParent, &rectView);
 	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE || WC_TREEVIEW, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
-		TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_EDITLABELS, 0, 0, rectView.right *0.1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
+		TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_EDITLABELS, 0, 0, rectView.right *0.3, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }
@@ -82,5 +82,5 @@ bool ChildWindows::Frame()
 void ChildWindows::resize()
 {
 	GetClientRect(m_hWndParent, &rectView);
-	MoveWindow(m_hwnd, 0, 0, rectView.right *0.1, rectView.bottom, TRUE);
+	MoveWindow(m_hwnd, 0, 0, rectView.right *0.3, rectView.bottom, TRUE);
 }
