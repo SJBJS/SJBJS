@@ -32,8 +32,12 @@ HWND ChildWindows::GetHwnd() const
 
 LRESULT ChildWindows::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
+	TVINSERTSTRUCT TI;
+	HTREEITEM Node;
+
 	switch(iMessage) {
 	case WM_CREATE:
+		InitCommonControls();
 		return 0;
 	case WM_DESTROY:
 		return 0;
@@ -63,7 +67,8 @@ bool ChildWindows::InitializeWindows()
 
 
 	GetClientRect(m_hWndParent, &rectView);
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, rectView.right *0.1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE || WC_TREEVIEW, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
+		TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_EDITLABELS, 0, 0, rectView.right *0.1, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }

@@ -2,6 +2,7 @@
 #ifndef __CHILD_H_
 #define __CHILD_H_
 #include<Windows.h>
+#include <CommCtrl.h>
 class ChildWindows {
 private:
 	HWND m_hwnd;
