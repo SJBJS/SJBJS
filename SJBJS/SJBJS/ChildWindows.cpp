@@ -19,6 +19,7 @@ bool ChildWindows::Initialize(HWND hWndParent)
 
 void ChildWindows::Run()
 {
+	//github test
 }
 
 void ChildWindows::Shutdown()
