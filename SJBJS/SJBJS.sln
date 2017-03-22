@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SJBJS", "SJBJS\SJBJS.vcxproj", "{8BCC4B5E-A5FA-4981-A852-0DF9ACE4DE05}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editer", "SJBJS\SJBJS.vcxproj", "{8BCC4B5E-A5FA-4981-A852-0DF9ACE4DE05}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectX11", "DirectX11\DirectX11.vcxproj", "{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{8BCC4B5E-A5FA-4981-A852-0DF9ACE4DE05}.Release|x64.Build.0 = Release|x64
 		{8BCC4B5E-A5FA-4981-A852-0DF9ACE4DE05}.Release|x86.ActiveCfg = Release|Win32
 		{8BCC4B5E-A5FA-4981-A852-0DF9ACE4DE05}.Release|x86.Build.0 = Release|Win32
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Debug|x64.ActiveCfg = Debug|x64
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Debug|x64.Build.0 = Debug|x64
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Debug|x86.ActiveCfg = Debug|Win32
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Debug|x86.Build.0 = Debug|Win32
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Release|x64.ActiveCfg = Release|x64
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Release|x64.Build.0 = Release|x64
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Release|x86.ActiveCfg = Release|Win32
+		{ADDFEC3E-2EB8-43DE-AFEF-A08C1B919CC7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
