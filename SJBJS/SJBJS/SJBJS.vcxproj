@@ -142,13 +142,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChildWindows.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildWindows.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
