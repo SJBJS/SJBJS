@@ -19,6 +19,7 @@ public:
 	void Run();
 	void Shutdown();
 	void resize();
+	void InsertView(HWND hWnd, HTREEITEM pNode, int pid);
 
 	HWND GetHwnd()const;
 
@@ -32,4 +33,11 @@ private:
 };
 
 static ChildWindows* ChildHandle = 0;
+
+struct ParentName
+{
+	int parent;
+	char Name[30];
+};
+
 #endif

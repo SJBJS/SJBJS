@@ -1,5 +1,15 @@
 #include "ChildWindows.h"
 
+ParentName asParent[] =
+{
+	{ -1, "File" },
+	{ 0, "Sprites" },
+	{ 0, "Backgrounds" },
+	{ 0, "Scripts" },
+	{ 0, "Objects" },
+	{ 0, "Rooms" }
+};
+
 ChildWindows::ChildWindows(HINSTANCE hInstance) : m_hInstance(hInstance)
 {
 	m_applicationName = TEXT("Childe Windows");
@@ -33,12 +43,13 @@ HWND ChildWindows::GetHwnd() const
 
 LRESULT ChildWindows::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
-	TVINSERTSTRUCT TI;
-	HTREEITEM Node;
+
 
 	switch(iMessage) {
 	case WM_CREATE:
 		InitCommonControls();
+
+		InsertView(hWnd , (HTREEITEM)0, -1);
 		return 0;
 	case WM_DESTROY:
 		return 0;
@@ -83,4 +94,26 @@ void ChildWindows::resize()
 {
 	GetClientRect(m_hWndParent, &rectView);
 	MoveWindow(m_hwnd, 0, 0, rectView.right *0.3, rectView.bottom, TRUE);
+}
+
+void ChildWindows::InsertView(HWND hWnd, HTREEITEM pNode, int pid)
+{
+	TVINSERTSTRUCT TI;
+	HTREEITEM Node;
+	int i;
+	int n = sizeof(asParent) / sizeof(asParent[0]);
+
+	for (i = 0; i < n; i++)
+	{
+		if(asParent[i].parent == pid)
+		{ 
+			TI.hParent = pNode;
+			TI.hInsertAfter = TVI_LAST;
+			TI.item.mask = TVIF_TEXT;
+			TI.item.pszText = (LPWSTR)(LPCTSTR)asParent[i].Name;
+			TI.item.lParam = i;
+			Node = TreeView_InsertItem(hWnd, &TI);
+			InsertView(hWnd, Node, i);
+		}
+	}
 }
