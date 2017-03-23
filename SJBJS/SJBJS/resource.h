@@ -4,7 +4,6 @@
 //
 #define IDR_MENU                        102
 #define IDD_Tile                        103
-#define IDD_ta                          105
 #define IDD_MAP                         105
 #define ID_40001                        40001
 #define ID_40002                        40002

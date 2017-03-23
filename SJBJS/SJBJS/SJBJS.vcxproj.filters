@@ -24,10 +24,7 @@
     <ClCompile Include="ChildWindows.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="DlgTile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,10 +38,7 @@
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="DlgTile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
