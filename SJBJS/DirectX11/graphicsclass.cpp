@@ -173,6 +173,14 @@ bool GraphicsClass::Render(float moveX, float moveY)
 		return false;
 	}
 
+	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 200, 200);
+	worldMatrix *= XMMatrixTranslation(moveX, moveY, 0);
+	// Render the model using the texture shader.
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
+	if (!result)
+	{
+		return false;
+	}
 	m_Direct3D->TurnZBufferOn();
 
 	// Present the rendered scene to the screen.
