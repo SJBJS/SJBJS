@@ -205,21 +205,23 @@ void InputClass::ProcessInput()
 	if (m_mouseX > m_screenWidth) { m_mouseX = m_screenWidth; }
 	if (m_mouseY > m_screenHeight) { m_mouseY = m_screenHeight; }
 	
+	float speed = 100.0f;
+
 	if (m_keyboardState[DIK_W] & 0x80)
 	{
-		m_keyVector.y += 10;
+		m_keyVector.y += speed;
 	}
 	if (m_keyboardState[DIK_S] & 0x80)
 	{
-		m_keyVector.y -= 10;
+		m_keyVector.y -= speed;
 	}
 	if (m_keyboardState[DIK_A] & 0x80)
 	{
-		m_keyVector.x -= 10;
+		m_keyVector.x -= speed;
 	}
 	if (m_keyboardState[DIK_D] & 0x80)
 	{
-		m_keyVector.x += 10;
+		m_keyVector.x += speed;
 	}
 
 	return;
