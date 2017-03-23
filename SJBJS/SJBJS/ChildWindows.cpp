@@ -2,12 +2,12 @@
 
 ParentName asParent[] =
 {
-	{ -1, "File" },
-	{ 0, "Sprites" },
-	{ 0, "Backgrounds" },
-	{ 0, "Scripts" },
-	{ 0, "Objects" },
-	{ 0, "Rooms" }
+	{ -1, TEXT("File") },
+	{ 0, TEXT("Sprites") },
+	{ 0, TEXT("Backgrounds") },
+	{ 0, TEXT("Scripts") },
+	{ 0, TEXT("Objects") },
+	{ 0, TEXT("Rooms") }
 };
 
 ChildWindows::ChildWindows(HINSTANCE hInstance) : m_hInstance(hInstance)
@@ -47,9 +47,6 @@ LRESULT ChildWindows::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LP
 
 	switch(iMessage) {
 	case WM_CREATE:
-		InitCommonControls();
-
-		InsertView(hWnd , (HTREEITEM)0, -1);
 		return 0;
 	case WM_DESTROY:
 		return 0;
@@ -79,7 +76,7 @@ bool ChildWindows::InitializeWindows()
 
 
 	GetClientRect(m_hWndParent, &rectView);
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE || WC_TREEVIEW, m_applicationName, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE , WC_TREEVIEW, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
 		TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_EDITLABELS, 0, 0, rectView.right *0.3, rectView.bottom, m_hWndParent, NULL, m_hInstance, NULL);
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
@@ -96,7 +93,7 @@ void ChildWindows::resize()
 	MoveWindow(m_hwnd, 0, 0, rectView.right *0.3, rectView.bottom, TRUE);
 }
 
-void ChildWindows::InsertView(HWND hWnd, HTREEITEM pNode, int pid)
+void ChildWindows::InsertView(HTREEITEM pNode, int pid)
 {
 	TVINSERTSTRUCT TI;
 	HTREEITEM Node;
@@ -110,10 +107,10 @@ void ChildWindows::InsertView(HWND hWnd, HTREEITEM pNode, int pid)
 			TI.hParent = pNode;
 			TI.hInsertAfter = TVI_LAST;
 			TI.item.mask = TVIF_TEXT;
-			TI.item.pszText = (LPWSTR)(LPCTSTR)asParent[i].Name;
+			TI.item.pszText = asParent[i].Name;
 			TI.item.lParam = i;
-			Node = TreeView_InsertItem(hWnd, &TI);
-			InsertView(hWnd, Node, i);
+			Node = TreeView_InsertItem(m_hwnd, &TI);
+			InsertView(Node, i);
 		}
 	}
 }
