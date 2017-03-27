@@ -219,14 +219,20 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 	VertexType* verticesPtr;
 	HRESULT result;
 
-	static float tx = 32.0f/384.0f, ty = 32/256.0f;
+	static int i = 0;
+	i++;
+	if (i > 2)
+		i = 0;
+	float tw = 32.0f / 384.0f, th = 32 / 256.0f;
+	float tx = tw*i, ty = th*0;
 
-	// If the position we are rendering this bitmap to has not changed then don't update the vertex buffer since it
-	// currently has the correct parameters.
-	if((positionX == m_previousPosX) && (positionY == m_previousPosY))
-	{
-		return true;
-	}
+	// 위치가 변하지 않더라도 계속 그린다.
+	//// If the position we are rendering this bitmap to has not changed then don't update the vertex buffer since it
+	//// currently has the correct parameters.
+	//if((positionX == m_previousPosX) && (positionY == m_previousPosY))
+	//{
+	//	return true;
+	//}
 	
 	// If it has changed then update the position it is being rendered to.
 	m_previousPosX = positionX;
@@ -254,23 +260,23 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 	// Load the vertex array with data.
 	// First triangle.
 	vertices[0].position = XMFLOAT3(left, top, 0.0f);  // Top left.
-	vertices[0].texture = XMFLOAT2(0.0f, 0.0f);
+	vertices[0].texture = XMFLOAT2(tx, ty);
 
 	vertices[1].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[1].texture = XMFLOAT2(tx, ty);
+	vertices[1].texture = XMFLOAT2(tx+tw, ty+th);
 
 	vertices[2].position = XMFLOAT3(left, bottom, 0.0f);  // Bottom left.
-	vertices[2].texture = XMFLOAT2(0.0f, ty);
+	vertices[2].texture = XMFLOAT2(tx, ty+th);
 
 	// Second triangle.
 	vertices[3].position = XMFLOAT3(left, top, 0.0f);  // Top left.
-	vertices[3].texture = XMFLOAT2(0.0f, 0.0f);
+	vertices[3].texture = XMFLOAT2(tx, ty);
 
 	vertices[4].position = XMFLOAT3(right, top, 0.0f);  // Top right.
-	vertices[4].texture = XMFLOAT2(tx, 0.0f);
+	vertices[4].texture = XMFLOAT2(tx+tw, ty);
 
 	vertices[5].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[5].texture = XMFLOAT2(tx, ty);
+	vertices[5].texture = XMFLOAT2(tx+tw, ty+th);
 
 	// Lock the vertex buffer so it can be written to.
 	result = deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);

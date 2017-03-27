@@ -61,7 +61,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the model object.
-	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/spriteTestImage.tga", 256, 256);
+	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/spriteTestImage.tga", 128, 128);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -145,12 +145,11 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
 
-	// 텍스쳐 이동값을 증가시킵니다.
-	static float textureTranslation = 0.0f;
-	textureTranslation += 0.0f;
-	if (textureTranslation > 1.0f)
-		textureTranslation -= 1.0f;
-
+	//// 텍스쳐 이동값을 증가시킵니다.
+	//static float textureTranslation = 0.0f;
+	//textureTranslation += 0.0f;
+	//if (textureTranslation > 1.0f)
+	//	textureTranslation -= 1.0f;
 
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
@@ -159,30 +158,18 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Camera->Render();
 
 
-	// Get the world matrices from the d3d objects.
+	// Get the world, view, and projection matrices from the camera and d3d objects.
 	m_Direct3D->GetWorldMatrix(worldMatrix);
-	// Get the view, and projection matrices from the camera and d3d objects.
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_Direct3D->GetProjectionMatrix(projectionMatrix);
-
-
 	m_Direct3D->GetOrthoMatrix(orthoMatrix);
+
 	m_Direct3D->TurnZBufferOff();
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100, 100);
-
+	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX*30, 100 - moveY*30);
 	// Render the model using the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(), textureTranslation,0);
-	if (!result)
-	{
-		return false;
-	}
-
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 200, 200);
-	worldMatrix *= XMMatrixTranslation(moveX, moveY, 0);
-	// Render the model using the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),-textureTranslation,0);
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),0,0);
 	if (!result)
 	{
 		return false;
