@@ -205,7 +205,7 @@ void InputClass::ProcessInput()
 	if (m_mouseX > m_screenWidth) { m_mouseX = m_screenWidth; }
 	if (m_mouseY > m_screenHeight) { m_mouseY = m_screenHeight; }
 	
-	float speed = 100.0f;
+	float speed = 10.0f;
 
 	if (m_keyboardState[DIK_W] & 0x80)
 	{

@@ -212,12 +212,14 @@ void BitmapClass::ShutdownBuffers()
 
 bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int positionX, int positionY)
 {
+	//여기서 스프라이트 이미지 수정.
 	float left, right, top, bottom;
 	VertexType* vertices;
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	VertexType* verticesPtr;
 	HRESULT result;
 
+	static float tx = 32.0f/384.0f, ty = 32/256.0f;
 
 	// If the position we are rendering this bitmap to has not changed then don't update the vertex buffer since it
 	// currently has the correct parameters.
@@ -255,20 +257,20 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 	vertices[0].texture = XMFLOAT2(0.0f, 0.0f);
 
 	vertices[1].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[1].texture = XMFLOAT2(1.0f, 1.0f);
+	vertices[1].texture = XMFLOAT2(tx, ty);
 
 	vertices[2].position = XMFLOAT3(left, bottom, 0.0f);  // Bottom left.
-	vertices[2].texture = XMFLOAT2(0.0f, 1.0f);
+	vertices[2].texture = XMFLOAT2(0.0f, ty);
 
 	// Second triangle.
 	vertices[3].position = XMFLOAT3(left, top, 0.0f);  // Top left.
 	vertices[3].texture = XMFLOAT2(0.0f, 0.0f);
 
 	vertices[4].position = XMFLOAT3(right, top, 0.0f);  // Top right.
-	vertices[4].texture = XMFLOAT2(1.0f, 0.0f);
+	vertices[4].texture = XMFLOAT2(tx, 0.0f);
 
 	vertices[5].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[5].texture = XMFLOAT2(1.0f, 1.0f);
+	vertices[5].texture = XMFLOAT2(tx, ty);
 
 	// Lock the vertex buffer so it can be written to.
 	result = deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);

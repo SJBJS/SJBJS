@@ -8,7 +8,11 @@
 /////////////
 Texture2D shaderTexture;
 SamplerState SampleType;
-
+cbuffer TranslationBuffer
+{
+	float textureTranslationX;
+	float textureTranslationY;
+}
 
 //////////////
 // TYPEDEFS //
@@ -26,6 +30,9 @@ struct PixelInputType
 float4 TexturePixelShader(PixelInputType input) : SV_TARGET
 {
 	float4 textureColor;
+
+	input.tex.x += textureTranslationX;
+	input.tex.y += textureTranslationY;
 
 
     // Sample the pixel color from the texture using the sampler at this texture coordinate location.
