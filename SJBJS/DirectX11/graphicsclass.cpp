@@ -167,7 +167,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->TurnZBufferOff();
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX*30, 100 - moveY*30);
+	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX, 100 - moveY);
 	// Render the model using the texture shader.
 	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),0,0);
 	if (!result)

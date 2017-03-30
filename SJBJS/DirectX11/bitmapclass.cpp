@@ -225,14 +225,6 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 		i = 0;
 	float tw = 32.0f / 384.0f, th = 32 / 256.0f;
 	float tx = tw*i, ty = th*0;
-
-	// 위치가 변하지 않더라도 계속 그린다.
-	//// If the position we are rendering this bitmap to has not changed then don't update the vertex buffer since it
-	//// currently has the correct parameters.
-	//if((positionX == m_previousPosX) && (positionY == m_previousPosY))
-	//{
-	//	return true;
-	//}
 	
 	// If it has changed then update the position it is being rendered to.
 	m_previousPosX = positionX;

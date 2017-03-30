@@ -55,6 +55,7 @@ private:
 	GraphicsClass* m_Graphics;
 	Vector2f myVector;
 	std::list<ObjectNode> objects;
+	bool isActive;
 };
 
 
