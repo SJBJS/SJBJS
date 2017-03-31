@@ -150,12 +150,17 @@
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActorClass.h" />
     <ClInclude Include="bitmapclass.h" />
+    <ClInclude Include="BossClass.h" />
     <ClInclude Include="cameraclass.h" />
     <ClInclude Include="d3dclass.h" />
     <ClInclude Include="graphicsclass.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="MyUtil.h" />
+    <ClInclude Include="ObjectClass.h" />
+    <ClInclude Include="PawnClass.h" />
+    <ClInclude Include="PlayerClass.h" />
     <ClInclude Include="systemclass.h" />
     <ClInclude Include="textureclass.h" />
     <ClInclude Include="textureshaderclass.h" />
