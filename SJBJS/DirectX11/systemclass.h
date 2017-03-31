@@ -16,8 +16,10 @@
 //////////////
 #include <windows.h>
 #include <list>
+#include "fpsclass.h" 
+#include "Timerclass.h"
 
-///////////////////////
+//////////////////////
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "inputclass.h"
@@ -55,6 +57,11 @@ private:
 	GraphicsClass* m_Graphics;
 	Vector2f myVector;
 	std::list<ObjectNode> objects;
+
+	Fpsclass* m_Fps;
+	Timerclass* m_Timer;
+
+
 };
 
 

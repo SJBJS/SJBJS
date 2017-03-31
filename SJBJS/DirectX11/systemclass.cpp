@@ -9,6 +9,10 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Graphics = 0;
 	myVector.x = myVector.y = 0;
+	m_Fps = 0; 
+	m_Timer = 0;
+
+
 }
 
 
@@ -64,12 +68,43 @@ bool SystemClass::Initialize()
 		return false;
 	}
 
+	
+	// Create the fps object. 
+	m_Fps = new Fpsclass; 
+	if(!m_Fps) { return false; } 
+	
+	// Initialize the fps object.	
+	m_Fps->Initialize();
+
+	// Create the timer object. 
+	m_Timer = new Timerclass; 
+	if(!m_Timer) { return false; } 
+	
+	// Initialize the timer object. 
+	result = m_Timer->Initialize(); 
+	if(!result) { 
+		MessageBox(m_hwnd, L"Could not initialize the Timer object.", L"Error", MB_OK); 
+		return false; 
+	} 
+
+
 	return true;
 }
 
 
 void SystemClass::Shutdown()
 {
+	// Release the timer object.
+	if (m_Timer) 
+	{ 
+		delete m_Timer; m_Timer = 0; 
+	} 
+	// Release the fps object. 
+	if(m_Fps) { 
+		delete m_Fps; m_Fps = 0; 
+	} 
+
+
 	// Release the graphics object.
 	if(m_Graphics)
 	{
@@ -137,6 +172,10 @@ bool SystemClass::Frame()
 {
 	bool result;
 	int mouseX, mouseY;
+	// Update the system stats. 
+	m_Timer->Frame(); 
+	m_Fps->Frame(); 
+
 	// Do the input frame processing. 
 	result = m_Input->Frame(); if(!result) { return false; }
 	if (!result) 

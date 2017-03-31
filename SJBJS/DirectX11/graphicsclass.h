@@ -12,9 +12,9 @@
 #include "cameraclass.h"
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
+#include "Fpsclass.h"
 
 
-/////////////
 // GLOBALS //
 /////////////
 const bool FULL_SCREEN = false;
@@ -36,15 +36,18 @@ public:
 	bool Initialize(int, int, HWND);
 	void Shutdown();
 	bool Frame(float playerMoveX, float playerMoveY);
-
+	
 private:
 	bool Render(float moveX, float moveY);
-
+	
 private:
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
 	BitmapClass* m_Bitmap;
 	TextureShaderClass* m_TextureShader;
+	
+
+
 };
 
 #endif

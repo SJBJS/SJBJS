@@ -133,6 +133,7 @@ bool GraphicsClass::Frame(float moveX, float moveY)
 	result = Render(moveX, moveY);
 	if (!result)
 	{
+
 		return false;
 	}
 
@@ -144,20 +145,20 @@ bool GraphicsClass::Render(float moveX, float moveY)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
-
+	
+	
 	//// 텍스쳐 이동값을 증가시킵니다.
 	//static float textureTranslation = 0.0f;
 	//textureTranslation += 0.0f;
 	//if (textureTranslation > 1.0f)
 	//	textureTranslation -= 1.0f;
-
+	
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 
-	// Generate the view matrix based on the camera's position.
+	// Generate the view matrix based on the camera's position.	
+
 	m_Camera->Render();
-
-
 	// Get the world, view, and projection matrices from the camera and d3d objects.
 	m_Direct3D->GetWorldMatrix(worldMatrix);
 	m_Camera->GetViewMatrix(viewMatrix);
@@ -167,18 +168,20 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->TurnZBufferOff();
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX*30, 100 - moveY*30);
+	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX * 30, 100 - moveY * 30);	
 	// Render the model using the texture shader.
 	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),0,0);
+	
 	if (!result)
 	{
 		return false;
 	}
 	m_Direct3D->TurnZBufferOn();
-
+	
 	// Present the rendered scene to the screen.
 	m_Direct3D->EndScene();
 
+	
 
 	return true;
 }
