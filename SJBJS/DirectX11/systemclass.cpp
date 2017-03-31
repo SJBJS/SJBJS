@@ -139,7 +139,7 @@ bool SystemClass::Frame()
 	bool result;
 	int mouseX, mouseY;
 	// Do the input frame processing. 
-	result = m_Input->Frame(); if (!result) { return false; }
+	result = m_Input->Frame(); 
 	if (!result)
 	{
 		return false;
@@ -148,6 +148,7 @@ bool SystemClass::Frame()
 	m_Input->GetMouseLocation(mouseX, mouseY);
 	m_Input->GetKeyboardLocation(myVector);
 	myVector = myVector*0.01;
+
 	// Do the frame processing for the graphics object.
 	result = m_Graphics->Frame(myVector.x, myVector.y);
 	if (!result)

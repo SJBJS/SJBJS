@@ -61,7 +61,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the model object.
-	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/spriteTestImage.tga", 128, 128);
+	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/spriteTestImage.tga", 32, 32);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -167,7 +167,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->TurnZBufferOff();
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX, 100 - moveY);
+	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 0 + moveX, 0 - moveY);
 	// Render the model using the texture shader.
 	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),0,0);
 	if (!result)
