@@ -205,6 +205,7 @@ void InputClass::ProcessInput()
 	if (m_mouseX > m_screenWidth) { m_mouseX = m_screenWidth; }
 	if (m_mouseY > m_screenHeight) { m_mouseY = m_screenHeight; }
 	
+	//추후 제거. 축 입력으로 변경 고민중.
 	float speed = 10.0f;
 
 	if (m_keyboardState[DIK_W] & 0x80)
@@ -244,7 +245,7 @@ void InputClass::GetMouseLocation(int& mouseX, int& mouseY)
 	return;
 }
 
-void InputClass::GetKeyboardLocation(Vector2f &ref)
+void InputClass::GetKeyboardLocation(XMFLOAT2 &ref)
 {
 	ref = m_keyVector;
 }

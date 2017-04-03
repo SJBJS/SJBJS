@@ -17,7 +17,8 @@
 // INCLUDES //
 //////////////
 #include <dinput.h>
-#include"MyUtil.h"
+#include <DirectXMath.h>
+using namespace DirectX;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: InputClass
@@ -35,7 +36,7 @@ public:
 
 	bool IsEscapePressed();
 	void GetMouseLocation(int&, int&);
-	void GetKeyboardLocation(Vector2f&);
+	void GetKeyboardLocation(XMFLOAT2&);
 private:
 	bool ReadKeyboard();
 	bool ReadMouse();
@@ -49,6 +50,6 @@ private:
 	DIMOUSESTATE m_mouseState;
 	int m_screenWidth, m_screenHeight;
 	int m_mouseX, m_mouseY;
-	Vector2f m_keyVector;
+	XMFLOAT2 m_keyVector;
 }; 
 #endif

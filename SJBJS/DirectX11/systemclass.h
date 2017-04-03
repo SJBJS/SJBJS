@@ -15,14 +15,13 @@
 // INCLUDES //
 //////////////
 #include <windows.h>
-#include <list>
-
+#include<DirectXMath.h>
+using namespace DirectX;
 ///////////////////////
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "inputclass.h"
 #include "graphicsclass.h"
-#include"MyUtil.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: SystemClass
@@ -53,7 +52,7 @@ private:
 
 	InputClass* m_Input;
 	GraphicsClass* m_Graphics;
-	Vector2f myVector;
+	XMFLOAT2 myVector;
 	bool isActive;
 };
 
