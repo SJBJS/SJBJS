@@ -9,6 +9,7 @@ GraphicsClass::GraphicsClass()
 	m_Direct3D = 0;
 	m_Camera = 0;
 	m_Bitmap = 0;
+	m_BackGruond = 0;
 	m_TextureShader = 0;
 }
 
@@ -68,6 +69,20 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Create the model object.
+	m_BackGruond = new BitmapClass;
+	if (!m_BackGruond)
+	{
+		return false;
+	}
+
+	// Initialize the model object.
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/background.tga", 700, 400);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
+		return false;
+	}
 	// Create the texture shader object.
 	m_TextureShader = new TextureShaderClass;
 	if (!m_TextureShader)
@@ -103,6 +118,12 @@ void GraphicsClass::Shutdown()
 		m_Bitmap->Shutdown();
 		delete m_Bitmap;
 		m_Bitmap = 0;
+	}
+	if (m_BackGruond)
+	{
+		m_BackGruond->Shutdown();
+		delete m_BackGruond;
+		m_BackGruond = 0;
 	}
 
 	// Release the camera object.
@@ -145,12 +166,6 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
 
-	//// 텍스쳐 이동값을 증가시킵니다.
-	//static float textureTranslation = 0.0f;
-	//textureTranslation += 0.0f;
-	//if (textureTranslation > 1.0f)
-	//	textureTranslation -= 1.0f;
-
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -167,9 +182,21 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->TurnZBufferOff();
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
+	m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 0, 0);
+
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_BackGruond->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_BackGruond->GetTexture());
+	if (!result)
+	{
+		return false;
+	}
+
 	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 0 + moveX, 0 - moveY);
-	// Render the model using the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture(),0,0);
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_BackGruond->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_BackGruond->GetTexture());
+	if (!result)
+	{
+		return false;
+	}
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
 	if (!result)
 	{
 		return false;
