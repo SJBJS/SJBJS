@@ -68,9 +68,6 @@
     <ClInclude Include="PawnClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
       <Filter>Graphics\Header</Filter>
     </ClInclude>
     <ClInclude Include="systemclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObejctClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,7 +4,7 @@
 
 #include "ActorClass.h"
 
-class PawnClass
+class PawnClass : public ActorClass
 {
 
 };

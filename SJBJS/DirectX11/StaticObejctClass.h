@@ -4,7 +4,7 @@
 
 #include "ActorClass.h"
 
-class ObjectClass
+class StaticObejctClass : public ActorClass
 {
 
 };

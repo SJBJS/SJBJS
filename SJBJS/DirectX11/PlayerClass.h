@@ -4,7 +4,7 @@
 
 #include "PawnClass.h"
 
-class PlayerClass
+class PlayerClass : public PawnClass
 {
 
 };

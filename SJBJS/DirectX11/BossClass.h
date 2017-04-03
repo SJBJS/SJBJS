@@ -4,7 +4,7 @@
 
 #include "PawnClass.h"
 
-class BossClass
+class BossClass : public PawnClass
 {
 
 };
