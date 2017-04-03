@@ -62,7 +62,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the model object.
-	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/spriteTestImage.tga", 32, 32);
+	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/player.tga", 32, 32);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -76,8 +76,8 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	// Initialize the model object.
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/stone01.tga", 700, 400);
+		// Initialize the model object.
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/background.tga", 700, 400);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -180,27 +180,37 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->GetOrthoMatrix(orthoMatrix);
 
 	m_Direct3D->TurnZBufferOff();
-
+	m_Direct3D->TurnOnAlphaBlending();
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 0, 0);
 
+	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
+
+
+	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 100, 100);
+	if (!result)
+	{
+		return false;
+	}
+	// Render the bitmap with the texture shader.
 	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_BackGruond->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_BackGruond->GetTexture());
 	if (!result)
 	{
 		return false;
 	}
 
-	m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 0 + moveX, 0 - moveY);
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_BackGruond->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_BackGruond->GetTexture());
+	result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX, 100 + moveY);
 	if (!result)
 	{
 		return false;
 	}
+	// Render the bitmap with the texture shader.
 	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
 	if (!result)
 	{
 		return false;
 	}
+
+	m_Direct3D->TurnOffAlphaBlending();
 	m_Direct3D->TurnZBufferOn();
 
 	// Present the rendered scene to the screen.

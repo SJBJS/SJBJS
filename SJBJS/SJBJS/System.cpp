@@ -94,7 +94,9 @@ LRESULT SystemClass::MessageHandler(HWND hWnd, UINT iMessage, WPARAM wParam, LPA
 	HDC hdc;
 	switch (iMessage) {
 	case WM_CREATE:
+		InitCommonControls();
 		child->Initialize(hWnd);
+		child->InsertView((HTREEITEM)0, -1);
 		return 0;
 	case WM_ACTIVATE:
 		return 0;

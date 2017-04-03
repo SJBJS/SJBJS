@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include"ChildWindows.h"
 #include "resource.h"
+
 class SystemClass
 {
 private:
@@ -16,6 +17,7 @@ public:
 	SystemClass();
 	SystemClass(const SystemClass &ref);
 	~SystemClass();
+
 
 	bool Initialize();
 	void Run();

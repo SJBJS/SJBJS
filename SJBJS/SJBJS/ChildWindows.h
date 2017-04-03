@@ -3,6 +3,7 @@
 #define __CHILD_H_
 #include<Windows.h>
 #include <CommCtrl.h>
+#include <iostream>
 class ChildWindows {
 private:
 	HWND m_hwnd;
@@ -19,6 +20,7 @@ public:
 	void Run();
 	void Shutdown();
 	void resize();
+	void InsertView(HTREEITEM pNode, int pid);
 
 	HWND GetHwnd()const;
 
@@ -32,4 +34,11 @@ private:
 };
 
 static ChildWindows* ChildHandle = 0;
+
+struct ParentName
+{
+	int parent;
+	LPWSTR Name;
+};
+
 #endif

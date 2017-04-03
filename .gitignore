@@ -313,3 +313,4 @@ __pycache__/
 # !tools/packages.config
 
 # End of https://www.gitignore.io/api/visualstudio,c++
+/SJBJS/DirectX11/data/player.png
