@@ -180,7 +180,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	m_Direct3D->GetOrthoMatrix(orthoMatrix);
 
 	m_Direct3D->TurnZBufferOff();
-
+	m_Direct3D->TurnOnAlphaBlending();
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
@@ -210,7 +210,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 		return false;
 	}
 
-
+	m_Direct3D->TurnOffAlphaBlending();
 	m_Direct3D->TurnZBufferOn();
 
 	// Present the rendered scene to the screen.
