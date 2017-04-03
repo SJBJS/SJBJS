@@ -11,6 +11,7 @@ TextureShaderClass::TextureShaderClass()
 	m_layout = 0;
 	m_matrixBuffer = 0;
 	m_sampleState = 0;
+	m_translateBuffer = 0;
 }
 
 
@@ -50,13 +51,13 @@ void TextureShaderClass::Shutdown()
 
 
 bool TextureShaderClass::Render(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX& worldMatrix, XMMATRIX& viewMatrix,
-								XMMATRIX& projectionMatrix, ID3D11ShaderResourceView* texture)
+								XMMATRIX& projectionMatrix, ID3D11ShaderResourceView* texture, float translationX,float translationY)
 {
 	bool result;
 
 
 	// Set the shader parameters that it will use for rendering.
-	result = SetShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix, texture);
+	result = SetShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix, texture, translationX, translationY);
 	if(!result)
 	{
 		return false;
@@ -211,12 +212,30 @@ bool TextureShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR
 		return false;
 	}
 
+	translateBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	translateBufferDesc.ByteWidth = sizeof(TranslateBufferType);
+	translateBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	translateBufferDesc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+	translateBufferDesc.MiscFlags = 0;
+	translateBufferDesc.StructureByteStride = 0;
+
+	result = device->CreateBuffer(&translateBufferDesc, NULL, &m_translateBuffer);
+	if (FAILED(result))
+	{
+		return false;
+	}
+
 	return true;
 }
 
 
 void TextureShaderClass::ShutdownShader()
 {
+	if (m_translateBuffer)
+	{
+		m_translateBuffer->Release();
+		m_translateBuffer = 0;
+	}
 	// Release the sampler state.
 	if (m_sampleState)
 	{
@@ -293,12 +312,13 @@ void TextureShaderClass::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND
 
 
 bool TextureShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext,  XMMATRIX& worldMatrix,  XMMATRIX& viewMatrix,
-	 XMMATRIX& projectionMatrix, ID3D11ShaderResourceView* texture)
+	 XMMATRIX& projectionMatrix, ID3D11ShaderResourceView* texture,float translationX, float translationY)
 {
 	HRESULT result;
     D3D11_MAPPED_SUBRESOURCE mappedResource;
 	MatrixBufferType* dataPtr;
 	unsigned int bufferNumber; 
+	TranslateBufferType* dataPtr2;
 
 
 	// Transpose the matrices to prepare them for the shader.
@@ -332,6 +352,29 @@ bool TextureShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext,
 
 	// Set shader texture resource in the pixel shader.
 	deviceContext->PSSetShaderResources(0, 1, &texture);
+
+	// 쓰기 작업을 할 수 있도록 텍스쳐 이동 상수 버퍼를 잠급니다. 
+	result = deviceContext->Map(m_translateBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	if(FAILED(result))
+	{
+		return false;
+	} 
+	// 텍스쳐 이동 상수 버퍼에 접근하기 위해 데이터의 포인터를 얻어옵니다. 
+	dataPtr2 = (TranslateBufferType*)mappedResource.pData;
+
+	// 상수 버퍼에 텍스쳐 이동 값을 복사해 넣습니다.
+	dataPtr2->translationX = translationX;
+	dataPtr2->translationY = translationY;
+
+	// 버퍼의 잠금을 해제합니다.
+	deviceContext->Unmap(m_translateBuffer, 0);
+
+	// 픽셀 셰이더에 텍스쳐 이동 버퍼의 값을 설정합니다.
+	bufferNumber = 0;
+
+	// 픽셀 셰이더에서 상수 버퍼를 최신의 값으로 설정합니다.
+	deviceContext->PSSetConstantBuffers(bufferNumber, 1, &m_translateBuffer);
+
 	return true;
 }
 

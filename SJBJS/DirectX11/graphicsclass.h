@@ -44,7 +44,6 @@ private:
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
 	BitmapClass* m_Bitmap;
-	BitmapClass* m_BackGruond;
 	TextureShaderClass* m_TextureShader;
 };
 
