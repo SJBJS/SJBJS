@@ -149,7 +149,7 @@ bool SystemClass::Frame()
 	m_Input->GetKeyboardLocation(myVector);
 
 	// Do the frame processing for the graphics object.
-	result = m_Graphics->Frame(0, 0);
+	result = m_Graphics->Frame(myVector.x, myVector.y);
 	if (!result)
 	{
 		return false;

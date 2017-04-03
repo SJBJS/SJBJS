@@ -8,6 +8,7 @@ InputClass::InputClass()
 	m_directInput = 0;
 	m_keyboard = 0;
 	m_mouse = 0;
+	m_keyVector = XMFLOAT2(0,0);
 }
 
 
@@ -210,11 +211,11 @@ void InputClass::ProcessInput()
 
 	if (m_keyboardState[DIK_W] & 0x80)
 	{
-		m_keyVector.y += speed;
+		m_keyVector.y -= speed;
 	}
 	if (m_keyboardState[DIK_S] & 0x80)
 	{
-		m_keyVector.y -= speed;
+		m_keyVector.y += speed;
 	}
 	if (m_keyboardState[DIK_A] & 0x80)
 	{
