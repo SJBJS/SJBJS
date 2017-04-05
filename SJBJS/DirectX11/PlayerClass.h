@@ -6,6 +6,8 @@
 
 class PlayerClass : public PawnClass
 {
+	int damage;
+	int x, y;
 
 };
 
