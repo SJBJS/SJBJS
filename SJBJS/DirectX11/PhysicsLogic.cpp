@@ -44,3 +44,7 @@ boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
 	else
 		false;
 }
+bool PhysicsLogic::GetElement()
+{
+	return true;
+}

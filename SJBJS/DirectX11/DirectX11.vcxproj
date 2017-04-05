@@ -145,6 +145,8 @@
     <ClCompile Include="graphicsclass.cpp" />
     <ClCompile Include="inputclass.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsLogic.cpp" />
     <ClCompile Include="systemclass.cpp" />
     <ClCompile Include="textureclass.cpp" />
     <ClCompile Include="textureshaderclass.cpp" />
@@ -158,6 +160,8 @@
     <ClInclude Include="graphicsclass.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="MyUtil.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsLogic.h" />
     <ClInclude Include="StaticObejctClass.h" />
     <ClInclude Include="PawnClass.h" />
     <ClInclude Include="PlayerClass.h" />
