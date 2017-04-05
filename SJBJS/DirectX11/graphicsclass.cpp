@@ -37,7 +37,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the Direct3D object.
-	result = m_Direct3D->Initialize(screenWidth, screenHeight, false, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	result = m_Direct3D->Initialize(screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize Direct3D.", L"Error", MB_OK);
@@ -77,7 +77,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 		// Initialize the model object.
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/background.tga", 640, 640);
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/background.tga", 700, 400);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -186,7 +186,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 
-	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 100, 100); // 케릭터 기본위치
+	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 100, 100);
 	if (!result)
 	{
 		return false;
