@@ -24,17 +24,17 @@ typedef struct Enermy {
 class PhysicsLogic
 {
 public:
-	int TileWidth;
-	int TileHeight;
-	int TileMaxX;
-	int TileMaxY;
+	int TileWidth; //타일 넓이(높이 동일함으로 같이씀)
+	
+	int TileMaxX; // 타일 가로 최대 갯수
+	int TileMaxY; // 타일 세로 최대 갯수
 	
 	PhysicsLogic();
 	~PhysicsLogic();
-	void initTileSet();
-	bool IsCollision(); //충돌 확인	
+	void initTileSet(); //타일 초기화
+	bool IsCollision(); //타일속성체크	
 	boolean SetElement(Tile r1); //타일 속성 설정
-	bool GetElement(Tile r1); //해당 타일의 충돌가능 여부 속성
+	bool GetElement(Tile r1); //해당 타일의 충돌설정 확인
 	boolean overlapPT(PlayerClass r1, Tile r2); // 플레이어와 타일 충돌확인
 	boolean overlapPE(PlayerClass r1, Enermy r2); // 플레이어와 적 충돌확인
 	boolean overlapET(Enermy r1, Tile r2); // 적과 타일 충돌확인

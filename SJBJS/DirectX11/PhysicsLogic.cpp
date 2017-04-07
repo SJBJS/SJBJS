@@ -15,6 +15,7 @@ PhysicsLogic::~PhysicsLogic()
 }
 bool PhysicsLogic::IsCollision()
 {
+	// 鸥老加己 眉农亲格 true false 犬牢
 
 }
 boolean PhysicsLogic::overlapPT(PlayerClass r1, Tile r2)
@@ -52,7 +53,10 @@ boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
 		false;
 }
 boolean PhysicsLogic::SetElement(Tile r1) {
-
+	if (IsCollision())
+		r1.coll = true;
+	else
+		r1.coll = false;
 
 }
 bool PhysicsLogic::GetElement(Tile r1)
