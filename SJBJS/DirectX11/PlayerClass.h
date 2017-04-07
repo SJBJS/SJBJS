@@ -6,8 +6,11 @@
 
 class PlayerClass : public PawnClass
 {
+public:
 	int damage;
-	int x, y;
+	int width, height;
+	RECT	Prect;		// Player Image Rect
+	XMFLOAT2	Pp;		// Player Position
 
 };
 

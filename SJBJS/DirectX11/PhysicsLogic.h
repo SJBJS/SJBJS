@@ -14,11 +14,7 @@ typedef struct Tile{
 	XMFLOAT2	Tp;		// Tile Position
 	
 };
-typedef struct Player {	
-	int width, height;
-	RECT	Prect;		// Player Image Rect
-	XMFLOAT2	Pp;		// Player Position
-};
+
 typedef struct Enermy {
 	
 	int width, height;
@@ -28,18 +24,19 @@ typedef struct Enermy {
 class PhysicsLogic
 {
 public:
-	int TileWidth = 32;
-	int TileMaxX = 10;
-	int TileMaxY = 10;
-
+	int TileWidth;
+	int TileHeight;
+	int TileMaxX;
+	int TileMaxY;
+	
 	PhysicsLogic();
 	~PhysicsLogic();
 	void initTileSet();
 	bool IsCollision(); //충돌 확인	
 	boolean SetElement(Tile r1); //타일 속성 설정
 	bool GetElement(Tile r1); //해당 타일의 충돌가능 여부 속성
-	boolean overlapPT(Player r1, Tile r2); // 플레이어와 타일 충돌확인
-	boolean overlapPE(Player r1, Enermy r2); // 플레이어와 적 충돌확인
+	boolean overlapPT(PlayerClass r1, Tile r2); // 플레이어와 타일 충돌확인
+	boolean overlapPE(PlayerClass r1, Enermy r2); // 플레이어와 적 충돌확인
 	boolean overlapET(Enermy r1, Tile r2); // 적과 타일 충돌확인
 
 	IDirectInput8* m_directInput;
