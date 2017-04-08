@@ -13,6 +13,10 @@
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
 
+///////////////////////
+// INCLUDES //
+///////////////////////
+#include<DirectXMath.h>
 
 /////////////
 // GLOBALS //
@@ -35,10 +39,10 @@ public:
 
 	bool Initialize(int, int, HWND);
 	void Shutdown();
-	bool Frame(float playerMoveX, float playerMoveY);
+	bool Frame(XMFLOAT2 playerMove, float deltaTime);
 
 private:
-	bool Render(float moveX, float moveY);
+	bool Render(XMFLOAT2 playerMove, float deltaTime);
 
 private:
 	D3DClass* m_Direct3D;
