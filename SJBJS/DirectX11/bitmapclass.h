@@ -38,7 +38,7 @@ public:
 
 	bool Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int screenWidth, int screenHeight, char* textureFilename, int bitmapWidth, int bitmapHeight);
 	void Shutdown();
-	bool Render(ID3D11DeviceContext*, int, int);
+	bool Render(ID3D11DeviceContext*, XMFLOAT2 playerMove, float deltaTime);
 
 	int GetIndexCount();
 	ID3D11ShaderResourceView* GetTexture();
@@ -46,7 +46,7 @@ public:
 private:
 	bool InitializeBuffers(ID3D11Device*);
 	void ShutdownBuffers();
-	bool UpdateBuffers(ID3D11DeviceContext*, int, int);
+	bool UpdateBuffers(ID3D11DeviceContext*, XMFLOAT2 playerMove, float deltaTime);
 	void RenderBuffers(ID3D11DeviceContext*);
 
 	bool LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename);

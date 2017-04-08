@@ -69,13 +69,13 @@ void BitmapClass::Shutdown()
 }
 
 
-bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, int positionX, int positionY)
+bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, float deltaTime)
 {
 	bool result;
 
 
 	// Re-build the dynamic vertex buffer for rendering to possibly a different location on the screen.
-	result = UpdateBuffers(deviceContext, positionX, positionY);
+	result = UpdateBuffers(deviceContext, playerMove,deltaTime);
 	if(!result)
 	{
 		return false;
@@ -208,9 +208,8 @@ void BitmapClass::ShutdownBuffers()
 }
 
 
-bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int positionX, int positionY)
+bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, float deltaTime)
 {
-	//여기서 스프라이트 이미지 수정.
 	float left, right, top, bottom;
 	VertexType* vertices;
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -218,17 +217,17 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 	HRESULT result;
 	
 	// If it has changed then update the position it is being rendered to.
-	m_previousPosX = positionX;
-	m_previousPosY = positionY;
+	m_previousPosX = playerMove.x;
+	m_previousPosY = playerMove.y;
 
 	// Calculate the screen coordinates of the left side of the bitmap.
-	left = (float)((m_screenWidth / 2) * -1) + (float)positionX;
+	left = (float)((m_screenWidth / 2) * -1) + (float)playerMove.x;
 
 	// Calculate the screen coordinates of the right side of the bitmap.
 	right = left + (float)m_bitmapWidth;
 
 	// Calculate the screen coordinates of the top of the bitmap.
-	top = (float)(m_screenHeight / 2) - (float)positionY;
+	top = (float)(m_screenHeight / 2) - (float)playerMove.y;
 
 	// Calculate the screen coordinates of the bottom of the bitmap.
 	bottom = top - (float)m_bitmapHeight;
@@ -240,6 +239,8 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, int position
 		return false;
 	}
 
+
+	//여기서 스프라이트 이미지 수정.
 	// Load the vertex array with data.
 	// First triangle.
 	vertices[0].position = XMFLOAT3(left, top, 0.0f);  // Top left.

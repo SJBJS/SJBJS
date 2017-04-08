@@ -145,13 +145,13 @@ void GraphicsClass::Shutdown()
 }
 
 
-bool GraphicsClass::Frame(float moveX, float moveY)
+bool GraphicsClass::Frame(XMFLOAT2 playerMove, float deltaTime)
 {
 	bool result;
 
 
 	// Render the graphics scene.
-	result = Render(moveX, moveY);
+	result = Render(playerMove, deltaTime);
 	if (!result)
 	{
 		return false;
@@ -161,7 +161,7 @@ bool GraphicsClass::Frame(float moveX, float moveY)
 }
 
 
-bool GraphicsClass::Render(float moveX, float moveY)
+bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
@@ -186,7 +186,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 
-	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), 100, 100); // 케릭터 기본위치
+	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(100,100), deltaTime);
 	if (!result)
 	{
 		return false;
@@ -198,7 +198,7 @@ bool GraphicsClass::Render(float moveX, float moveY)
 		return false;
 	}
 
-	result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), 100 + moveX, 100 + moveY);
+	result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), playerMove, deltaTime);
 	if (!result)
 	{
 		return false;
