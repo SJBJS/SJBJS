@@ -16,6 +16,7 @@ PhysicsLogic::~PhysicsLogic()
 bool PhysicsLogic::IsCollision()
 {
 	// 鸥老加己 眉农亲格 true false 犬牢
+	return true;
 
 }
 boolean PhysicsLogic::overlapPT(PlayerClass r1, Tile r2)
@@ -38,7 +39,7 @@ boolean PhysicsLogic::overlapPE(PlayerClass r1, Enermy r2)
 		r1.Prect.top + r1.height > r2.Erect.top)
 		return true;
 	else
-		false;
+		return false;
 }
 boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
 {
@@ -50,13 +51,15 @@ boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
 		r1.Erect.top + r1.height > r2.Trect.top)
 		return true;
 	else
-		false;
+		return false;
 }
 boolean PhysicsLogic::SetElement(Tile r1) {
 	if (IsCollision())
 		r1.coll = true;
 	else
 		r1.coll = false;
+
+	return r1.coll;
 
 }
 bool PhysicsLogic::GetElement(Tile r1)
