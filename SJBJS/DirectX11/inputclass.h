@@ -36,7 +36,7 @@ public:
 
 	bool IsEscapePressed();
 	void GetMouseLocation(int&, int&);
-	void GetKeyboardLocation(XMFLOAT2&);
+	static bool IsKeyDown(int keyNuber);
 private:
 	bool ReadKeyboard();
 	bool ReadMouse();
@@ -50,6 +50,8 @@ private:
 	DIMOUSESTATE m_mouseState;
 	int m_screenWidth, m_screenHeight;
 	int m_mouseX, m_mouseY;
-	XMFLOAT2 m_keyVector;
+	
 }; 
+
+static InputClass * Input = 0;
 #endif
