@@ -146,7 +146,6 @@ bool SystemClass::Frame()
 	}
 	// Get the location of the mouse from the input object, 
 	m_Input->GetMouseLocation(mouseX, mouseY);
-	m_Input->GetKeyboardLocation(myVector);
 
 	// Do the frame processing for the graphics object.
 	result = m_Graphics->Frame(myVector,0);
