@@ -5,14 +5,28 @@
 #include <iostream>
 #include <d3d11.h>
 #include <directxmath.h>
+#include"inputclass.h"
 using namespace DirectX;
 
 class ActorClass
 {
-public:
+public: //public data.
+	
+protected :
 	XMFLOAT3 postion;
-	std::string texture;
+	std::string textureAddress;
 	float Wight, Hight;
+
+private: //private data.
+
+public: //public Function.
+	virtual XMFLOAT3 GetPosition() const;
+	virtual std::string GetTextureAddress() const;
+	virtual XMFLOAT2 GetTextureWH() const;
+
+	virtual void Initialize();
+	virtual void Update();
+private: //private Function.
 
 };
 

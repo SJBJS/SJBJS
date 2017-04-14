@@ -214,7 +214,7 @@ bool InputClass::IsKeyDown(int keyNuber)
 	if (!Input)
 		return false;
 
-	return 	Input->m_keyboardState[keyNuber] & 0x80;
+	return 	static_cast<bool>(Input->m_keyboardState[keyNuber] & 0x80);
 }
 
 bool InputClass::IsEscapePressed()
