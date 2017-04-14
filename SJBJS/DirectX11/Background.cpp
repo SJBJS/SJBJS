@@ -1,6 +1,6 @@
-#include "PhysicsLogic.h"
+#include "Background.h"
 
-PhysicsLogic::PhysicsLogic()
+Background::Background()
 {
 	
 	TileWidth = 32;
@@ -10,16 +10,16 @@ PhysicsLogic::PhysicsLogic()
 }
 
 
-PhysicsLogic::~PhysicsLogic()
+Background::~Background()
 {
 }
-bool PhysicsLogic::IsCollision()
+bool Background::IsCollision()
 {
 	// 타일속성 체크항목 true false 확인
 	return true;
 
 }
-boolean PhysicsLogic::overlapPT(PlayerClass r1, Tile r2)
+boolean Background::overlapPT(PlayerClass r1, Tile r2)
 {   //첫 번째 조건절에서는 첫 번째 사각형의 왼쪽 모서리가 두 번째 사각형의 오른쪽 모서리보다 항상 
 	//왼쪽에 있어야 한다고 지정한다. 두 번째 조건문에서는 첫 번째 사각형의 오른쪽 모서리가 두 번째 사각형의 왼쪽 모서리보다 오른쪽에 있어야 한다
 	if (GetElement(r2) &&
@@ -31,7 +31,7 @@ boolean PhysicsLogic::overlapPT(PlayerClass r1, Tile r2)
 	else
 		false;
 }
-boolean PhysicsLogic::overlapPE(PlayerClass r1, Enermy r2)
+boolean Background::overlapPE(PlayerClass r1, Enermy r2)
 {
 	if (r1.Prect.left  < r2.Erect.left + r2.width &&
 		r1.Prect.left + r1.width > r2.Erect.left &&
@@ -41,7 +41,7 @@ boolean PhysicsLogic::overlapPE(PlayerClass r1, Enermy r2)
 	else
 		return false;
 }
-boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
+boolean Background::overlapET(Enermy r1, Tile r2)
 {
 	
 	if (GetElement(r2) &&
@@ -53,7 +53,7 @@ boolean PhysicsLogic::overlapET(Enermy r1, Tile r2)
 	else
 		return false;
 }
-boolean PhysicsLogic::SetElement(Tile r1) {
+boolean Background::SetElement(Tile r1) {
 	if (IsCollision())
 		r1.coll = true;
 	else
@@ -62,7 +62,7 @@ boolean PhysicsLogic::SetElement(Tile r1) {
 	return r1.coll;
 
 }
-bool PhysicsLogic::GetElement(Tile r1)
+bool Background::GetElement(Tile r1)
 {
 	if (r1.coll) {
 		return true;
@@ -70,7 +70,7 @@ bool PhysicsLogic::GetElement(Tile r1)
 	else 
 		return false;
 }
-void PhysicsLogic::initTileSet() {
+void Background::initTileSet() {
 	
 	Tile tile[10][10];
 	// 타일 초기화

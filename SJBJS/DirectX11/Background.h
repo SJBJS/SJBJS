@@ -1,6 +1,6 @@
 #pragma once
-#ifndef BACKGORIND_H_
-#define BACKGORIND_H_
+#ifndef BACKGROUND_H_
+#define BACKGROUND_H_
 
 #include "inputclass.h"
 #include "PlayerClass.h"
