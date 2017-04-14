@@ -8,7 +8,6 @@ GraphicsClass::GraphicsClass()
 {
 	m_Direct3D = 0;
 	m_Camera = 0;
-	m_Bitmap = 0;
 	m_BackGruond = 0;
 	m_TextureShader = 0;
 	m_ObjectsList = 0;
@@ -57,21 +56,6 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vec
 	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
 
 	// Create the model object.
-	m_Bitmap = new BitmapClass;
-	if (!m_Bitmap)
-	{
-		return false;
-	}
-
-	// Initialize the model object.
-	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/player.tga", 32, 32);
-	if (!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
-		return false;
-	}
-
-	// Create the model object.
 	m_BackGruond = new BitmapClass;
 	if (!m_BackGruond)
 	{
@@ -79,7 +63,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vec
 	}
 
 		// Initialize the model object.
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/qq-2.tga", 640, 960);
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/qq-2.tga", screenWidth, screenHeight);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -144,12 +128,6 @@ void GraphicsClass::Shutdown()
 		m_Objects = 0;
 	}
 	// Release the model object.
-	if (m_Bitmap)
-	{
-		m_Bitmap->Shutdown();
-		delete m_Bitmap;
-		m_Bitmap = 0;
-	}
 	if (m_BackGruond)
 	{
 		m_BackGruond->Shutdown();
@@ -217,7 +195,7 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 
-	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(100,100), deltaTime);
+	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(0,0), deltaTime);
 	if (!result)
 	{
 		return false;
@@ -228,18 +206,6 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	{
 		return false;
 	}
-
-	//result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), playerMove, deltaTime);
-	//if (!result)
-	//{
-	//	return false;
-	//}
-	//// Render the bitmap with the texture shader.
-	//result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
-	//if (!result)
-	//{
-	//	return false;
-	//}
 	int len = m_ObjectsList->size();
 	for (int i = 0; i < m_ObjectsList->size(); ++i)
 	{
