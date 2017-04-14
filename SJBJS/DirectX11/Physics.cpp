@@ -1,12 +1,20 @@
 #include "Physics.h"
 
 
+bool Physics::Initialize(vector<ActorClass*>* objectList)
+{
+	if (!objectList)
+		return false;
 
-Physics::Physics()
+	m_ObjectList = objectList;
+
+	return true;
+}
+
+void Physics::Update()
 {
 }
 
-
-Physics::~Physics()
+void Physics::Shutdown()
 {
 }

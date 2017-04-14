@@ -1,20 +1,19 @@
 #pragma once
-#ifndef PHYSICS_H_
-#define PHYSICS_H_
+#ifndef _LOGIC_H_
+#define _LOGIC_H_
 
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include "ActorClass.h"
-#include <vector>
+#include<vector>
+#include"ActorClass.h"
 
 using namespace std;
 
 /////////////////////////
 // CLASS
 /////////////////////////
-
-class Physics
+class Logic
 {
 private:
 	vector<ActorClass*> * m_ObjectList;
@@ -23,5 +22,4 @@ public:
 	void Update();
 	void Shutdown();
 };
-
 #endif
