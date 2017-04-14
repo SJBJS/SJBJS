@@ -8,6 +8,7 @@ SystemClass::SystemClass()
 {
 	m_Input = 0;
 	m_Graphics = 0;
+	m_LogicAndPhysics = 0;
 	myVector.x = myVector.y = 0;
 	isActive = true;
 }
@@ -65,6 +66,17 @@ bool SystemClass::Initialize()
 		return false;
 	}
 
+	m_LogicAndPhysics = new LogicAndPhysics();
+	if (!m_LogicAndPhysics)
+	{
+		return false;
+	}
+	result = m_LogicAndPhysics->Initialize();
+	if (!result)
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -77,6 +89,13 @@ void SystemClass::Shutdown()
 		m_Graphics->Shutdown();
 		delete m_Graphics;
 		m_Graphics = 0;
+	}
+
+	if (m_LogicAndPhysics)
+	{
+		m_LogicAndPhysics->Shutdown();
+		delete m_LogicAndPhysics;
+		m_LogicAndPhysics = 0;
 	}
 
 	// Release the input object. 
@@ -147,6 +166,11 @@ bool SystemClass::Frame()
 	// Get the location of the mouse from the input object, 
 	m_Input->GetMouseLocation(mouseX, mouseY);
 
+	result = m_LogicAndPhysics->Update();
+	if (!result)
+	{
+		return false;
+	}
 	// Do the frame processing for the graphics object.
 	result = m_Graphics->Frame(myVector,0);
 	if (!result)
