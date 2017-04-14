@@ -2,7 +2,7 @@
 // Filename: graphicsclass.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "graphicsclass.h"
-
+#include<string>
 
 GraphicsClass::GraphicsClass()
 {
@@ -11,6 +11,8 @@ GraphicsClass::GraphicsClass()
 	m_Bitmap = 0;
 	m_BackGruond = 0;
 	m_TextureShader = 0;
+	m_ObjectsList = 0;
+	m_Objects = 0;
 }
 
 
@@ -24,7 +26,7 @@ GraphicsClass::~GraphicsClass()
 }
 
 
-bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
+bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vector<ActorClass*>* objectsList)
 {
 	bool result;
 
@@ -98,6 +100,27 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Objects list setting.
+	if (!objectsList)
+		return false;
+	m_ObjectsList = objectsList;
+	if (!objectsList->empty())
+	{
+		m_Objects = new BitmapClass[m_ObjectsList->size()];
+		if (!m_Objects)
+			return false;
+		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		{
+			char* str = (*m_ObjectsList)[i]->GetTextureAddress();
+			XMFLOAT2 textureWH = (*m_ObjectsList)[i]->GetTextureWH();
+			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, str, textureWH.x, textureWH.y);
+			if (!result)
+			{
+				MessageBox(hwnd, L"Could not initialize the Objects",L"Error",MB_OK);
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -111,7 +134,15 @@ void GraphicsClass::Shutdown()
 		delete m_TextureShader;
 		m_TextureShader = 0;
 	}
-
+	if (m_Objects)
+	{
+		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		{
+			m_Objects[i].Shutdown();
+		}
+		delete[] m_Objects;
+		m_Objects = 0;
+	}
 	// Release the model object.
 	if (m_Bitmap)
 	{
@@ -198,16 +229,27 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 		return false;
 	}
 
-	result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), playerMove, deltaTime);
-	if (!result)
+	//result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), playerMove, deltaTime);
+	//if (!result)
+	//{
+	//	return false;
+	//}
+	//// Render the bitmap with the texture shader.
+	//result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
+	//if (!result)
+	//{
+	//	return false;
+	//}
+	int len = m_ObjectsList->size();
+	for (int i = 0; i < m_ObjectsList->size(); ++i)
 	{
-		return false;
-	}
-	// Render the bitmap with the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
-	if (!result)
-	{
-		return false;
+		XMFLOAT2 position = XMFLOAT2((*m_ObjectsList)[i]->GetPosition().x, (*m_ObjectsList)[i]->GetPosition().y);
+		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
+		if (!result)
+			return false;
+		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture());
+		if (!result)
+			return false;
 	}
 
 	m_Direct3D->TurnOffAlphaBlending();

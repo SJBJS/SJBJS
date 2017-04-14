@@ -16,6 +16,7 @@ bool LogicAndPhysics::Initialize()
 	bool result;
 
 	m_ObjectList = new vector<ActorClass*>();
+	CreateObject();
 
 	m_Logic = new Logic();
 	if (!m_Logic)
@@ -23,7 +24,7 @@ bool LogicAndPhysics::Initialize()
 		return false;
 	}
 	result = m_Logic->Initialize(m_ObjectList);
-	if (result)
+	if (!result)
 	{
 		return false;
 	}
@@ -34,7 +35,7 @@ bool LogicAndPhysics::Initialize()
 		return false;
 	}
 	result = m_Physics->Initialize(m_ObjectList);
-	if (result)
+	if (!result)
 	{
 		return false;
 	}
@@ -76,10 +77,16 @@ void LogicAndPhysics::Shutdown()
 	}
 }
 
+vector<ActorClass*>* LogicAndPhysics::GetObjects() const
+{
+	return m_ObjectList;
+}
+
 void LogicAndPhysics::CreateObject()
 {
 	// 추가할 오브젝트를 넣어주세요.
 	// ex)m_ObjectList->push_back(new Player);
+	m_ObjectList->push_back(new ActorClass);
 }
 
 void LogicAndPhysics::DeleteObjects()

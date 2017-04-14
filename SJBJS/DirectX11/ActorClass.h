@@ -14,14 +14,14 @@ public: //public data.
 	
 protected :
 	XMFLOAT3 postion;
-	std::string textureAddress;
+	char* textureAddress;
 	float Wight, Hight;
 
 private: //private data.
 
 public: //public Function.
 	virtual XMFLOAT3 GetPosition() const;
-	virtual std::string GetTextureAddress() const;
+	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;
 
 	virtual void Initialize();

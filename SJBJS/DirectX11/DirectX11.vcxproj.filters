@@ -69,6 +69,15 @@
     <ClCompile Include="Background.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ActorClass.cpp">
+      <Filter>GameObjects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicAndPhysics.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputclass.h">
@@ -116,10 +125,13 @@
     <ClInclude Include="StaticObejctClass.h">
       <Filter>GameObjects\Header</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsLogic.h">
+    <ClInclude Include="Background.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="LogicAndPhysics.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

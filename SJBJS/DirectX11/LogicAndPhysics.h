@@ -27,7 +27,7 @@ public: // public function.
 	bool Update();
 	void Shutdown();
 	
-
+	vector<ActorClass*>* GetObjects()const;
 private: // private function.
 	void CreateObject();
 	void DeleteObjects();
