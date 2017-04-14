@@ -21,7 +21,7 @@ typedef struct Enermy {
 	RECT	Erect;		// Enermy Image Rect
 	XMFLOAT2	Ep;		// Enermy Position
 };
-class Backgorund
+class Background
 {
 public:
 	int TileWidth; //타일 넓이(높이 동일함으로 같이씀)
@@ -29,8 +29,8 @@ public:
 	int TileMaxX; // 타일 가로 최대 갯수
 	int TileMaxY; // 타일 세로 최대 갯수
 	
-	Backgorund();
-	~Backgorund();
+	Background();
+	~Background();
 	void initTileSet(); //타일 초기화
 	bool IsCollision(); //타일속성체크	
 	boolean SetElement(Tile r1); //타일 속성 설정
