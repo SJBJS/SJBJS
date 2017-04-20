@@ -139,25 +139,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActorClass.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="bitmapclass.cpp" />
     <ClCompile Include="cameraclass.cpp" />
     <ClCompile Include="d3dclass.cpp" />
     <ClCompile Include="graphicsclass.cpp" />
     <ClCompile Include="inputclass.cpp" />
+    <ClCompile Include="Logic.cpp" />
+    <ClCompile Include="LogicAndPhysics.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="systemclass.cpp" />
     <ClCompile Include="textureclass.cpp" />
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorClass.h" />
+    <ClInclude Include="Background.h" />
     <ClInclude Include="bitmapclass.h" />
     <ClInclude Include="BossClass.h" />
     <ClInclude Include="cameraclass.h" />
     <ClInclude Include="d3dclass.h" />
     <ClInclude Include="graphicsclass.h" />
     <ClInclude Include="inputclass.h" />
+    <ClInclude Include="Logic.h" />
+    <ClInclude Include="LogicAndPhysics.h" />
     <ClInclude Include="MyUtil.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="StaticObejctClass.h" />
     <ClInclude Include="PawnClass.h" />
     <ClInclude Include="PlayerClass.h" />

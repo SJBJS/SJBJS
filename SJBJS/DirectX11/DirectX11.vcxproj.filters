@@ -25,6 +25,15 @@
     <Filter Include="Graphics\Source">
       <UniqueIdentifier>{29ab48fc-1e85-4868-b194-3bd30331a391}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{a81e4654-520a-4141-a847-ba5f2b90542b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Header">
+      <UniqueIdentifier>{c6638df1-2f85-4eef-87d0-2539ac49bb07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Source">
+      <UniqueIdentifier>{ff0bd987-8127-48d6-adce-80647ff14da4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inputclass.cpp">
@@ -54,24 +63,27 @@
     <ClCompile Include="textureshaderclass.cpp">
       <Filter>Graphics\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorClass.cpp">
+      <Filter>GameObjects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicAndPhysics.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MyUtil.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PawnClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="BossClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="textureshaderclass.h">
@@ -95,7 +107,31 @@
     <ClInclude Include="systemclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorClass.h">
+      <Filter>GameObjects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BossClass.h">
+      <Filter>GameObjects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnClass.h">
+      <Filter>GameObjects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerClass.h">
+      <Filter>GameObjects\Header</Filter>
+    </ClInclude>
     <ClInclude Include="StaticObejctClass.h">
+      <Filter>GameObjects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicAndPhysics.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

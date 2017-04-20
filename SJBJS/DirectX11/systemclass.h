@@ -21,6 +21,7 @@ using namespace DirectX;
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "inputclass.h"
+#include "LogicAndPhysics.h"
 #include "graphicsclass.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +53,8 @@ private:
 
 	InputClass* m_Input;
 	GraphicsClass* m_Graphics;
+	LogicAndPhysics* m_LogicAndPhysics;
+
 	XMFLOAT2 myVector;
 	bool isActive;
 };

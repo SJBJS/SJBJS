@@ -12,12 +12,13 @@
 #include "cameraclass.h"
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
-
+#include "ActorClass.h"
 ///////////////////////
 // INCLUDES //
 ///////////////////////
 #include<DirectXMath.h>
-
+#include<vector>
+using namespace std;
 /////////////
 // GLOBALS //
 /////////////
@@ -37,7 +38,7 @@ public:
 	GraphicsClass(const GraphicsClass&);
 	~GraphicsClass();
 
-	bool Initialize(int, int, HWND);
+	bool Initialize(int, int, HWND,vector<ActorClass*>*);
 	void Shutdown();
 	bool Frame(XMFLOAT2 playerMove, float deltaTime);
 
@@ -47,9 +48,11 @@ private:
 private:
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
-	BitmapClass* m_Bitmap;
 	BitmapClass* m_BackGruond;
 	TextureShaderClass* m_TextureShader;
+
+	vector<ActorClass*> * m_ObjectsList;
+	BitmapClass* m_Objects;
 };
 
 #endif

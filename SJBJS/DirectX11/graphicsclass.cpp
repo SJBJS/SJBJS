@@ -2,15 +2,16 @@
 // Filename: graphicsclass.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "graphicsclass.h"
-
+#include<string>
 
 GraphicsClass::GraphicsClass()
 {
 	m_Direct3D = 0;
 	m_Camera = 0;
-	m_Bitmap = 0;
 	m_BackGruond = 0;
 	m_TextureShader = 0;
+	m_ObjectsList = 0;
+	m_Objects = 0;
 }
 
 
@@ -24,7 +25,7 @@ GraphicsClass::~GraphicsClass()
 }
 
 
-bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
+bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vector<ActorClass*>* objectsList)
 {
 	bool result;
 
@@ -37,7 +38,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the Direct3D object.
-	result = m_Direct3D->Initialize(screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	result = m_Direct3D->Initialize(screenWidth, screenHeight, false, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize Direct3D.", L"Error", MB_OK);
@@ -55,21 +56,6 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
 
 	// Create the model object.
-	m_Bitmap = new BitmapClass;
-	if (!m_Bitmap)
-	{
-		return false;
-	}
-
-	// Initialize the model object.
-	result = m_Bitmap->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/player.tga", 32, 32);
-	if (!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
-		return false;
-	}
-
-	// Create the model object.
 	m_BackGruond = new BitmapClass;
 	if (!m_BackGruond)
 	{
@@ -77,7 +63,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 		// Initialize the model object.
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/background.tga", 700, 400);
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/qq-2.tga", screenWidth, screenHeight);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -98,6 +84,27 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Objects list setting.
+	if (!objectsList)
+		return false;
+	m_ObjectsList = objectsList;
+	if (!objectsList->empty())
+	{
+		m_Objects = new BitmapClass[m_ObjectsList->size()];
+		if (!m_Objects)
+			return false;
+		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		{
+			char* str = (*m_ObjectsList)[i]->GetTextureAddress();
+			XMFLOAT2 textureWH = (*m_ObjectsList)[i]->GetTextureWH();
+			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, str, textureWH.x, textureWH.y);
+			if (!result)
+			{
+				MessageBox(hwnd, L"Could not initialize the Objects",L"Error",MB_OK);
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -111,14 +118,16 @@ void GraphicsClass::Shutdown()
 		delete m_TextureShader;
 		m_TextureShader = 0;
 	}
-
-	// Release the model object.
-	if (m_Bitmap)
+	if (m_Objects)
 	{
-		m_Bitmap->Shutdown();
-		delete m_Bitmap;
-		m_Bitmap = 0;
+		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		{
+			m_Objects[i].Shutdown();
+		}
+		delete[] m_Objects;
+		m_Objects = 0;
 	}
+	// Release the model object.
 	if (m_BackGruond)
 	{
 		m_BackGruond->Shutdown();
@@ -186,7 +195,7 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 
-	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(100,100), deltaTime);
+	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(0,0), deltaTime);
 	if (!result)
 	{
 		return false;
@@ -197,17 +206,16 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	{
 		return false;
 	}
-
-	result = m_Bitmap->Render(m_Direct3D->GetDeviceContext(), playerMove, deltaTime);
-	if (!result)
+	int len = m_ObjectsList->size();
+	for (int i = 0; i < m_ObjectsList->size(); ++i)
 	{
-		return false;
-	}
-	// Render the bitmap with the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
-	if (!result)
-	{
-		return false;
+		XMFLOAT2 position = XMFLOAT2((*m_ObjectsList)[i]->GetPosition().x, (*m_ObjectsList)[i]->GetPosition().y);
+		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
+		if (!result)
+			return false;
+		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture());
+		if (!result)
+			return false;
 	}
 
 	m_Direct3D->TurnOffAlphaBlending();

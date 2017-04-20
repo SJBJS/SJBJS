@@ -5,10 +5,10 @@
 
 InputClass::InputClass()
 {
+	Input = this;
 	m_directInput = 0;
 	m_keyboard = 0;
 	m_mouse = 0;
-	m_keyVector = XMFLOAT2(0,0);
 }
 
 
@@ -205,28 +205,16 @@ void InputClass::ProcessInput()
 
 	if (m_mouseX > m_screenWidth) { m_mouseX = m_screenWidth; }
 	if (m_mouseY > m_screenHeight) { m_mouseY = m_screenHeight; }
-	
-	//추후 제거. 축 입력으로 변경 고민중.
-	float speed = 1.0f;
-
-	if (m_keyboardState[DIK_W] & 0x80)
-	{
-		m_keyVector.y -= speed;
-	}
-	if (m_keyboardState[DIK_S] & 0x80)
-	{
-		m_keyVector.y += speed;
-	}
-	if (m_keyboardState[DIK_A] & 0x80)
-	{
-		m_keyVector.x -= speed;
-	}
-	if (m_keyboardState[DIK_D] & 0x80)
-	{
-		m_keyVector.x += speed;
-	}
 
 	return;
+}
+
+bool InputClass::IsKeyDown(int keyNuber)
+{
+	if (!Input)
+		return false;
+
+	return 	static_cast<bool>(Input->m_keyboardState[keyNuber] & 0x80);
 }
 
 bool InputClass::IsEscapePressed()
@@ -244,10 +232,4 @@ void InputClass::GetMouseLocation(int& mouseX, int& mouseY)
 	mouseX = m_mouseX;
 	mouseY = m_mouseY;
 	return;
-}
-
-void InputClass::GetKeyboardLocation(XMFLOAT2 &ref)
-{
-	ref.x = m_keyVector.x;
-	ref.y = m_keyVector.y;
 }
