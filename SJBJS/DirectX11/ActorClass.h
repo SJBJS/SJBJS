@@ -2,11 +2,30 @@
 #ifndef  ACTOR_CLASS_H
 #define ACTOR_CLASS_H
 
-#include <iostream>
-#include <d3d11.h>
+#include<vector>
 #include <directxmath.h>
 #include"inputclass.h"
 using namespace DirectX;
+using namespace std;
+
+class ActorClass;
+
+class ObjectManager
+{
+private:
+	vector<ActorClass * >* m_ObjectList;
+public:
+	ObjectManager();
+	~ObjectManager();
+	ActorClass * operator[](int idx);
+	void CreateObject(ActorClass * object);
+	ActorClass *FindObjectWithTag(char * tag);
+	ActorClass * FindObjectsWithTag(char * tag);
+	bool Initialize();
+	void Shutdown();
+private:
+	void DeleteObject();
+};
 
 class ActorClass
 {
