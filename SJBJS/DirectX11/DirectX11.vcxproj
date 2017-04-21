@@ -142,6 +142,7 @@
     <ClCompile Include="ActorClass.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="bitmapclass.cpp" />
+    <ClCompile Include="BossClass.cpp" />
     <ClCompile Include="cameraclass.cpp" />
     <ClCompile Include="d3dclass.cpp" />
     <ClCompile Include="graphicsclass.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="LogicAndPhysics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PlayerClass.cpp" />
     <ClCompile Include="systemclass.cpp" />
     <ClCompile Include="textureclass.cpp" />
     <ClCompile Include="textureshaderclass.cpp" />
