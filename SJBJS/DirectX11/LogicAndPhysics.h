@@ -15,7 +15,7 @@ using namespace std;
 class LogicAndPhysics
 {
 private: // private data.
-
+	ObjectManager * m_objectManager;
 	Physics * m_Physics;
 	Logic * m_Logic;
 public: // public function.
@@ -25,6 +25,8 @@ public: // public function.
 	bool Initialize();
 	bool Update();
 	void Shutdown();
+private:
+	void CreateObject();
 };
 
 #endif

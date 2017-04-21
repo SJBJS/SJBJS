@@ -14,6 +14,7 @@ class ObjectManager
 {
 private:
 	vector<ActorClass * >* m_ObjectList;
+	static ObjectManager* objectManager;
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -28,9 +29,9 @@ public:
 
 	bool IsEmpty()const;
 	int Size()const;
+	static ObjectManager* Instance();
 };
 
-static ObjectManager * objectManager =0;
 
 class ActorClass
 {

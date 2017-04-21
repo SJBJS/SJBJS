@@ -2,23 +2,23 @@
 
 bool Logic::Initialize()
 {
-	if (!objectManager)
+	if (!ObjectManager::Instance())
 		return false;
 
 
-	for (int i = 0; i < objectManager->Size(); ++i)
-		(*objectManager)[i]->Initialize();
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
+		(*ObjectManager::Instance())[i]->Initialize();
 
 	return true;
 }
 void Logic::Update()
 {
-	if (objectManager->IsEmpty())
+	if (ObjectManager::Instance()->IsEmpty())
 		return;
 
-	for (int i = 0; i < objectManager->Size(); ++i)
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		(*objectManager)[i]->Update();
+		(*ObjectManager::Instance())[i]->Update();
 	}
 }
 

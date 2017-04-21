@@ -3,7 +3,7 @@
 
 bool Physics::Initialize()
 {
-	if (!objectManager)
+	if (!ObjectManager::Instance())
 		return false;
 
 	return true;

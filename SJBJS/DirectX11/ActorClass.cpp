@@ -2,6 +2,7 @@
 /////////////////////////////////
 //ObjectManage
 /////////////////////////////////
+ObjectManager* ObjectManager::objectManager = 0;
 
 ObjectManager::ObjectManager()
 {
@@ -98,6 +99,13 @@ int ObjectManager::Size() const
 	return m_ObjectList->size();
 }
 
+ObjectManager * ObjectManager::Instance()
+{
+	if (!objectManager)
+		return nullptr;
+	return objectManager;
+}
+
 
 
 /////////////////////////////////
@@ -106,7 +114,7 @@ int ObjectManager::Size() const
 
 ActorClass::ActorClass()
 {
-	objectManager->CreateObject(this);
+	ObjectManager::Instance()->CreateObject(this);
 }
 
 ActorClass::~ActorClass()

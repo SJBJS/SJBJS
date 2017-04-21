@@ -84,17 +84,17 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Objects list setting.
-	if (!objectManager)
+	if (!ObjectManager::Instance())
 		return false;
-	if (!objectManager->IsEmpty())
+	if (!ObjectManager::Instance()->IsEmpty())
 	{
-		m_Objects = new BitmapClass[objectManager->Size()];
+		m_Objects = new BitmapClass[ObjectManager::Instance()->Size()];
 		if (!m_Objects)
 			return false;
-		for (int i = 0; i < objectManager->Size(); ++i)
+		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
-			char* str = (*objectManager)[i]->GetTextureAddress();
-			XMFLOAT2 textureWH = (*objectManager)[i]->GetTextureWH();
+			char* str = (*ObjectManager::Instance())[i]->GetTextureAddress();
+			XMFLOAT2 textureWH = (*ObjectManager::Instance())[i]->GetTextureWH();
 			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, str, textureWH.x, textureWH.y);
 			if (!result)
 			{
@@ -118,7 +118,7 @@ void GraphicsClass::Shutdown()
 	}
 	if (m_Objects)
 	{
-		for (int i = 0; i < objectManager->Size(); ++i)
+		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
 			m_Objects[i].Shutdown();
 		}
@@ -204,9 +204,9 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	{
 		return false;
 	}
-	for (int i = 0; i < objectManager->Size(); ++i)
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		XMFLOAT2 position = XMFLOAT2((*objectManager)[i]->GetPosition().x, (*objectManager)[i]->GetPosition().y);
+		XMFLOAT2 position = XMFLOAT2((*ObjectManager::Instance())[i]->GetPosition().x, (*ObjectManager::Instance())[i]->GetPosition().y);
 		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
 		if (!result)
 			return false;

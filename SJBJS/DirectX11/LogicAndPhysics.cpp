@@ -1,7 +1,8 @@
 #include "LogicAndPhysics.h"
-
+#include "PlayerClass.h"
 LogicAndPhysics::LogicAndPhysics()
 {
+	m_objectManager = 0;
 	m_Logic = 0;
 	m_Physics = 0;
 }
@@ -14,6 +15,18 @@ LogicAndPhysics::~LogicAndPhysics()
 bool LogicAndPhysics::Initialize()
 {
 	bool result;
+	
+	m_objectManager = new ObjectManager();
+	if (!m_objectManager)
+	{
+		return false;
+	}
+	CreateObject();
+	result = m_objectManager->Initialize();
+	if (!result)
+	{
+		return false;
+	}
 
 	m_Logic = new Logic();
 	if (!m_Logic)
@@ -62,4 +75,8 @@ void LogicAndPhysics::Shutdown()
 		delete m_Physics;
 		m_Physics = 0;
 	}
+}
+void LogicAndPhysics::CreateObject()
+{
+	new PlayerClass();
 }
