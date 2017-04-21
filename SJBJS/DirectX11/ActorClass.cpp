@@ -5,10 +5,20 @@
 
 ObjectManager::ObjectManager()
 {
-	m_ObjectList = 0;
+	objectManager = this;
+	m_ObjectList = new vector<ActorClass*>();
 }
 ObjectManager::~ObjectManager()
 {
+	if (m_ObjectList)
+	{
+		if (!m_ObjectList->empty())
+		{
+			Shutdown();
+		}
+		delete m_ObjectList;
+		m_ObjectList = 0;
+	}
 }
 ActorClass * ObjectManager::operator[](int idx)
 {
@@ -40,24 +50,24 @@ ActorClass * ObjectManager::FindObjectsWithTag(char * tag)
 
 bool ObjectManager::Initialize()
 {
-	m_ObjectList = new vector<ActorClass*>();
+	if (m_ObjectList->empty())
+		return false;
+
+	vector<ActorClass*>::iterator it;
+
+	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
+	{
+		if ((*it) != NULL)
+		{
+			(*it)->Initialize();
+		}
+	}
+
+
 	return true;
 }
 
 void ObjectManager::Shutdown()
-{
-	if (m_ObjectList)
-	{
-		if (!m_ObjectList->empty())
-		{
-			DeleteObject();
-		}
-		delete m_ObjectList;
-		m_ObjectList = 0;
-	}
-}
-
-void ObjectManager::DeleteObject()
 {
 	if (m_ObjectList->empty())
 		return;
@@ -67,14 +77,41 @@ void ObjectManager::DeleteObject()
 	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
 	{
 		if ((*it) != NULL)
+		{
 			delete *it;
+		}
 	}
 	m_ObjectList->clear();
 }
 
+bool ObjectManager::IsEmpty() const
+{
+	if (!m_ObjectList)
+		return nullptr;
+	return m_ObjectList->empty();
+}
+
+int ObjectManager::Size() const
+{
+	if (!m_ObjectList)
+		return -1;
+	return m_ObjectList->size();
+}
+
+
+
 /////////////////////////////////
 // ActorClass
 /////////////////////////////////
+
+ActorClass::ActorClass()
+{
+	objectManager->CreateObject(this);
+}
+
+ActorClass::~ActorClass()
+{
+}
 XMFLOAT3 ActorClass::GetPosition() const
 {
 	return postion;
@@ -92,20 +129,8 @@ XMFLOAT2 ActorClass::GetTextureWH() const
 
 void ActorClass::Initialize()
 {
-	postion = XMFLOAT3(0, 0, 0);
-	textureAddress = "data/player.tga";
-	Wight = 32;
-	Hight = 32;
 }
 
 void ActorClass::Update()
 {
-	if (Input->IsKeyDown(DIK_W))
-		postion.y += -0.1f;
-	if (Input->IsKeyDown(DIK_S))
-		postion.y += 0.1f;
-	if (Input->IsKeyDown(DIK_A))
-		postion.x += -0.1f;
-	if (Input->IsKeyDown(DIK_D))
-		postion.x += 0.1f;
 }

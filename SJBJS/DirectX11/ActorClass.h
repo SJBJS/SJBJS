@@ -17,15 +17,20 @@ private:
 public:
 	ObjectManager();
 	~ObjectManager();
+
 	ActorClass * operator[](int idx);
+
 	void CreateObject(ActorClass * object);
 	ActorClass *FindObjectWithTag(char * tag);
 	ActorClass * FindObjectsWithTag(char * tag);
 	bool Initialize();
 	void Shutdown();
-private:
-	void DeleteObject();
+
+	bool IsEmpty()const;
+	int Size()const;
 };
+
+static ObjectManager * objectManager =0;
 
 class ActorClass
 {
@@ -39,6 +44,8 @@ protected :
 private: //private data.
 
 public: //public Function.
+	ActorClass();
+	~ActorClass();
 	virtual XMFLOAT3 GetPosition() const;
 	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;

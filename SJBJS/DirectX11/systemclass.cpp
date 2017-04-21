@@ -72,7 +72,7 @@ bool SystemClass::Initialize()
 	}
 
 	// Initialize the graphics object.
-	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd,m_LogicAndPhysics->GetObjects());
+	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
 	if (!result)
 	{
 		return false;

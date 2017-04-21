@@ -6,7 +6,6 @@
 // INCLUDE
 /////////////////////////
 #include "ActorClass.h"
-#include <vector>
 
 using namespace std;
 
@@ -17,9 +16,9 @@ using namespace std;
 class Physics
 {
 private:
-	vector<ActorClass*> * m_ObjectList;
+
 public:
-	bool Initialize(vector<ActorClass*>* objectList);
+	bool Initialize();
 	void Update();
 	void Shutdown();
 };

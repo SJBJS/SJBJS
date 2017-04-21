@@ -15,7 +15,6 @@ using namespace std;
 class LogicAndPhysics
 {
 private: // private data.
-	vector<ActorClass*>* m_ObjectList;
 
 	Physics * m_Physics;
 	Logic * m_Logic;
@@ -26,11 +25,6 @@ public: // public function.
 	bool Initialize();
 	bool Update();
 	void Shutdown();
-	
-	vector<ActorClass*>* GetObjects()const;
-private: // private function.
-	void CreateObject();
-	void DeleteObjects();
 };
 
 #endif

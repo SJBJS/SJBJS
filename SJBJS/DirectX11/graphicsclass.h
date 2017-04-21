@@ -17,8 +17,6 @@
 // INCLUDES //
 ///////////////////////
 #include<DirectXMath.h>
-#include<vector>
-using namespace std;
 /////////////
 // GLOBALS //
 /////////////
@@ -38,7 +36,7 @@ public:
 	GraphicsClass(const GraphicsClass&);
 	~GraphicsClass();
 
-	bool Initialize(int, int, HWND,vector<ActorClass*>*);
+	bool Initialize(int, int, HWND);
 	void Shutdown();
 	bool Frame(XMFLOAT2 playerMove, float deltaTime);
 
@@ -51,7 +49,6 @@ private:
 	BitmapClass* m_BackGruond;
 	TextureShaderClass* m_TextureShader;
 
-	vector<ActorClass*> * m_ObjectsList;
 	BitmapClass* m_Objects;
 };
 

@@ -15,15 +15,12 @@ bool LogicAndPhysics::Initialize()
 {
 	bool result;
 
-	m_ObjectList = new vector<ActorClass*>();
-	CreateObject();
-
 	m_Logic = new Logic();
 	if (!m_Logic)
 	{
 		return false;
 	}
-	result = m_Logic->Initialize(m_ObjectList);
+	result = m_Logic->Initialize();
 	if (!result)
 	{
 		return false;
@@ -34,7 +31,7 @@ bool LogicAndPhysics::Initialize()
 	{
 		return false;
 	}
-	result = m_Physics->Initialize(m_ObjectList);
+	result = m_Physics->Initialize();
 	if (!result)
 	{
 		return false;
@@ -53,16 +50,6 @@ bool LogicAndPhysics::Update()
 
 void LogicAndPhysics::Shutdown()
 {
-	if (m_ObjectList)
-	{
-		if (!m_ObjectList->empty())
-		{
-			DeleteObjects();
-		}
-		delete m_ObjectList;
-		m_ObjectList = 0;
-	}
-
 	if (m_Logic)
 	{
 		m_Logic->Shutdown();
@@ -75,31 +62,4 @@ void LogicAndPhysics::Shutdown()
 		delete m_Physics;
 		m_Physics = 0;
 	}
-}
-
-vector<ActorClass*>* LogicAndPhysics::GetObjects() const
-{
-	return m_ObjectList;
-}
-
-void LogicAndPhysics::CreateObject()
-{
-	// 추가할 오브젝트를 넣어주세요.
-	// ex)m_ObjectList->push_back(new Player);
-	m_ObjectList->push_back(new ActorClass);
-}
-
-void LogicAndPhysics::DeleteObjects()
-{
-	if (m_ObjectList->empty())
-		return;
-
-	vector<ActorClass*>::iterator it;
-	
-	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
-	{
-		if ((*it) != NULL)
-			delete *it;
-	}
-	m_ObjectList->clear();
 }
