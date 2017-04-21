@@ -1,5 +1,6 @@
 #include "LogicAndPhysics.h"
 #include "PlayerClass.h"
+#include"BossClass.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_objectManager = 0;
@@ -78,5 +79,6 @@ void LogicAndPhysics::Shutdown()
 }
 void LogicAndPhysics::CreateObject()
 {
-	new PlayerClass();
+	new PlayerClass;
+	new BossClass;
 }

@@ -41,6 +41,18 @@ void ObjectManager::CreateObject(ActorClass * object)
 
 ActorClass * ObjectManager::FindObjectWithTag(char * tag)
 {
+	if (m_ObjectList->empty())
+		return false;
+
+	vector<ActorClass*>::iterator it;
+
+	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
+	{
+		if (!strcmp(tag, (*it)->GetTag()))
+		{
+			return *it;
+		}
+	}
 	return nullptr;
 }
 
@@ -114,6 +126,9 @@ ObjectManager * ObjectManager::Instance()
 
 ActorClass::ActorClass()
 {
+	position.x = position.y = position.z = 0;
+	textureAddress = tag = "";
+	Wight = Hight = 0;
 	ObjectManager::Instance()->CreateObject(this);
 }
 
@@ -122,7 +137,7 @@ ActorClass::~ActorClass()
 }
 XMFLOAT3 ActorClass::GetPosition() const
 {
-	return postion;
+	return position;
 }
 
 char* ActorClass::GetTextureAddress() const
@@ -135,10 +150,41 @@ XMFLOAT2 ActorClass::GetTextureWH() const
 	return XMFLOAT2(Wight, Hight);
 }
 
+char * ActorClass::GetTag() const
+{
+	return tag;
+}
+
 void ActorClass::Initialize()
 {
 }
 
 void ActorClass::Update()
 {
+}
+
+XMFLOAT3 operator+(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
+{
+	return XMFLOAT3(vec1.x + vec2.x, vec1.y+ vec2.y, vec1.z + vec2.z);
+}
+
+XMFLOAT3 operator-(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
+{
+	return XMFLOAT3(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
+}
+
+XMFLOAT3 operator*(const XMFLOAT3 & vec1, const float & scalar)
+{
+	return XMFLOAT3(vec1.x*scalar, vec1.y*scalar, vec1.z*scalar);
+}
+
+XMFLOAT3 operator/(const XMFLOAT3 & vec1, const float & scalar)
+{
+	return XMFLOAT3(vec1.x / scalar, vec1.y / scalar, vec1.z / scalar);
+}
+
+XMFLOAT3 operator+=(XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
+{
+	vec1 = vec1 + vec2;
+	return vec1;
 }
