@@ -12,11 +12,11 @@ void PlayerClass::Initialize()
 void PlayerClass::Update()
 {
 	if (Input->IsKeyDown(DIK_W))
-		position.y += -0.1f;
+		position.y += -1.0f;
 	if (Input->IsKeyDown(DIK_S))
-		position.y += 0.1f;
+		position.y += 1.0f;
 	if (Input->IsKeyDown(DIK_A))
-		position.x += -0.1f;
+		position.x += -1.0f;
 	if (Input->IsKeyDown(DIK_D))
-		position.x += 0.1f;
+		position.x += 1.0f;
 }

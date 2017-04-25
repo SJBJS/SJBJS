@@ -13,18 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="FX">
-      <UniqueIdentifier>{9163ead8-712b-49ec-91e7-31251282358a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{3be4e27a-d54e-41f6-8017-9c50f7be5230}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Header">
-      <UniqueIdentifier>{1a9fedc2-2c2a-416b-a76d-45719fc556e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Source">
-      <UniqueIdentifier>{29ab48fc-1e85-4868-b194-3bd30331a391}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{a81e4654-520a-4141-a847-ba5f2b90542b}</UniqueIdentifier>
     </Filter>
@@ -34,36 +22,36 @@
     <Filter Include="GameObjects\Source">
       <UniqueIdentifier>{ff0bd987-8127-48d6-adce-80647ff14da4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{82e023d3-df37-4f08-8590-4efd5b5f4b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{41609264-3f4a-46de-a7d0-249d884f5b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics\Header">
+      <UniqueIdentifier>{b28a2d91-ae04-4e65-95eb-899551dd8310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics\Source">
+      <UniqueIdentifier>{411cfe68-4b0f-4cfa-a010-4f1d9b68bce1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Logic">
+      <UniqueIdentifier>{8640e841-b85d-4548-82c4-f4e617490ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Logic\Header">
+      <UniqueIdentifier>{e91b6865-b95e-46b6-b0f0-37b507d2ac35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Logic\Source">
+      <UniqueIdentifier>{0f0ab09a-44cb-4875-a0cf-132fac588eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FX">
+      <UniqueIdentifier>{6c0b2a29-0402-48e3-8cd9-df8f6ac02004}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="inputclass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="systemclass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="bitmapclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="cameraclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="d3dclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="graphicsclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="textureclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="textureshaderclass.cpp">
-      <Filter>Graphics\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Physics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
@@ -72,48 +60,48 @@
     <ClCompile Include="ActorClass.cpp">
       <Filter>GameObjects\Source</Filter>
     </ClCompile>
-    <ClCompile Include="LogicAndPhysics.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Logic.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="BossClass.cpp">
       <Filter>GameObjects\Source</Filter>
     </ClCompile>
     <ClCompile Include="PlayerClass.cpp">
       <Filter>GameObjects\Source</Filter>
     </ClCompile>
+    <ClCompile Include="bitmapclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="cameraclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="d3dclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="graphicsclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="textureshaderclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="textureclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="inputclass.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicAndPhysics.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inputclass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MyUtil.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="textureshaderclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="textureclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="graphicsclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="d3dclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="cameraclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmapclass.h">
-      <Filter>Graphics\Header</Filter>
-    </ClInclude>
     <ClInclude Include="systemclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Physics.h">
+    <ClInclude Include="Background.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ActorClass.h">
@@ -128,24 +116,45 @@
     <ClInclude Include="PlayerClass.h">
       <Filter>GameObjects\Header</Filter>
     </ClInclude>
-    <ClInclude Include="StaticObejctClass.h">
-      <Filter>GameObjects\Header</Filter>
+    <ClInclude Include="textureshaderclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="textureclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
     </ClInclude>
-    <ClInclude Include="LogicAndPhysics.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="graphicsclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="bitmapclass.h">
+      <Filter>Engine\Graphics\Header</Filter>
     </ClInclude>
     <ClInclude Include="Logic.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Engine\Logic\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="inputclass.h">
+      <Filter>Engine\Logic\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Engine\Logic\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicAndPhysics.h">
+      <Filter>Engine\Logic\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="texture.vs">
+    <Text Include="shader-error.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="texture.ps">
       <Filter>FX</Filter>
     </None>
-    <None Include="texture.ps">
+    <None Include="texture.vs">
       <Filter>FX</Filter>
     </None>
   </ItemGroup>
