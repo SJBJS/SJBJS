@@ -72,7 +72,7 @@ bool SystemClass::Initialize()
 	}
 
 	// Initialize the graphics object.
-	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd,m_LogicAndPhysics->GetObjects());
+	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
 	if (!result)
 	{
 		return false;
@@ -175,7 +175,7 @@ bool SystemClass::Frame()
 		return false;
 	}
 	// Do the frame processing for the graphics object.
-	result = m_Graphics->Frame(myVector,0);
+	result = m_Graphics->Frame(0);
 	if (!result)
 	{
 		return false;

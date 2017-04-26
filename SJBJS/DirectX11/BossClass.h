@@ -6,7 +6,11 @@
 
 class BossClass : public PawnClass
 {
-
+private:
+	PawnClass * player;
+public:
+	virtual void Initialize();
+	virtual void Update();
 };
 
 #endif

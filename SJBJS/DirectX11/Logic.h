@@ -5,9 +5,7 @@
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include<vector>
 #include"ActorClass.h"
-
 using namespace std;
 
 /////////////////////////
@@ -16,9 +14,9 @@ using namespace std;
 class Logic
 {
 private:
-	vector<ActorClass*> * m_ObjectList;
+
 public:
-	bool Initialize(vector<ActorClass*>* objectList);
+	bool Initialize();
 	void Update();
 	void Shutdown();
 };

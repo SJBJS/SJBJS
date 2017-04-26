@@ -2,7 +2,6 @@
 // Filename: graphicsclass.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "graphicsclass.h"
-#include<string>
 
 GraphicsClass::GraphicsClass()
 {
@@ -10,7 +9,6 @@ GraphicsClass::GraphicsClass()
 	m_Camera = 0;
 	m_BackGruond = 0;
 	m_TextureShader = 0;
-	m_ObjectsList = 0;
 	m_Objects = 0;
 }
 
@@ -25,7 +23,7 @@ GraphicsClass::~GraphicsClass()
 }
 
 
-bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vector<ActorClass*>* objectsList)
+bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
 
@@ -85,18 +83,17 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, vec
 	}
 
 	// Objects list setting.
-	if (!objectsList)
+	if (!ObjectManager::Instance())
 		return false;
-	m_ObjectsList = objectsList;
-	if (!objectsList->empty())
+	if (!ObjectManager::Instance()->IsEmpty())
 	{
-		m_Objects = new BitmapClass[m_ObjectsList->size()];
+		m_Objects = new BitmapClass[ObjectManager::Instance()->Size()];
 		if (!m_Objects)
 			return false;
-		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
-			char* str = (*m_ObjectsList)[i]->GetTextureAddress();
-			XMFLOAT2 textureWH = (*m_ObjectsList)[i]->GetTextureWH();
+			char* str = (*ObjectManager::Instance())[i]->GetTextureAddress();
+			XMFLOAT2 textureWH = (*ObjectManager::Instance())[i]->GetTextureWH();
 			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, str, textureWH.x, textureWH.y);
 			if (!result)
 			{
@@ -120,7 +117,7 @@ void GraphicsClass::Shutdown()
 	}
 	if (m_Objects)
 	{
-		for (int i = 0; i < m_ObjectsList->size(); ++i)
+		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
 			m_Objects[i].Shutdown();
 		}
@@ -154,13 +151,13 @@ void GraphicsClass::Shutdown()
 }
 
 
-bool GraphicsClass::Frame(XMFLOAT2 playerMove, float deltaTime)
+bool GraphicsClass::Frame(float deltaTime)
 {
 	bool result;
 
 
 	// Render the graphics scene.
-	result = Render(playerMove, deltaTime);
+	result = Render(deltaTime);
 	if (!result)
 	{
 		return false;
@@ -170,7 +167,7 @@ bool GraphicsClass::Frame(XMFLOAT2 playerMove, float deltaTime)
 }
 
 
-bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
+bool GraphicsClass::Render(float deltaTime)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
@@ -206,10 +203,9 @@ bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
 	{
 		return false;
 	}
-	int len = m_ObjectsList->size();
-	for (int i = 0; i < m_ObjectsList->size(); ++i)
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		XMFLOAT2 position = XMFLOAT2((*m_ObjectsList)[i]->GetPosition().x, (*m_ObjectsList)[i]->GetPosition().y);
+		XMFLOAT2 position = XMFLOAT2((*ObjectManager::Instance())[i]->GetPosition().x, (*ObjectManager::Instance())[i]->GetPosition().y);
 		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
 		if (!result)
 			return false;

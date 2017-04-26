@@ -6,12 +6,8 @@
 
 class PlayerClass : public PawnClass
 {
-public:
-	int damage;
-	int width, height;
-	RECT	Prect;		// Player Image Rect
-	XMFLOAT2	Pp;		// Player Position
-
+	virtual void Initialize();
+	virtual void Update();
 };
 
 #endif // !PLAYER_CLASS_H

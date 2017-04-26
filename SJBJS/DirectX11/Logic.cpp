@@ -1,28 +1,24 @@
 #include "Logic.h"
 
-
-bool Logic::Initialize(vector<ActorClass*>* objectList)
+bool Logic::Initialize()
 {
-	if (!objectList)
+	if (!ObjectManager::Instance())
 		return false;
 
-	m_ObjectList = objectList;
 
-	for (int i = 0; i < m_ObjectList->size(); ++i)
-		(*m_ObjectList)[i]->Initialize();
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
+		(*ObjectManager::Instance())[i]->Initialize();
 
 	return true;
 }
 void Logic::Update()
 {
-	if (m_ObjectList->empty())
+	if (ObjectManager::Instance()->IsEmpty())
 		return;
 
-	vector<ActorClass*>::iterator it;
-
-	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		(*it)->Update();
+		(*ObjectManager::Instance())[i]->Update();
 	}
 }
 
