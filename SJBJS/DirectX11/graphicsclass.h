@@ -38,10 +38,10 @@ public:
 
 	bool Initialize(int, int, HWND);
 	void Shutdown();
-	bool Frame(XMFLOAT2 playerMove, float deltaTime);
+	bool Frame(float deltaTime);
 
 private:
-	bool Render(XMFLOAT2 playerMove, float deltaTime);
+	bool Render(float deltaTime);
 
 private:
 	D3DClass* m_Direct3D;

@@ -175,7 +175,7 @@ bool SystemClass::Frame()
 		return false;
 	}
 	// Do the frame processing for the graphics object.
-	result = m_Graphics->Frame(myVector,0);
+	result = m_Graphics->Frame(0);
 	if (!result)
 	{
 		return false;

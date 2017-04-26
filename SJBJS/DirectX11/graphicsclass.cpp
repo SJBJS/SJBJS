@@ -2,7 +2,6 @@
 // Filename: graphicsclass.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "graphicsclass.h"
-#include<string>
 
 GraphicsClass::GraphicsClass()
 {
@@ -152,13 +151,13 @@ void GraphicsClass::Shutdown()
 }
 
 
-bool GraphicsClass::Frame(XMFLOAT2 playerMove, float deltaTime)
+bool GraphicsClass::Frame(float deltaTime)
 {
 	bool result;
 
 
 	// Render the graphics scene.
-	result = Render(playerMove, deltaTime);
+	result = Render(deltaTime);
 	if (!result)
 	{
 		return false;
@@ -168,7 +167,7 @@ bool GraphicsClass::Frame(XMFLOAT2 playerMove, float deltaTime)
 }
 
 
-bool GraphicsClass::Render(XMFLOAT2 playerMove, float deltaTime)
+bool GraphicsClass::Render(float deltaTime)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;
