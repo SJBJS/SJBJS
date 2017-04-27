@@ -2,7 +2,7 @@
 #ifndef  ACTOR_CLASS_H
 #define ACTOR_CLASS_H
 
-#include<vector>
+#include <vector>
 #include <directxmath.h>
 #include"inputclass.h"
 using namespace DirectX;
