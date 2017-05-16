@@ -21,8 +21,8 @@ using namespace DirectX;
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "inputclass.h"
-#include "LogicAndPhysics.h"
-#include "graphicsclass.h"
+#include "Logic\LogicAndPhysics.h"
+#include "Graphics\graphicsclass.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: SystemClass

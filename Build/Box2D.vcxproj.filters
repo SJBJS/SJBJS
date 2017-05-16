@@ -302,5 +302,6 @@
     <ClInclude Include="..\Box2D\Rope\b2Rope.h">
       <Filter>Rope</Filter>
     </ClInclude>
+    <ClInclude Include="..\Box2D\Box2D.h" />
   </ItemGroup>
 </Project>
