@@ -18,6 +18,44 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\bitmapclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\cameraclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\d3dclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\graphicsclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\textureclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\textureshaderclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\inputclass.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\Logic.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\LogicAndPhysics.cpp" />
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\Physics.cpp" />
+    <ClCompile Include="..\RedMon\Engine\systemclass.cpp" />
+    <ClCompile Include="..\RedMon\GameObject\Base\ActorClass.cpp" />
+    <ClCompile Include="..\RedMon\GameObject\BossClass.cpp" />
+    <ClCompile Include="..\RedMon\GameObject\PlayerClass.cpp" />
+    <ClCompile Include="..\RedMon\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\RedMon\Engine\Graphics\bitmapclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Graphics\cameraclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Graphics\d3dclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Graphics\graphicsclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Graphics\textureclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Graphics\textureshaderclass.h" />
+    <ClInclude Include="..\RedMon\Engine\inputclass.h" />
+    <ClInclude Include="..\RedMon\Engine\Logic\Logic.h" />
+    <ClInclude Include="..\RedMon\Engine\Logic\LogicAndPhysics.h" />
+    <ClInclude Include="..\RedMon\Engine\Logic\Physics.h" />
+    <ClInclude Include="..\RedMon\Engine\systemclass.h" />
+    <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\BossClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\RedMon\texture.ps" />
+    <None Include="..\RedMon\texture.vs" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D38F563B-AE7A-427F-873A-D66F87004357}</ProjectGuid>
@@ -138,40 +176,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Engine\Graphics\bitmapclass.h" />
-    <ClInclude Include="Engine\Graphics\cameraclass.h" />
-    <ClInclude Include="Engine\Graphics\d3dclass.h" />
-    <ClInclude Include="Engine\Graphics\graphicsclass.h" />
-    <ClInclude Include="Engine\Graphics\textureclass.h" />
-    <ClInclude Include="Engine\Graphics\textureshaderclass.h" />
-    <ClInclude Include="Engine\inputclass.h" />
-    <ClInclude Include="Engine\Logic\Logic.h" />
-    <ClInclude Include="Engine\Logic\LogicAndPhysics.h" />
-    <ClInclude Include="Engine\Logic\Physics.h" />
-    <ClInclude Include="Engine\systemclass.h" />
-    <ClInclude Include="GameObject\Base\ActorClass.h" />
-    <ClInclude Include="GameObject\Base\PawnClass.h" />
-    <ClInclude Include="GameObject\BossClass.h" />
-    <ClInclude Include="GameObject\PlayerClass.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Engine\Graphics\Source\bitmapclass.cpp" />
-    <ClCompile Include="Engine\Graphics\Source\cameraclass.cpp" />
-    <ClCompile Include="Engine\Graphics\Source\d3dclass.cpp" />
-    <ClCompile Include="Engine\Graphics\Source\graphicsclass.cpp" />
-    <ClCompile Include="Engine\Graphics\Source\textureclass.cpp" />
-    <ClCompile Include="Engine\Graphics\Source\textureshaderclass.cpp" />
-    <ClCompile Include="Engine\inputclass.cpp" />
-    <ClCompile Include="Engine\Logic\Source\Logic.cpp" />
-    <ClCompile Include="Engine\Logic\Source\LogicAndPhysics.cpp" />
-    <ClCompile Include="Engine\Logic\Source\Physics.cpp" />
-    <ClCompile Include="Engine\systemclass.cpp" />
-    <ClCompile Include="GameObject\Base\ActorClass.cpp" />
-    <ClCompile Include="GameObject\BossClass.cpp" />
-    <ClCompile Include="GameObject\PlayerClass.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

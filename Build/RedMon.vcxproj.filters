@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{9367c062-da42-467e-bca2-ee454d45f158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{aeb0dced-6f91-4b5e-a4f0-6c064ac273d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{85d95520-cd2f-4430-8c0d-773869ac275b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Logic">
+      <UniqueIdentifier>{07695627-e3f9-4189-bfdc-6f2f1e4fb978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics\Source">
+      <UniqueIdentifier>{623942eb-43d0-4f99-b21b-2c0b2e35e70e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Logic\Source">
+      <UniqueIdentifier>{6bc1412b-765c-4b3f-aeb9-14cf53d75d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Base">
+      <UniqueIdentifier>{a05a15fe-f92c-4373-b3ea-6abef53d40b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FX">
+      <UniqueIdentifier>{f5e58b47-5f17-4301-817a-e4d3540f95c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\RedMon\Engine\inputclass.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\systemclass.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\bitmapclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\cameraclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\d3dclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\graphicsclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\textureclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Graphics\Source\textureshaderclass.cpp">
+      <Filter>Engine\Graphics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\Logic.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\LogicAndPhysics.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\Logic\Source\Physics.cpp">
+      <Filter>Engine\Logic\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\GameObject\BossClass.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\GameObject\PlayerClass.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\GameObject\Base\ActorClass.cpp">
+      <Filter>GameObject\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RedMon\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\RedMon\Engine\inputclass.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\systemclass.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\bitmapclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\cameraclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\d3dclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\graphicsclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\textureclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Graphics\textureshaderclass.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Logic\Logic.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Logic\LogicAndPhysics.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Logic\Physics.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\BossClass.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h">
+      <Filter>GameObject\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h">
+      <Filter>GameObject\Base</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\RedMon\texture.ps">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="..\RedMon\texture.vs">
+      <Filter>FX</Filter>
+    </None>
+  </ItemGroup>
+</Project>
