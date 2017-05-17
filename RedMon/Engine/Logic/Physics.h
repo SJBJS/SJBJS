@@ -6,7 +6,7 @@
 // INCLUDE
 /////////////////////////
 #include "../../GameObject/Base/ActorClass.h"
-
+#include "Box2D/Box2D.h"
 using namespace std;
 
 /////////////////////////

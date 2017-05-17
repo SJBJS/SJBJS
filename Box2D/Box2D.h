@@ -50,9 +50,7 @@ For discussion please visit http://box2d.org/forum
 #include <Box2D/Dynamics/b2WorldCallbacks.h>
 #include <Box2D/Dynamics/b2TimeStep.h>
 #include <Box2D/Dynamics/b2World.h>
-
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
-
 #include <Box2D/Dynamics/Joints/b2DistanceJoint.h>
 #include <Box2D/Dynamics/Joints/b2FrictionJoint.h>
 #include <Box2D/Dynamics/Joints/b2GearJoint.h>
