@@ -163,6 +163,12 @@ void ActorClass::Update()
 {
 }
 
+void ActorClass::SetPosition(const float & x, const float & y)
+{
+	position.x = x;
+	position.y = y;
+}
+
 XMFLOAT3 operator+(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
 {
 	return XMFLOAT3(vec1.x + vec2.x, vec1.y+ vec2.y, vec1.z + vec2.z);

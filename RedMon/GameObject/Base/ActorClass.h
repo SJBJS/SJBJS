@@ -54,6 +54,7 @@ public: //public Function.
 	virtual char* GetTag()const;
 	virtual void Initialize();
 	virtual void Update();
+	void SetPosition(const float &, const float &);
 private: //private Function.
 
 };
