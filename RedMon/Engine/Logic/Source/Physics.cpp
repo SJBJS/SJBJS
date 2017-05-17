@@ -4,8 +4,6 @@
 Physics::Physics()
 {
 
-	
-
 }
 
 Physics::~Physics()
