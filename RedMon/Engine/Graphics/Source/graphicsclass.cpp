@@ -61,7 +61,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 		// Initialize the model object.
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "data/qq-2.tga", screenWidth, screenHeight);
+	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "../RedMon/data/qq-2.tga", screenWidth, screenHeight);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -92,16 +92,17 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 			return false;
 		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
-			char* str = (*ObjectManager::Instance())[i]->GetTextureAddress();
+			char textureAddress[50] = "../RedMon/";
+			char* objectAddress = (*ObjectManager::Instance())[i]->GetTextureAddress();
+			strcat_s(textureAddress, objectAddress);
 			XMFLOAT2 textureWH = (*ObjectManager::Instance())[i]->GetTextureWH();
-			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, str, textureWH.x, textureWH.y);
+			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y);
 			if (!result)
 			{
 				MessageBox(hwnd, L"Could not initialize the Objects",L"Error",MB_OK);
 			}
 		}
 	}
-
 	return true;
 }
 
