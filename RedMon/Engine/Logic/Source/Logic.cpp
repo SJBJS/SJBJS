@@ -1,4 +1,4 @@
-#include "Logic.h"
+#include "../Logic.h"
 
 bool Logic::Initialize()
 {

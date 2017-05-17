@@ -12,7 +12,7 @@
 #include "cameraclass.h"
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
-#include "ActorClass.h"
+#include "../../GameObject/Base/ActorClass.h"
 ///////////////////////
 // INCLUDES //
 ///////////////////////

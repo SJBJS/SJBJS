@@ -5,7 +5,7 @@
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include "ActorClass.h"
+#include "../../GameObject/Base/ActorClass.h"
 
 using namespace std;
 

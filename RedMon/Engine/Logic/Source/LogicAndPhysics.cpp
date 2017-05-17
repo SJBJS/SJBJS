@@ -1,6 +1,6 @@
-#include "LogicAndPhysics.h"
-#include "PlayerClass.h"
-#include"BossClass.h"
+#include "../LogicAndPhysics.h"
+#include "../../../GameObject/PlayerClass.h"
+#include "../../../GameObject/BossClass.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_objectManager = 0;

@@ -5,7 +5,7 @@
 // INCLUDE
 ////////////////////////
 #include<vector>
-#include"ActorClass.h"
+#include"../../GameObject/Base/ActorClass.h"
 #include"Physics.h"
 #include"Logic.h"
 
