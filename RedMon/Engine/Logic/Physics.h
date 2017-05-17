@@ -65,8 +65,9 @@ class Physics
 {
 private:
 	b2World * m_world;
-	b2Body * m_object;
+	b2Body ** m_objects;
 	Settings *settings;
+	size_t objectSize;
 public:
 	Physics();
 	~Physics();

@@ -20,8 +20,7 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	ActorClass * operator[](int idx);
-
+	ActorClass * at(int idx);
 	void CreateObject(ActorClass * object);
 	ActorClass *FindObjectWithTag(char * tag);
 	ActorClass * FindObjectsWithTag(char * tag);

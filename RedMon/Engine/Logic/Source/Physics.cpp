@@ -21,13 +21,19 @@ bool Physics::Initialize()
 	gravity.Set(0.0f, 1.0f);
 	m_world = new b2World(gravity);
 
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-
-	float x = ObjectManager::Instance()->FindObjectWithTag("player")->GetPosition().x;
-	float y = ObjectManager::Instance()->FindObjectWithTag("player")->GetPosition().y;
-	bodyDef.position.Set(x,y);
-	m_object = m_world->CreateBody(&bodyDef);
+	objectSize = ObjectManager::Instance()->Size();
+	m_objects = new b2Body*[objectSize];
+	for (int i = 0; i < objectSize; ++i)
+	{
+		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
+		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_dynamicBody;
+		bodyDef.position.Set(position.x, position.y);
+		
+		m_objects[i] = m_world->CreateBody(&bodyDef);
+		
+	}
 
 	float h = ObjectManager::Instance()->FindObjectWithTag("player")->GetTextureWH().y;
 	float w = ObjectManager::Instance()->FindObjectWithTag("player")->GetTextureWH().x;

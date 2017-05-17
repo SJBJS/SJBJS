@@ -7,7 +7,7 @@ bool Logic::Initialize()
 
 
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
-		(*ObjectManager::Instance())[i]->Initialize();
+		ObjectManager::Instance()->at(i)->Initialize();
 
 	return true;
 }
@@ -18,7 +18,7 @@ void Logic::Update()
 
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		(*ObjectManager::Instance())[i]->Update();
+		ObjectManager::Instance()->at(i)->Update();
 	}
 }
 

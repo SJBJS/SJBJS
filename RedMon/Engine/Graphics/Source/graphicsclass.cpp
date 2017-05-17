@@ -93,9 +93,9 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
 			char textureAddress[50] = "../RedMon/";
-			char* objectAddress = (*ObjectManager::Instance())[i]->GetTextureAddress();
+			char* objectAddress = ObjectManager::Instance()->at(i)->GetTextureAddress();
 			strcat_s(textureAddress, objectAddress);
-			XMFLOAT2 textureWH = (*ObjectManager::Instance())[i]->GetTextureWH();
+			XMFLOAT2 textureWH = ObjectManager::Instance()->at(i)->GetTextureWH();
 			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y);
 			if (!result)
 			{
@@ -206,7 +206,7 @@ bool GraphicsClass::Render(float deltaTime)
 	}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		XMFLOAT2 position = XMFLOAT2((*ObjectManager::Instance())[i]->GetPosition().x, (*ObjectManager::Instance())[i]->GetPosition().y);
+		XMFLOAT2 position = XMFLOAT2(ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y);
 		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
 		if (!result)
 			return false;

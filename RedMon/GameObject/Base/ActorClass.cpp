@@ -21,14 +21,15 @@ ObjectManager::~ObjectManager()
 		m_ObjectList = 0;
 	}
 }
-ActorClass * ObjectManager::operator[](int idx)
+
+ActorClass * ObjectManager::at(int idx)
 {
 	if (m_ObjectList->empty())
 		return nullptr;
 	if (idx >= m_ObjectList->size() || idx < 0)
 		return nullptr;
 
-	return (*m_ObjectList)[idx];
+	return m_ObjectList->at(idx);
 }
 
 void ObjectManager::CreateObject(ActorClass * object)
