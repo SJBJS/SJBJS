@@ -2,7 +2,7 @@
 #ifndef PLAYER_CLASS_H
 #define PLAYER_CLASS_H
 
-#include "PawnClass.h"
+#include "Base\PawnClass.h"
 
 class PlayerClass : public PawnClass
 {

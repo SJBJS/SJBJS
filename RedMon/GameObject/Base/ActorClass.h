@@ -4,7 +4,8 @@
 
 #include<vector>
 #include <directxmath.h>
-#include"inputclass.h"
+#include"../../Engine/inputclass.h"
+
 using namespace DirectX;
 using namespace std;
 
