@@ -52,7 +52,6 @@ public: //public Function.
 	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;
 	virtual char* GetTag()const;
-	virtual void SetPosition(const float&,const float&);
 	virtual void Initialize();
 	virtual void Update();
 private: //private Function.
