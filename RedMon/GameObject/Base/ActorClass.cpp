@@ -155,6 +155,12 @@ char * ActorClass::GetTag() const
 	return tag;
 }
 
+void ActorClass::SetPosition(const float &x, const float &y)
+{
+	position.x = x;
+	position.y = y;
+}
+
 void ActorClass::Initialize()
 {
 }
