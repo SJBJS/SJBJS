@@ -1,6 +1,5 @@
 #include "../Physics.h"
 
-
 Physics::Physics()
 {
 
@@ -18,18 +17,26 @@ bool Physics::Initialize()
 	settings->hz = 60.0f;
 	
 	b2Vec2 gravity;
-	gravity.Set(0.0f, 0.0f);
+	gravity.Set(0.0f, 9.0f);
 	m_world = new b2World(gravity);
+
+	b2BodyDef bd;
+	b2Body* ground = m_world->CreateBody(&bd);
+
+	b2EdgeShape shape;
+	shape.Set(b2Vec2(0.0f, 600.0f), b2Vec2(1000.0f, 600.0f));
+	ground->CreateFixture(&shape, 0.0f);
 
 	objectSize = ObjectManager::Instance()->Size();
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
 	{
 		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
-		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x, ObjectManager::Instance()->at(i)->GetTextureWH().y };
+		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x/2, ObjectManager::Instance()->at(i)->GetTextureWH().y/2 };
 
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
+		bodyDef.bullet = true;
 		bodyDef.position.Set(position.x, position.y);
 		m_objects[i] = m_world->CreateBody(&bodyDef);
 
@@ -47,7 +54,7 @@ bool Physics::Initialize()
 
 void Physics::Update()
 {
-	float32 timeStep = settings->hz > 0.0f ? 1.0f / settings->hz : float32(0.0f);
+	float32 timeStep = settings->hz > 0.0f ? 1.0f / 144 : float32(0.0f);
 
 	if (settings->pause)
 	{
@@ -66,14 +73,14 @@ void Physics::Update()
 		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
 		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
-	uint32 flags = 0;
-	flags += settings->drawShapes			* b2Draw::e_shapeBit;
-	flags += settings->drawJoints			* b2Draw::e_jointBit;
-	flags += settings->drawAABBs			* b2Draw::e_aabbBit;
-	flags += settings->drawCOMs				* b2Draw::e_centerOfMassBit;
 
-	//settings->velocityIterations = 0;
-	//settings->positionIterations = 0;
+	settings->velocityIterations = 120;
+	settings->positionIterations = 120;
+
+	m_world->SetAllowSleeping(settings->enableSleep > 0);
+	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
+	m_world->SetContinuousPhysics(settings->enableContinuous > 0);
+	m_world->SetSubStepping(settings->enableSubStepping > 0);
 
 	m_world->Step(timeStep, settings->velocityIterations, settings->positionIterations);
 

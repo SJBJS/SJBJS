@@ -3,7 +3,8 @@
 void BossClass::Initialize()
 {
 	player = dynamic_cast<PawnClass*>(ObjectManager::Instance()->FindObjectWithTag("player"));
-	position = XMFLOAT3(100, 100, 0);
+	position = XMFLOAT3(500, 500, 0);
+	tag = "boss";
 	textureAddress = "data/player.tga";
 	Wight = 32;
 	Hight = 32;

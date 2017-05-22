@@ -5,7 +5,6 @@ bool Logic::Initialize()
 	if (!ObjectManager::Instance())
 		return false;
 
-
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		ObjectManager::Instance()->at(i)->Initialize();
 
