@@ -6,6 +6,7 @@
 ////////////////////////
 #include<vector>
 #include"../../GameObject/Base/ActorClass.h"
+#include"../../GameObject/Base/ObjectManager.h"
 #include"Physics.h"
 #include"Logic.h"
 

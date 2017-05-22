@@ -60,16 +60,13 @@
     <ClCompile Include="..\RedMon\Engine\Logic\Source\Physics.cpp">
       <Filter>Engine\Logic\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\RedMon\GameObject\BossClass.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\RedMon\GameObject\PlayerClass.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="..\RedMon\GameObject\Base\ActorClass.cpp">
       <Filter>GameObject\Base</Filter>
     </ClCompile>
     <ClCompile Include="..\RedMon\main.cpp" />
+    <ClCompile Include="..\RedMon\GameObject\Base\ObjectManager.cpp">
+      <Filter>GameObject\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\RedMon\Engine\inputclass.h">
@@ -115,6 +112,9 @@
       <Filter>GameObject\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h">
+      <Filter>GameObject\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
   </ItemGroup>

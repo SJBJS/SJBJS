@@ -6,6 +6,7 @@
 // INCLUDE
 /////////////////////////
 #include"../../GameObject/Base/ActorClass.h"
+#include"../../GameObject/Base/ObjectManager.h"
 using namespace std;
 
 /////////////////////////

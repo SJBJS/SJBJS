@@ -31,8 +31,7 @@
     <ClCompile Include="..\RedMon\Engine\Logic\Source\Physics.cpp" />
     <ClCompile Include="..\RedMon\Engine\systemclass.cpp" />
     <ClCompile Include="..\RedMon\GameObject\Base\ActorClass.cpp" />
-    <ClCompile Include="..\RedMon\GameObject\BossClass.cpp" />
-    <ClCompile Include="..\RedMon\GameObject\PlayerClass.cpp" />
+    <ClCompile Include="..\RedMon\GameObject\Base\ObjectManager.cpp" />
     <ClCompile Include="..\RedMon\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +47,7 @@
     <ClInclude Include="..\RedMon\Engine\Logic\Physics.h" />
     <ClInclude Include="..\RedMon\Engine\systemclass.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h" />
     <ClInclude Include="..\RedMon\GameObject\BossClass.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
