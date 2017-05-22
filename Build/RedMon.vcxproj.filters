@@ -117,6 +117,12 @@
     <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Boss2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps">
