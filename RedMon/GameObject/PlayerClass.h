@@ -9,6 +9,7 @@ class PlayerClass : public PawnClass
 private:
 	int bulletNum = 10;
 	Bullet * myBullet;
+	float Windowx;
 public:
 	virtual void Initialize()
 	{
@@ -40,7 +41,8 @@ public:
 
 		if (Input->IsKeyDown(DIK_SPACE))
 		{
-
+			myBullet->Fire(true);
+			myBullet->Spwan(this->position);
 		}
 
 		XMFLOAT3 dir(h, v, 0);
