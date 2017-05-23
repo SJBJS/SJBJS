@@ -9,6 +9,8 @@ InputClass::InputClass()
 	m_directInput = 0;
 	m_keyboard = 0;
 	m_mouse = 0;
+	p_CurKeyStates = m_keyboardState[0];
+	p_PrevKeyStates = m_keyboardState[1];
 }
 
 
@@ -55,7 +57,7 @@ bool InputClass::Initialize(HINSTANCE hinstance, HWND hwnd, int screenWidth, int
 		return false;
 	}
 	// Set the cooperative level of the keyboard to not share with other programs.
-	result = m_keyboard->SetCooperativeLevel(hwnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+	result = m_keyboard->SetCooperativeLevel(hwnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 	if (FAILED(result))
 	{
 		return false;
@@ -151,9 +153,12 @@ bool InputClass::ReadKeyboard()
 {
 	HRESULT result;
 
+	unsigned char *tempKeyStates = p_PrevKeyStates;
+	p_PrevKeyStates = p_CurKeyStates;
+	p_CurKeyStates = tempKeyStates;
 
 	// Read the keyboard device.
-	result = m_keyboard->GetDeviceState(sizeof(m_keyboardState), (LPVOID)&m_keyboardState);
+	result = m_keyboard->GetDeviceState(256, p_CurKeyStates);
 	if (FAILED(result))
 	{
 		// If the keyboard lost focus or was not acquired then try to get control back.
@@ -214,16 +219,25 @@ bool InputClass::IsKeyDown(int keyNuber)
 	if (!Input)
 		return false;
 
-	return 	static_cast<bool>(Input->m_keyboardState[keyNuber] & 0x80);
+	return 	static_cast<bool>(Input->p_CurKeyStates[keyNuber] & 0x80 ? true : false);
+}
+
+bool InputClass::IsKeyUp(int keyNuber)
+{
+	if (!Input)
+		return false;
+	return static_cast<bool>(Input->p_CurKeyStates[keyNuber] & 0x80 ? false : true);
+}
+
+bool InputClass::IsKeyPressed(int keyNuber)
+{
+	if (!Input)
+		return false;
+	return static_cast<bool>((Input->p_CurKeyStates[keyNuber] & 0x80) && !(Input->p_PrevKeyStates[keyNuber] & 0x80)) ? true : false;
 }
 
 bool InputClass::IsEscapePressed()
 {
-	// Do a bitwise and on the keyboard state to check if the escape key is currently being pressed.
-	if (m_keyboardState[DIK_ESCAPE] & 0x80)
-	{
-		return true;
-	}
 
 	return false;
 }

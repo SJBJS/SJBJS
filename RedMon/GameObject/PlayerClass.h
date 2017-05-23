@@ -41,7 +41,7 @@ public:
 		if (Input->IsKeyDown(DIK_D))
 			h += 1.0f;
 
-		if (Input->IsKeyDown(DIK_SPACE))
+		if (Input->IsKeyPressed(DIK_SPACE))
 		{
 			if (myBullet[shotNum].IsFire())
 				return;

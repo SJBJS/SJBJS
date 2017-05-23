@@ -36,7 +36,10 @@ public:
 
 	bool IsEscapePressed();
 	void GetMouseLocation(int&, int&);
+
 	static bool IsKeyDown(int keyNuber);
+	static bool IsKeyUp(int keyNuber);
+	static bool IsKeyPressed(int keyNuber);
 private:
 	bool ReadKeyboard();
 	bool ReadMouse();
@@ -46,7 +49,9 @@ private:
 	IDirectInput8* m_directInput;
 	IDirectInputDevice8* m_keyboard;
 	IDirectInputDevice8* m_mouse;
-	unsigned char m_keyboardState[256];
+	unsigned char m_keyboardState[2][256];
+	unsigned char *p_CurKeyStates;
+	unsigned char *p_PrevKeyStates;
 	DIMOUSESTATE m_mouseState;
 	int m_screenWidth, m_screenHeight;
 	int m_mouseX, m_mouseY;
