@@ -12,7 +12,7 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(0, 0, 0);
+		position = XMFLOAT3(100, 0, 0);
 		textureAddress = "data/player.tga";
 		tag = "player";
 		Wight = 128;

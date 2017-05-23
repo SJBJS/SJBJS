@@ -21,6 +21,17 @@ XMFLOAT3 ActorClass::GetPosition() const
 	return position;
 }
 
+XMFLOAT2 ActorClass::GetCenter() const
+{
+	return XMFLOAT2(position.x + Wight/2, position.y + Hight/2);
+}
+
+void ActorClass::SetCenter(float x, float y)
+{
+	position.x = x - Wight / 2;
+	position.y = y - Hight / 2;
+}
+
 char* ActorClass::GetTextureAddress() const
 {
 	return textureAddress;

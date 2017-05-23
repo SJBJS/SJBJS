@@ -24,15 +24,15 @@ bool Physics::Initialize()
 	b2Body* ground = m_world->CreateBody(&bd);
 
 	b2EdgeShape shape;
-	shape.Set(b2Vec2(0.0f, 600.0f), b2Vec2(1000.0f, 600.0f));
+	shape.Set(b2Vec2(0.0f, 600.0f), b2Vec2(10000.0f, 600.0f));
 	ground->CreateFixture(&shape, 0.0f);
 
 	objectSize = ObjectManager::Instance()->Size();
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
-		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x/2, ObjectManager::Instance()->at(i)->GetTextureWH().y/2 };
+		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x / 2, ObjectManager::Instance()->at(i)->GetTextureWH().y / 2 };
+		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetCenter().x, ObjectManager::Instance()->at(i)->GetCenter().y };
 
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
@@ -70,12 +70,12 @@ void Physics::Update()
 	// 물리 처리 전에 값 갱신.
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
+		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetCenter().x, ObjectManager::Instance()->at(i)->GetCenter().y };
 		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
 
-	settings->velocityIterations = 120;
-	settings->positionIterations = 120;
+	settings->velocityIterations = 8;
+	settings->positionIterations = 6;
 
 	m_world->SetAllowSleeping(settings->enableSleep > 0);
 	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
@@ -88,7 +88,7 @@ void Physics::Update()
 	for (int i = 0; i < objectSize; ++i)
 	{
 		b2Vec2 position = m_objects[i]->GetPosition();
-		ObjectManager::Instance()->at(i)->SetPosition(position.x, position.y);
+		ObjectManager::Instance()->at(i)->SetCenter(position.x, position.y);
 	}
 }
 

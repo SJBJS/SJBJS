@@ -24,6 +24,8 @@ public: //public Function.
 	ActorClass();
 	~ActorClass();
 	virtual XMFLOAT3 GetPosition() const;
+	XMFLOAT2 GetCenter() const;
+	void SetCenter(float x, float y);
 	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;
 	virtual char* GetTag()const;
