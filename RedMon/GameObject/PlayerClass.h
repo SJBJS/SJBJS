@@ -7,7 +7,8 @@
 class PlayerClass : public PawnClass
 {
 private:
-	int bulletNum = 10;
+	int bulletNum;
+	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
 public:
@@ -20,6 +21,7 @@ public:
 		Hight = 128;
 
 		bulletNum = 10;
+		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
 		for (int i = 0; i < bulletNum; ++i)
 			myBullet->Initialize();
@@ -41,8 +43,11 @@ public:
 
 		if (Input->IsKeyDown(DIK_SPACE))
 		{
-			myBullet->Fire(true);
-			myBullet->Spwan(this->position);
+			if (myBullet[shotNum].IsFire())
+				return;
+			myBullet[shotNum].Fire(true);
+			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,20,0));
+			shotNum = (shotNum+1)%bulletNum;
 		}
 
 		XMFLOAT3 dir(h, v, 0);
