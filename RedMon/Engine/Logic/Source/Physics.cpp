@@ -17,7 +17,7 @@ bool Physics::Initialize()
 	settings->hz = 60.0f;
 	
 	b2Vec2 gravity;
-	gravity.Set(0.0f, 9.0f);
+	gravity.Set(0.0f, 0.0f);
 	m_world = new b2World(gravity);
 
 	b2BodyDef bd;

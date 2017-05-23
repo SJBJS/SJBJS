@@ -19,15 +19,21 @@ public:
 
 	virtual void Update()
 	{
-		if (!isStart)
+		if (isStart)
 			return;
 
-		position.y -= 0.01f;
+		position.y -= 0.5f;
 	};
 	void Fire(bool isStrat) { this->isStart = isStart; }
-	void Spwan(XMFLOAT2 & ref)
+	void Spwan(XMFLOAT3 & ref)
 	{
 		position = ref;
+		if (this->position.y <= 0)
+		{
+			isStart = false;
+			position.x = -100;
+		}
+	};
 };
 
 #endif
