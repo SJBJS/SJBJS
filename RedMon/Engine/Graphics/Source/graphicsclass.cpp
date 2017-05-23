@@ -206,7 +206,8 @@ bool GraphicsClass::Render(float deltaTime)
 	}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		XMFLOAT2 position = XMFLOAT2(ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y);
+		XMFLOAT2 textureWH = ObjectManager::Instance()->at(i)->GetTextureWH();
+		XMFLOAT2 position = XMFLOAT2(ObjectManager::Instance()->at(i)->GetPosition().x - textureWH.x/2, ObjectManager::Instance()->at(i)->GetPosition().y - textureWH.y / 2);
 		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
 		if (!result)
 			return false;

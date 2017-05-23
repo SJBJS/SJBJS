@@ -32,7 +32,7 @@ bool Physics::Initialize()
 	for (int i = 0; i < objectSize; ++i)
 	{
 		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x / 2, ObjectManager::Instance()->at(i)->GetTextureWH().y / 2 };
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetCenter().x, ObjectManager::Instance()->at(i)->GetCenter().y };
+		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
 
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
@@ -70,7 +70,7 @@ void Physics::Update()
 	// 물리 처리 전에 값 갱신.
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetCenter().x, ObjectManager::Instance()->at(i)->GetCenter().y };
+		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
 		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
 
@@ -88,7 +88,7 @@ void Physics::Update()
 	for (int i = 0; i < objectSize; ++i)
 	{
 		b2Vec2 position = m_objects[i]->GetPosition();
-		ObjectManager::Instance()->at(i)->SetCenter(position.x, position.y);
+		ObjectManager::Instance()->at(i)->SetPosition(position.x, position.y);
 	}
 }
 
