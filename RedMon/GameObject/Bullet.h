@@ -25,10 +25,9 @@ public:
 		position.y -= 0.01f;
 	};
 	void Fire(bool isStrat) { this->isStart = isStart; }
-	void Spwan(ActorClass & ref)
+	void Spwan(XMFLOAT2 & ref)
 	{
-		position = ref.GetPosition();
-	}
+		position = ref;
 };
 
 #endif
