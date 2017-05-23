@@ -46,7 +46,7 @@ public:
 			if (myBullet[shotNum].IsFire())
 				return;
 			myBullet[shotNum].Fire(true);
-			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,20,0));
+			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,50,0));
 			shotNum = (shotNum+1)%bulletNum;
 		}
 
