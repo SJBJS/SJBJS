@@ -62,20 +62,6 @@ ActorClass * ObjectManager::FindObjectsWithTag(char * tag)
 
 bool ObjectManager::Initialize()
 {
-	if (m_ObjectList->empty())
-		return false;
-
-	vector<ActorClass*>::iterator it;
-
-	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
-	{
-		if ((*it) != NULL)
-		{
-			(*it)->Initialize();
-		}
-	}
-
-
 	return true;
 }
 
