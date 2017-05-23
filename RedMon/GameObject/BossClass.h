@@ -9,8 +9,18 @@ class BossClass : public PawnClass
 private:
 	PawnClass * player;
 public:
-	virtual void Initialize();
-	virtual void Update();
+	virtual void Initialize()
+	{
+		player = dynamic_cast<PawnClass*>(ObjectManager::Instance()->FindObjectWithTag("player"));
+		position = XMFLOAT3(100, 100, 0);
+		textureAddress = "data/player.tga";
+		Wight = 16;
+		Hight = 16;
+	};
+
+	virtual void Update()
+	{
+	};
 };
 
 #endif

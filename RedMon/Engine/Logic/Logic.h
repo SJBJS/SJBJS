@@ -6,6 +6,7 @@
 // INCLUDE
 /////////////////////////
 #include"../../GameObject/Base/ActorClass.h"
+#include"../../GameObject/Base/ObjectManager.h"
 using namespace std;
 
 /////////////////////////
@@ -14,7 +15,7 @@ using namespace std;
 class Logic
 {
 private:
-
+	void DestoryObject();
 public:
 	bool Initialize();
 	void Update();
