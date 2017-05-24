@@ -121,6 +121,9 @@
     <ClInclude Include="..\RedMon\GameObject\Bullet.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps">

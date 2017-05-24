@@ -1,6 +1,8 @@
 #include "../LogicAndPhysics.h"
 #include "../../../GameObject/PlayerClass.h"
 #include "../../../GameObject/BossClass.h"
+#include "../../../GameObject/Enemy.h"
+
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_objectManager = 0;
@@ -81,4 +83,5 @@ void LogicAndPhysics::CreateObject()
 {
 	new PlayerClass;
 	new BossClass;
+	new EnemyClass;
 }
