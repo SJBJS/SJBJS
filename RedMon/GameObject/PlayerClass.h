@@ -24,7 +24,11 @@ public:
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
 		for (int i = 0; i < bulletNum; ++i)
+		{ 
 			myBullet->Initialize();
+			myBullet[i].setWH(16, 16);
+			myBullet[i].setPower(0.5f);
+		}
 
 	};
 
