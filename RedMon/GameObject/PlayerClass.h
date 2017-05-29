@@ -46,15 +46,11 @@ public:
 			if (myBullet[shotNum].IsFire())
 				return;
 			myBullet[shotNum].Fire(true);
-			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,50,0));
+			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,60,0));
 			shotNum = (shotNum+1)%bulletNum;
 		}
 
 		XMFLOAT3 dir(h, v, 0);
-		//안되는거
-		//float d = sqrt(dir.x*dir.x + dir.y*dir.y);
-		//XMFLOAT3 normal(dir.x/d,dir.y/d,0);
-
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
 		XMFLOAT3 normal;
 		XMStoreFloat3(&normal, vNormal);
