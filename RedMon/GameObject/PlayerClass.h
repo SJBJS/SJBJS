@@ -15,10 +15,10 @@ public:
 	virtual void Initialize()
 	{
 		position = XMFLOAT3(100, 0, 0);
-		textureAddress = "data/player.tga";
+		textureAddress = "data/player1.tga";
 		tag = "player";
-		Wight = 128;
-		Hight = 128;
+		Wight = 64;
+		Hight = 64;
 
 		bulletNum = 10;
 		shotNum = 0;
