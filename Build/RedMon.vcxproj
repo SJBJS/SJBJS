@@ -53,6 +53,7 @@
     <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h" />
     <ClInclude Include="..\RedMon\GameObject\BossClass.h" />
     <ClInclude Include="..\RedMon\GameObject\Bullet.h" />
+    <ClInclude Include="..\RedMon\GameObject\Enemy.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
   </ItemGroup>
   <ItemGroup>

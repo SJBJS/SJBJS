@@ -31,7 +31,7 @@ bool Physics::Initialize()
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 textureWH = { ObjectManager::Instance()->at(i)->GetTextureWH().x / 2, ObjectManager::Instance()->at(i)->GetTextureWH().y / 2 };
+		b2Vec2 textureWH = { abs(ObjectManager::Instance()->at(i)->GetTextureWH().x / 2), abs(ObjectManager::Instance()->at(i)->GetTextureWH().y / 2) };
 		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
 
 		b2BodyDef bodyDef;
