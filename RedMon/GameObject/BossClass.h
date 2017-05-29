@@ -18,7 +18,7 @@ public:
 		Hight = 64;
 	};
 
-	virtual void Update()
+	virtual void Update(float dt)
 	{
 	};
 };

@@ -28,7 +28,7 @@ public:
 
 	};
 
-	virtual void Update()
+	virtual void Update(float dt)
 	{
 		float v = 0, h = 0;
 

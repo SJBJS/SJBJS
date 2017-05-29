@@ -28,7 +28,7 @@ public: //public Function.
 	virtual XMFLOAT2 GetTextureWH() const;
 	virtual char* GetTag()const;
 	virtual void Initialize();
-	virtual void Update();
+	virtual void Update(float dt);
 	virtual void OnDestory();
 	void SetPosition(const float &, const float &);
 private: //private Function.

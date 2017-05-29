@@ -54,9 +54,9 @@ bool LogicAndPhysics::Initialize()
 	return true;
 }
 
-bool LogicAndPhysics::Update()
+bool LogicAndPhysics::Update(float dt)
 {
-	m_Logic->Update();
+	m_Logic->Update(dt);
 	m_Physics->Update();
 
 	return true;

@@ -24,7 +24,7 @@ public: // public function.
 	~LogicAndPhysics();
 
 	bool Initialize();
-	bool Update();
+	bool Update(float dt);
 	void Shutdown();
 private:
 	void CreateObject();

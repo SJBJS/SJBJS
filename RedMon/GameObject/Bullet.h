@@ -17,7 +17,7 @@ public:
 		isStart = false;
 	};
 
-	virtual void Update()
+	virtual void Update(float dt)
 	{
 		if (!isStart)
 			return;

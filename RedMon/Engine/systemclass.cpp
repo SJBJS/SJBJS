@@ -9,6 +9,7 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Graphics = 0;
 	m_LogicAndPhysics = 0;
+	m_StopWatch = 0;
 	myVector.x = myVector.y = 0;
 	isActive = true;
 }
@@ -36,6 +37,7 @@ bool SystemClass::Initialize()
 
 	// Initialize the windows api.
 	InitializeWindows(screenWidth, screenHeight);
+	
 
 	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass;
@@ -52,6 +54,18 @@ bool SystemClass::Initialize()
 		return false;
 	}
 
+	// Create the StopWatch.
+	m_StopWatch = new CStopWatch;
+	if (!m_StopWatch)
+	{
+		return false;
+	}
+	if (!m_StopWatch->bRunning())
+	{
+		m_StopWatch->start();
+	}
+
+	// Create the LogicAndPhysics.
 	m_LogicAndPhysics = new LogicAndPhysics();
 	if (!m_LogicAndPhysics)
 	{
@@ -100,7 +114,11 @@ void SystemClass::Shutdown()
 		delete m_LogicAndPhysics;
 		m_LogicAndPhysics = 0;
 	}
-
+	if (m_StopWatch)
+	{
+		delete m_StopWatch;
+		m_StopWatch = 0;
+	}
 	// Release the input object. 
 	if (m_Input)
 	{
@@ -169,13 +187,15 @@ bool SystemClass::Frame()
 	// Get the location of the mouse from the input object, 
 	m_Input->GetMouseLocation(mouseX, mouseY);
 
-	result = m_LogicAndPhysics->Update();
+	m_StopWatch->Update();
+
+	result = m_LogicAndPhysics->Update(m_StopWatch->GetDeltaTime());
 	if (!result)
 	{
 		return false;
 	}
 	// Do the frame processing for the graphics object.
-	result = m_Graphics->Frame(0);
+	result = m_Graphics->Frame(m_StopWatch->GetDeltaTime());
 	if (!result)
 	{
 		return false;

@@ -39,7 +39,7 @@ void ActorClass::Initialize()
 {
 }
 
-void ActorClass::Update()
+void ActorClass::Update(float dt)
 {
 }
 

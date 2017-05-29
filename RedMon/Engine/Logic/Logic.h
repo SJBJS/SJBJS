@@ -18,7 +18,7 @@ private:
 	void DestoryObject();
 public:
 	bool Initialize();
-	void Update();
+	void Update(float dt);
 	void Shutdown();
 };
 #endif
