@@ -23,10 +23,6 @@ bool Physics::Initialize()
 	b2BodyDef bd;
 	b2Body* ground = m_world->CreateBody(&bd);
 
-	b2EdgeShape shape;
-	shape.Set(b2Vec2(0.0f, 600.0f), b2Vec2(10000.0f, 600.0f));
-	ground->CreateFixture(&shape, 0.0f);
-
 	objectSize = ObjectManager::Instance()->Size();
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)

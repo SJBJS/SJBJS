@@ -78,3 +78,9 @@ XMFLOAT3 operator+=(XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
 	vec1 = vec1 + vec2;
 	return vec1;
 }
+
+XMFLOAT3 operator-=(XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
+{
+	vec1 = vec1 - vec2;
+	return vec1;
+}

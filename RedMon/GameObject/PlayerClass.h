@@ -14,12 +14,11 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(100, 0, 0);
+		position = XMFLOAT3(100, 600, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
 		Wight = 64;
 		Hight = 64;
-
 		bulletNum = 10;
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
@@ -32,14 +31,11 @@ public:
 	{
 		float v = 0, h = 0;
 
-		if (Input->IsKeyDown(DIK_W))
-			v -= 1.0f;
-		if (Input->IsKeyDown(DIK_S))
-			v += 1.0f;
 		if (Input->IsKeyDown(DIK_A))
 			h += -1.0f;
 		if (Input->IsKeyDown(DIK_D))
 			h += 1.0f;
+
 
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{
@@ -56,6 +52,8 @@ public:
 		XMStoreFloat3(&normal, vNormal);
 		position += normal;
 
+		if (position.x < 80 || position.x>1200)
+			position -= normal;
 
 	};
 	virtual void OnDestory()
