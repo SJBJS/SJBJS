@@ -41,4 +41,5 @@ XMFLOAT3 operator-(const XMFLOAT3 & vec1, const XMFLOAT3 &vec2);
 XMFLOAT3 operator*(const XMFLOAT3 & vec1, const float & scalar);
 XMFLOAT3 operator/(const XMFLOAT3 & vec1, const float &scalar);
 XMFLOAT3 operator+=(XMFLOAT3 & vec1, const XMFLOAT3 &vec2);
+XMFLOAT3 operator-=(XMFLOAT3 & vec1, const XMFLOAT3 &vec2);
 #endif

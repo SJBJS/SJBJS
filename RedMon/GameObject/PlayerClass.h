@@ -11,14 +11,17 @@ private:
 	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
+	float speed;
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(100, 0, 0);
+		position = XMFLOAT3(100, 600, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
 		Wight = 64;
 		Hight = 64;
+
+		speed = 500.0f;
 
 		bulletNum = 10;
 		shotNum = 0;
@@ -32,14 +35,11 @@ public:
 	{
 		float v = 0, h = 0;
 
-		if (Input->IsKeyDown(DIK_W))
-			v -= 1.0f;
-		if (Input->IsKeyDown(DIK_S))
-			v += 1.0f;
 		if (Input->IsKeyDown(DIK_A))
 			h += -1.0f;
 		if (Input->IsKeyDown(DIK_D))
 			h += 1.0f;
+
 
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{
@@ -54,8 +54,10 @@ public:
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
 		XMFLOAT3 normal;
 		XMStoreFloat3(&normal, vNormal);
-		position += normal;
-
+		XMFLOAT3 result = normal * dt * speed;
+		position += result;
+		if (position.x < 80 || position.x>1200)
+			position -= result;
 
 	};
 	virtual void OnDestory()
