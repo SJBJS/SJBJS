@@ -11,6 +11,7 @@ private:
 	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
+	float speed;
 public:
 	virtual void Initialize()
 	{
@@ -19,6 +20,9 @@ public:
 		tag = "player";
 		Wight = 64;
 		Hight = 64;
+
+		speed = 500.0f;
+
 		bulletNum = 10;
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
@@ -50,10 +54,10 @@ public:
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
 		XMFLOAT3 normal;
 		XMStoreFloat3(&normal, vNormal);
-		position += normal;
-
+		XMFLOAT3 result = normal * dt * speed;
+		position += result;
 		if (position.x < 80 || position.x>1200)
-			position -= normal;
+			position -= result;
 
 	};
 	virtual void OnDestory()

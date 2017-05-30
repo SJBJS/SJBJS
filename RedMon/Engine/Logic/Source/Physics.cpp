@@ -70,8 +70,8 @@ void Physics::Update()
 		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
 
-	settings->velocityIterations = 8;
-	settings->positionIterations = 6;
+	settings->velocityIterations = 0;
+	settings->positionIterations = 0;
 
 	m_world->SetAllowSleeping(settings->enableSleep > 0);
 	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
