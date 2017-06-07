@@ -83,5 +83,6 @@ void LogicAndPhysics::CreateObject()
 {
 	new PlayerClass;
 	new BossClass;
+	for(int i = 0; i < 5; i++)
 	new EnemyClass;
 }

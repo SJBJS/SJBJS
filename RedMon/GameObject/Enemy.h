@@ -13,53 +13,67 @@ private:
 	int bulletNum;
 	size_t shotNum;
 	Bullet * myBullet;
-	float Windowx;
 	random_device rand;
+	float checktime;
+	float movetime;
+	float time;
 public:
 
 	virtual void Initialize()
 	{
 		mt19937 gen(rand());
-		uniform_int_distribution<> dist(1, 3);
-		position = XMFLOAT3(500, 30, 0);
+		uniform_int_distribution<> positionx(30, 1200);
+		position = XMFLOAT3(positionx(gen), 10, 0);
 		textureAddress = "data/player.tga";
 		tag = "enemy";
 		Wight = -32;
 		Hight = -32;
 
-		bulletNum = dist(gen);
+		time = 0;
+		movetime = 0.001f;
+		checktime = 1.0f;
+		bulletNum = 3;
 		shotNum = 0;
-		myBullet = new Bullet[bulletNum];
+		myBullet = new Bullet[bulletNum];		
 		for (int i = 0; i < bulletNum; ++i)
-		{ 
+		{
 			myBullet->Initialize();
 			myBullet[i].setWH(-16, -16);
 			myBullet[i].setPower(-0.5f);
 		}
 	};
 
-	virtual void Update()
+	virtual void Update(float dt)
 	{
+		time = CStopWatch::GetCurrent();
+
+
+		position.y += rand() % 30 * 0.02f;
+		if (time >= checktime)
+		{
+			fire();
+			checktime += 1.0f;
+		}
 		move();
-		position.y += 0.2;
-
-		if (position.y >= 300)
-			this->OnDestory();
-
-		fire();
 	};
 
 	void move()
 	{
-		mt19937 gen(rand());
-		uniform_int_distribution<> dist(-3, 3);
-		position.x += dist(gen);
-	}
+		if (this->time >= movetime)
+		{
+			position.x += 0.3f;
+			movetime += 0.006f;
+		}
+		else
+		{
+			position.x -= 0.3f;
+		}
+
+
+	};
 
 	void fire()
 	{
-		if (myBullet[shotNum].IsFire())
-			return;
 		myBullet[shotNum].Fire(true);
 		myBullet[shotNum].Spwan(this->position + XMFLOAT3(0, 20, 0));
 		shotNum = (shotNum + 1) % bulletNum;
