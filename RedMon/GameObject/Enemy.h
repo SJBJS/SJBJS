@@ -47,8 +47,10 @@ public:
 	{
 		time = CStopWatch::GetCurrent();
 
-
-		position.y += rand() % 30 * 0.02f;
+		if (position.y <= 700)
+			position.y += rand() % 30 * 0.02f;
+		else
+			position.y = 10;
 		if (time >= checktime)
 		{
 			fire();
@@ -62,7 +64,7 @@ public:
 		if (this->time >= movetime)
 		{
 			position.x += 0.3f;
-			movetime += 0.006f;
+			movetime += 0.0055f;
 		}
 		else
 		{
