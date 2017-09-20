@@ -126,6 +126,12 @@
     <ClInclude Include="..\RedMon\Engine\StopWatch.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Boss2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps">

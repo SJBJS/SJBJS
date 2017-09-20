@@ -15,13 +15,13 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(100, 600, 0);
+		position = XMFLOAT3(300, 600, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
 		Wight = 64;
 		Hight = 64;
-
-		speed = 500.0f;
+		
+		speed = 100.0f;
 
 		bulletNum = 10;
 		shotNum = 0;
@@ -40,14 +40,9 @@ public:
 		if (Input->IsKeyDown(DIK_D))
 			h += 1.0f;
 
-
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{
-			if (myBullet[shotNum].IsFire())
-				return;
-			myBullet[shotNum].Fire(true);
-			myBullet[shotNum].Spwan(this->position - XMFLOAT3(0,60,0));
-			shotNum = (shotNum+1)%bulletNum;
+			Fire();
 		}
 
 		XMFLOAT3 dir(h, v, 0);
@@ -60,8 +55,20 @@ public:
 			position -= result;
 
 	};
+	virtual void OnCollision(ActorClass * other)
+	{
+		Fire();
+	}
 	virtual void OnDestory()
 	{
+	}
+	void Fire()
+	{
+		if (myBullet[shotNum].IsFire())
+			return;
+		myBullet[shotNum].Fire(true);
+		myBullet[shotNum].Spwan(this->position - XMFLOAT3(0, 60, 0));
+		shotNum = (shotNum + 1) % bulletNum;
 	}
 };
 

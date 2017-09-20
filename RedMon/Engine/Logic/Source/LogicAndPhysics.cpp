@@ -1,6 +1,7 @@
 #include "../LogicAndPhysics.h"
 #include "../../../GameObject/PlayerClass.h"
 #include "../../../GameObject/BossClass.h"
+#include "../../../GameObject/Boss2.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_objectManager = 0;
@@ -56,8 +57,8 @@ bool LogicAndPhysics::Initialize()
 
 bool LogicAndPhysics::Update(float dt)
 {
-	m_Logic->Update(dt);
 	m_Physics->Update();
+	m_Logic->Update(dt);
 
 	return true;
 }
@@ -81,4 +82,5 @@ void LogicAndPhysics::CreateObject()
 {
 	new PlayerClass;
 	new BossClass;
+	new Boss2;
 }

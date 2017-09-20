@@ -14,7 +14,14 @@ void Logic::Update(float dt)
 {
 	if (ObjectManager::Instance()->IsEmpty())
 		return;
-
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
+	{
+		if (ObjectManager::Instance()->at(i)->IsCollistion()) {
+			ActorClass * other = ObjectManager::Instance()->at(i)->CollisionOther();
+			ObjectManager::Instance()->at(i)->OnCollision(other);
+			ObjectManager::Instance()->at(i)->SetCollistion(false);
+		}
+	}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ObjectManager::Instance()->at(i)->Update(dt);

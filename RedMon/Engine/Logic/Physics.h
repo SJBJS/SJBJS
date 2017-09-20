@@ -5,15 +5,21 @@
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include "../../GameObject/Base/ActorClass.h"
-#include "../../GameObject/Base/ObjectManager.h"
+#include "RedMon/GameObject/Base/ActorClass.h"
+#include "RedMon/GameObject/Base/ObjectManager.h"
 #include <Box2D\Box2D.h>
-#include "PolyShapes.h"
+#include"RedMon\Engine\Logic\PolyShapes.h"
 using namespace std;
 
 /////////////////////////
 // CLASS
 /////////////////////////
+enum PhysicsPresets
+{
+	None = 0,
+	Rigidbody = 1,
+	Trigger = 2
+};
 struct Settings
 {
 	Settings()
@@ -69,6 +75,8 @@ private:
 	b2Body ** m_objects;
 	Settings *settings;
 	size_t objectSize;
+
+	Listener *myListener;
 public:
 	Physics();
 	~Physics();
