@@ -24,7 +24,7 @@ public:
 		mt19937 gen(rand());
 		uniform_int_distribution<> positionx(30, 1200);
 		position = XMFLOAT3(positionx(gen), 10, 0);
-		textureAddress = "data/player.tga";
+		textureAddress = "data/boss1.tga";
 		tag = "enemy";
 		Wight = -32;
 		Hight = -32;
@@ -80,6 +80,8 @@ public:
 		myBullet[shotNum].Spwan(this->position + XMFLOAT3(0, 20, 0));
 		shotNum = (shotNum + 1) % bulletNum;
 	};
+
+
 };
 
 #endif
