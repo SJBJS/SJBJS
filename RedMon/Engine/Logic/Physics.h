@@ -14,12 +14,7 @@ using namespace std;
 /////////////////////////
 // CLASS
 /////////////////////////
-enum PhysicsPresets
-{
-	None = 0,
-	Rigidbody = 1,
-	Trigger = 2
-};
+
 struct Settings
 {
 	Settings()

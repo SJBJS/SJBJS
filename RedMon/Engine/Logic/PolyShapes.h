@@ -18,19 +18,28 @@ struct ContactPoint
 class Listener : public b2ContactListener
 {
 public:
-	Listener()
-	{
-	}
+	Listener(){	}
 	virtual ~Listener() {}
 	virtual void BeginContact(b2Contact* contact) {
-		ActorClass * One = static_cast<ActorClass*>(contact->GetFixtureA()->GetBody()->GetUserData());
-		ActorClass * other = static_cast<ActorClass*>(contact->GetFixtureB()->GetBody()->GetUserData());
-		if (One != nullptr && other != nullptr)
-			One->SetCollistion(true);
+		ActorClass * A = static_cast<ActorClass*>(contact->GetFixtureA()->GetBody()->GetUserData());
+		ActorClass * B = static_cast<ActorClass*>(contact->GetFixtureB()->GetBody()->GetUserData());
+
+		if (A != nullptr && B != nullptr) {
+			A->SetCollistion(true, B , CollisionMode::Enter);
+			B->SetCollistion(true, A, CollisionMode::Enter);
+		}
 	}
 
 	/// Called when two fixtures cease to touch.
-	virtual void EndContact(b2Contact* contact) { B2_NOT_USED(contact); }
+	virtual void EndContact(b2Contact* contact) {
+		ActorClass * A = static_cast<ActorClass*>(contact->GetFixtureA()->GetBody()->GetUserData());
+		ActorClass * B = static_cast<ActorClass*>(contact->GetFixtureB()->GetBody()->GetUserData());
+
+		if (A != nullptr && B != nullptr) {
+			A->SetCollistion(true, B, CollisionMode::Exit);
+			B->SetCollistion(true, A, CollisionMode::Exit);
+		}
+	}
 	virtual void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 	{
 		B2_NOT_USED(contact);

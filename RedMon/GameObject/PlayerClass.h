@@ -55,7 +55,11 @@ public:
 			position -= result;
 
 	};
-	virtual void OnCollision(ActorClass * other)
+	virtual void OnCollisionEnter(ActorClass * other)
+	{
+		Fire();
+	}
+	virtual void OnCollisionExit(ActorClass * other)
 	{
 		Fire();
 	}

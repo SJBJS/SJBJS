@@ -11,9 +11,11 @@ using namespace std;
 
 class ActorClass;
 
+enum CollisionMode { None, Enter, Stay, Exit };
 struct CollisionData {
 	bool isCollision;
 	ActorClass * other;
+	CollisionMode mode;
 };
 class ActorClass
 {
@@ -29,18 +31,27 @@ private: //private data.
 public: //public Function.
 	ActorClass();
 	~ActorClass();
+
 	virtual XMFLOAT3 GetPosition() const;
 	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;
 	virtual char* GetTag()const;
 	bool IsCollistion()const;
 	ActorClass* CollisionOther()const;
+	CollisionMode GetCollisionMode()const;
+
 	void SetPosition(const float &, const float &);
-	void SetCollistion(bool isCollistion);
+	void SetCollistion(bool isCollistion, ActorClass * other , CollisionMode mode);
+
 	virtual void Initialize();
 	virtual void Update(float dt);
-	virtual void OnCollision(ActorClass * other);
+
+	virtual void OnCollisionEnter(ActorClass * other);
+	virtual void OnCollisionExit(ActorClass * other);
+
 	virtual void OnDestory();
+
+	void Move(float x, float y);
 private: //private Function.
 
 };

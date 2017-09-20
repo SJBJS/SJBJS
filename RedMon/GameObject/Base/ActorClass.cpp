@@ -47,6 +47,11 @@ ActorClass * ActorClass::CollisionOther() const
 	return collision.other;
 }
 
+CollisionMode ActorClass::GetCollisionMode() const
+{
+	return collision.mode;
+}
+
 void ActorClass::Initialize()
 {
 }
@@ -55,12 +60,23 @@ void ActorClass::Update(float dt)
 {
 }
 
-void ActorClass::OnCollision(ActorClass * other)
+void ActorClass::OnCollisionEnter(ActorClass * other)
+{
+}
+
+
+void ActorClass::OnCollisionExit(ActorClass * other)
 {
 }
 
 void ActorClass::OnDestory()
 {
+}
+
+void ActorClass::Move(float x, float y)
+{
+	position.x += x;
+	position.y += y;
 }
 
 void ActorClass::SetPosition(const float & x, const float & y)
@@ -69,9 +85,11 @@ void ActorClass::SetPosition(const float & x, const float & y)
 	position.y = y;
 }
 
-void ActorClass::SetCollistion(bool isCollistion)
+void ActorClass::SetCollistion(bool isCollistion, ActorClass * other ,CollisionMode mode)
 {
 	collision.isCollision = isCollistion;
+	collision.other = other;
+	collision.mode = mode;
 }
 
 XMFLOAT3 operator+(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)

@@ -16,10 +16,25 @@ void Logic::Update(float dt)
 		return;
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		if (ObjectManager::Instance()->at(i)->IsCollistion()) {
+		ActorClass * taget = ObjectManager::Instance()->at(i);
+		if (taget->IsCollistion())
+		{
 			ActorClass * other = ObjectManager::Instance()->at(i)->CollisionOther();
-			ObjectManager::Instance()->at(i)->OnCollision(other);
-			ObjectManager::Instance()->at(i)->SetCollistion(false);
+			switch (taget->GetCollisionMode())
+			{
+			case CollisionMode::Enter:
+				taget->OnCollisionEnter(other);
+				break;
+			case CollisionMode::Stay:
+				break;
+			case CollisionMode::Exit:
+				taget->OnCollisionExit(other);
+				break;
+
+			default:
+				break;
+			}
+			ObjectManager::Instance()->at(i)->SetCollistion(false, nullptr, CollisionMode::None);
 		}
 	}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)

@@ -38,6 +38,7 @@ bool Physics::Initialize()
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.bullet = false;
 		bodyDef.position.Set(position.x, position.y);
+		bodyDef.allowSleep =false;
 		m_objects[i] = m_world->CreateBody(&bodyDef);
 		m_objects[i]->SetUserData(temp);
 		b2PolygonShape polygons;
@@ -73,7 +74,7 @@ void Physics::Update()
 	{
 		ActorClass * temp = ObjectManager::Instance()->at(i);
 		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
-		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
+		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
 	settings->velocityIterations = 8;
 	settings->positionIterations = 3;
