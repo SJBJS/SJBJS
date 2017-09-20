@@ -201,7 +201,7 @@ bool SystemClass::Frame()
 		return false;
 	}
 
-	return true;1
+	return true;
 }
 
 

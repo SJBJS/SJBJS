@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "inputclass.h"
 
-InputClass::InputClass()
+InputClass::InputClass() : m_keyboardState()
 {
 	Input = this;
 	m_directInput = 0;
@@ -219,21 +219,21 @@ bool InputClass::IsKeyDown(int keyNuber)
 	if (!Input)
 		return false;
 
-	return 	static_cast<bool>(Input->p_CurKeyStates[keyNuber] & 0x80 ? true : false);
+	return 	static_cast<bool>((Input->p_CurKeyStates[keyNuber] & 0x80) && !(Input->p_PrevKeyStates[keyNuber] & 0x80) ? true : false);
 }
 
 bool InputClass::IsKeyUp(int keyNuber)
 {
 	if (!Input)
 		return false;
-	return static_cast<bool>(Input->p_CurKeyStates[keyNuber] & 0x80 ? false : true);
+	return static_cast<bool>(!(Input->p_CurKeyStates[keyNuber] & 0x80) && (Input->p_PrevKeyStates[keyNuber] & 0x80) ? true : false);
 }
 
 bool InputClass::IsKeyPressed(int keyNuber)
 {
 	if (!Input)
 		return false;
-	return static_cast<bool>((Input->p_CurKeyStates[keyNuber] & 0x80) && !(Input->p_PrevKeyStates[keyNuber] & 0x80)) ? true : false;
+	return static_cast<bool>(Input->p_CurKeyStates[keyNuber] & 0x80 ? true : false);
 }
 
 bool InputClass::IsEscapePressed()

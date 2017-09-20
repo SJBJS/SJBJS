@@ -37,8 +37,15 @@ public:
 
 	virtual void Update(float dt)
 	{
-		float v = 0, h = 0;
+		if (position.y < 0 || position.y > 1000)
+			position.y = 400;
 
+
+		float v = 0, h = 0;
+		if (Input->IsKeyPressed(DIK_W))
+			v -= 1.0f;
+		if (Input->IsKeyUp(DIK_S))
+			v += 1.0f;
 		if (Input->IsKeyDown(DIK_A))
 			h += -1.0f;
 		if (Input->IsKeyDown(DIK_D))
