@@ -20,6 +20,9 @@ bool Physics::Initialize()
 	gravity.Set(0.0f, 0.0f);
 	m_world = new b2World(gravity);
 
+	myListener = new Listener();
+	m_world->SetContactListener(myListener);
+
 	b2BodyDef bd;
 	b2Body* ground = m_world->CreateBody(&bd);
 
@@ -27,22 +30,25 @@ bool Physics::Initialize()
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 textureWH = { abs(ObjectManager::Instance()->at(i)->GetTextureWH().x / 2), abs(ObjectManager::Instance()->at(i)->GetTextureWH().y / 2) };
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
+		ActorClass * temp = ObjectManager::Instance()->at(i);
+		b2Vec2 textureWH = { temp->GetTextureWH().x / 2, temp->GetTextureWH().y / 2 };
+		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
 
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
-		bodyDef.bullet = true;
+		bodyDef.bullet = false;
 		bodyDef.position.Set(position.x, position.y);
+		bodyDef.allowSleep =false;
 		m_objects[i] = m_world->CreateBody(&bodyDef);
-
+		m_objects[i]->SetUserData(temp);
 		b2PolygonShape polygons;
 		polygons.SetAsBox(textureWH.x, textureWH.y);
 
 		b2FixtureDef fd;
 		fd.shape = &polygons;
-		fd.density = 1.0f;
+		fd.density = 3.0f;
 		fd.friction = 0.3f;
+		fd.restitution = 0.4f;
 		m_objects[i]->CreateFixture(&fd);
 	}
 	return true;
@@ -50,7 +56,7 @@ bool Physics::Initialize()
 
 void Physics::Update()
 {
-	float32 timeStep = settings->hz > 0.0f ? 1.0f / 144 : float32(0.0f);
+	float32 timeStep = settings->hz > 0.0f ? 1.0f / 60 : float32(0.0f);
 
 	if (settings->pause)
 	{
@@ -66,14 +72,14 @@ void Physics::Update()
 	// 물리 처리 전에 값 갱신.
 	for (int i = 0; i < objectSize; ++i)
 	{
-		b2Vec2 position = { ObjectManager::Instance()->at(i)->GetPosition().x, ObjectManager::Instance()->at(i)->GetPosition().y };
-		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
+		ActorClass * temp = ObjectManager::Instance()->at(i);
+		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
+		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
 	}
+	settings->velocityIterations = 8;
+	settings->positionIterations = 3;
 
-	settings->velocityIterations = 0;
-	settings->positionIterations = 0;
-
-	m_world->SetAllowSleeping(settings->enableSleep > 0);
+	m_world->SetAllowSleeping(true);
 	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
 	m_world->SetContinuousPhysics(settings->enableContinuous > 0);
 	m_world->SetSubStepping(settings->enableSubStepping > 0);
@@ -100,6 +106,8 @@ void Physics::Shutdown()
 		}
 		delete[] m_objects;
 	}
+	if (myListener)
+		delete myListener;
 	if (m_world)
 	{
 		delete m_world;

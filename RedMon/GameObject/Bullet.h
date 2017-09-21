@@ -10,10 +10,11 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-100, 0, 0);
+		position = XMFLOAT3(-1000 * rand()*100, 0, 0);
 		textureAddress = "data/player.tga";
 		tag = "bullet";
 		isStart = false;
+		float totalTime;
 	};
 
 	virtual void Update(float dt)
@@ -25,7 +26,7 @@ public:
 		if (this->position.y <= 0 || this->position.y >= 700)
 		{
 			isStart = false;
-			position.x = -100;
+			position.x = -1000 *rand()*10 ;
 		}
 	};
 	void Fire(bool start) { isStart = start; }

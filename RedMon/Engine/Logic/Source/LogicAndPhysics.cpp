@@ -3,6 +3,7 @@
 #include "../../../GameObject/BossClass.h"
 #include "../../../GameObject/Enemy.h"
 
+#include "../../../GameObject/Boss2.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_Logic = 0;
@@ -47,8 +48,8 @@ bool LogicAndPhysics::Initialize()
 
 bool LogicAndPhysics::Update(float dt)
 {
-	m_Logic->Update(dt);
 	m_Physics->Update();
+	m_Logic->Update(dt);
 
 	return true;
 }
@@ -72,6 +73,7 @@ void LogicAndPhysics::CreateObject()
 {
 	new PlayerClass;
 	new BossClass;
+	new Boss2;
 	for(int i = 0; i < 5; i++)
 		new EnemyClass;
 }

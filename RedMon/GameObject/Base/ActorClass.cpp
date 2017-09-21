@@ -10,6 +10,8 @@ ActorClass::ActorClass()
 	position.x = position.y = position.z = 0;
 	textureAddress = tag = "";
 	Wight = Hight = 0;
+	collision.isCollision = false;
+	collision.other = nullptr;
 	ObjectManager::Instance()->CreateObject(this);
 }
 
@@ -35,6 +37,21 @@ char * ActorClass::GetTag() const
 	return tag;
 }
 
+bool ActorClass::IsCollistion() const
+{
+	return collision.isCollision;
+}
+
+ActorClass * ActorClass::CollisionOther() const
+{
+	return collision.other;
+}
+
+CollisionMode ActorClass::GetCollisionMode() const
+{
+	return collision.mode;
+}
+
 void ActorClass::Initialize()
 {
 }
@@ -43,14 +60,36 @@ void ActorClass::Update(float dt)
 {
 }
 
+void ActorClass::OnCollisionEnter(ActorClass * other)
+{
+}
+
+
+void ActorClass::OnCollisionExit(ActorClass * other)
+{
+}
+
 void ActorClass::OnDestory()
 {
+}
+
+void ActorClass::Move(float x, float y)
+{
+	position.x += x;
+	position.y += y;
 }
 
 void ActorClass::SetPosition(const float & x, const float & y)
 {
 	position.x = x;
 	position.y = y;
+}
+
+void ActorClass::SetCollistion(bool isCollistion, ActorClass * other ,CollisionMode mode)
+{
+	collision.isCollision = isCollistion;
+	collision.other = other;
+	collision.mode = mode;
 }
 
 XMFLOAT3 operator+(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
