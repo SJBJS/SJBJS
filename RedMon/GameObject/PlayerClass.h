@@ -44,14 +44,14 @@ public:
 		float v = 0, h = 0;
 		if (Input->IsKeyPressed(DIK_W))
 			v -= 1.0f;
-		if (Input->IsKeyUp(DIK_S))
+		if (Input->IsKeyPressed(DIK_S))
 			v += 1.0f;
-		if (Input->IsKeyDown(DIK_A))
+		if (Input->IsKeyPressed(DIK_A))
 			h += -1.0f;
-		if (Input->IsKeyDown(DIK_D))
+		if (Input->IsKeyPressed(DIK_D))
 			h += 1.0f;
 
-		if (Input->IsKeyPressed(DIK_SPACE))
+		if (Input->IsKeyDown(DIK_SPACE))
 		{
 			Fire();
 		}

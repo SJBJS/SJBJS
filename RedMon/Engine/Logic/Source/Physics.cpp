@@ -38,7 +38,7 @@ bool Physics::Initialize()
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.bullet = false;
 		bodyDef.position.Set(position.x, position.y);
-		bodyDef.allowSleep =false;
+		//bodyDef.allowSleep =false;
 		m_objects[i] = m_world->CreateBody(&bodyDef);
 		m_objects[i]->SetUserData(temp);
 		b2PolygonShape polygons;
@@ -79,7 +79,7 @@ void Physics::Update()
 	settings->velocityIterations = 8;
 	settings->positionIterations = 3;
 
-	m_world->SetAllowSleeping(true);
+	m_world->SetAllowSleeping(false);
 	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
 	m_world->SetContinuousPhysics(settings->enableContinuous > 0);
 	m_world->SetSubStepping(settings->enableSubStepping > 0);
