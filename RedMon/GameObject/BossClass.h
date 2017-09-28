@@ -13,12 +13,12 @@ public:
 	{
 		player = dynamic_cast<PawnClass*>(ObjectManager::Instance()->FindObjectWithTag("player"));
 		position = XMFLOAT3(1000, 100, 0);
-		textureAddress = "data/player.tga";
-		Wight = 16;
-		Hight = 16;
+		textureAddress = "data/boss1.tga";
+		Wight = 64;
+		Hight = 64;
 	};
 
-	virtual void Update()
+	virtual void Update(float dt)
 	{
 	};
 };

@@ -1,9 +1,10 @@
 #include "../LogicAndPhysics.h"
 #include "../../../GameObject/PlayerClass.h"
 #include "../../../GameObject/BossClass.h"
+#include "../../../GameObject/Enemy.h"
+
 LogicAndPhysics::LogicAndPhysics()
 {
-	m_objectManager = 0;
 	m_Logic = 0;
 	m_Physics = 0;
 }
@@ -17,17 +18,7 @@ bool LogicAndPhysics::Initialize()
 {
 	bool result;
 	
-	m_objectManager = new ObjectManager();
-	if (!m_objectManager)
-	{
-		return false;
-	}
 	CreateObject();
-	result = m_objectManager->Initialize();
-	if (!result)
-	{
-		return false;
-	}
 
 	m_Logic = new Logic();
 	if (!m_Logic)
@@ -54,9 +45,9 @@ bool LogicAndPhysics::Initialize()
 	return true;
 }
 
-bool LogicAndPhysics::Update()
+bool LogicAndPhysics::Update(float dt)
 {
-	m_Logic->Update();
+	m_Logic->Update(dt);
 	m_Physics->Update();
 
 	return true;
@@ -81,4 +72,6 @@ void LogicAndPhysics::CreateObject()
 {
 	new PlayerClass;
 	new BossClass;
+	for(int i = 0; i < 5; i++)
+		new EnemyClass;
 }

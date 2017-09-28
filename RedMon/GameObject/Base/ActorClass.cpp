@@ -39,7 +39,7 @@ void ActorClass::Initialize()
 {
 }
 
-void ActorClass::Update()
+void ActorClass::Update(float dt)
 {
 }
 
@@ -76,5 +76,11 @@ XMFLOAT3 operator/(const XMFLOAT3 & vec1, const float & scalar)
 XMFLOAT3 operator+=(XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
 {
 	vec1 = vec1 + vec2;
+	return vec1;
+}
+
+XMFLOAT3 operator-=(XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
+{
+	vec1 = vec1 - vec2;
 	return vec1;
 }

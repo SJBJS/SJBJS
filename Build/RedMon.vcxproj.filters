@@ -67,6 +67,9 @@
     <ClCompile Include="..\RedMon\GameObject\Base\ObjectManager.cpp">
       <Filter>GameObject\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\RedMon\Engine\StopWatch.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\RedMon\Engine\inputclass.h">
@@ -117,8 +120,13 @@
     <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h" />
     <ClInclude Include="..\RedMon\GameObject\Bullet.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\Engine\StopWatch.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Enemy.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

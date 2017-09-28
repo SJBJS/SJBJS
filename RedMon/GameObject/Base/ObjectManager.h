@@ -9,11 +9,14 @@
 class ObjectManager
 {
 private:
+	ObjectManager();
+	ObjectManager(const ObjectManager& other) = delete;
+	~ObjectManager();
+
 	vector<ActorClass * >* m_ObjectList;
 	static ObjectManager* objectManager;
+
 public:
-	ObjectManager();
-	~ObjectManager();
 
 	ActorClass * at(int idx);
 	void CreateObject(ActorClass * object);

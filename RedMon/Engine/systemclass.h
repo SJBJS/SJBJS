@@ -23,6 +23,7 @@ using namespace DirectX;
 #include "inputclass.h"
 #include "Logic\LogicAndPhysics.h"
 #include "Graphics\graphicsclass.h"
+#include "StopWatch.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: SystemClass
@@ -54,6 +55,7 @@ private:
 	InputClass* m_Input;
 	GraphicsClass* m_Graphics;
 	LogicAndPhysics* m_LogicAndPhysics;
+	CStopWatch * m_StopWatch;
 
 	XMFLOAT2 myVector;
 	bool isActive;

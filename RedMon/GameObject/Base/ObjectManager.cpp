@@ -1,6 +1,6 @@
 #include "ObjectManager.h"
 
-ObjectManager* ObjectManager::objectManager = 0;
+ObjectManager* ObjectManager::objectManager = nullptr;
 
 ObjectManager::ObjectManager()
 {
@@ -94,8 +94,7 @@ int ObjectManager::Size() const
 
 ObjectManager * ObjectManager::Instance()
 {
-	if (!objectManager)
-		return nullptr;
+	if (!objectManager) objectManager = new ObjectManager();
 	return objectManager;
 }
 
