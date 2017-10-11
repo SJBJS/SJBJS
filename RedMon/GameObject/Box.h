@@ -8,9 +8,9 @@ public:
 	virtual void Initialize()
 	{
 		textureAddress = "data/stone01.tga"; //필수로 적어주셔야 오류가 없습니다.
-		Width = 32;
-		Hight = 32;
-		position = XMFLOAT3(100, 0, 0);
+		Width = 64;
+		Hight = 64;
+		//position = XMFLOAT3(100, 0, 0);
 		SetPhysics(true);
 		tag = "Box";
 	};

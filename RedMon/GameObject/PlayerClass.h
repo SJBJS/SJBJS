@@ -20,7 +20,7 @@ public:
 		tag = "player";
 		Width = 64;
 		Hight = 64;
-		SetPhysics(false);
+		SetPhysics(true);
 		speed = 100.0f;
 
 		bulletNum = 10;
@@ -68,16 +68,14 @@ public:
 		XMStoreFloat3(&normal, vNormal);
 		XMFLOAT3 result = normal * dt * speed;
 		//position += result;
-		LocalMove(result.x, result.y);
+		LocalMove(result.x, result.y + 100*dt);
 
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
-		Rotate(180);
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{
-		Rotate(180);
 	}
 	virtual void OnDestory()
 	{
@@ -88,7 +86,7 @@ public:
 			return;
 		myBullet[shotNum].Fire(true);
 		
-		myBullet[shotNum].Spwan(this->position,this->rotate,XMFLOAT3(0, 20, 0));
+		myBullet[shotNum].Spwan(this->position,this->rotate,XMFLOAT3(0, 60, 0));
 		shotNum = (shotNum + 1) % bulletNum;
 	}
 };
