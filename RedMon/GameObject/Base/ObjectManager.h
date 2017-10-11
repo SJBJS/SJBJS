@@ -13,9 +13,9 @@ private:
 	ObjectManager(const ObjectManager& other) = delete;
 	~ObjectManager();
 
-	vector<ActorClass * >* m_ObjectList;
+	vector<ActorClass*>* m_ObjectList;
 	static ObjectManager* objectManager;
-
+	XMFLOAT2 screenSize;
 public:
 
 	ActorClass * at(int idx);
@@ -26,6 +26,8 @@ public:
 
 	bool IsEmpty()const;
 	int Size()const;
+	void SetScreenSize(float x, float y);
+	XMFLOAT2 GetScreenSize()const;
 	static ObjectManager* Instance();
 };
 

@@ -12,6 +12,7 @@ ActorClass::ActorClass()
 	Wight = Hight = 0;
 	collision.isCollision = false;
 	collision.other = nullptr;
+	collision.isPhysics = false;
 	ObjectManager::Instance()->CreateObject(this);
 }
 
@@ -52,6 +53,16 @@ CollisionMode ActorClass::GetCollisionMode() const
 	return collision.mode;
 }
 
+bool ActorClass::IsPhysics() const
+{
+	return collision.isPhysics;
+}
+
+void ActorClass::SetPhysics(bool active)
+{
+	collision.isPhysics = active;
+}
+
 void ActorClass::Initialize()
 {
 }
@@ -79,13 +90,43 @@ void ActorClass::Move(float x, float y)
 	position.y += y;
 }
 
+void ActorClass::TextureTranslate(float x, float y)
+{
+	textureTranslate.x += x;
+	textureTranslate.y += y;
+}
+
+void ActorClass::SetTextureUV(float u, float v, float w, float h)
+{
+	textureUV.x = u;
+	textureUV.y = v;
+	textureUV.z = w;
+	textureUV.w = h;
+
+}
+
+XMFLOAT2 ActorClass::GetTextureTranlsate() const
+{
+	return textureTranslate;
+}
+
+XMFLOAT4 ActorClass::GetTextureUV() const
+{
+	return textureUV;
+}
+
+void ActorClass::SetOriginalImgSize(XMFLOAT2 original)
+{
+	imgOriginalSize = original;
+}
+
 void ActorClass::SetPosition(const float & x, const float & y)
 {
 	position.x = x;
 	position.y = y;
 }
 
-void ActorClass::SetCollistion(bool isCollistion, ActorClass * other ,CollisionMode mode)
+void ActorClass::SetCollistion(bool isCollistion, ActorClass * other, CollisionMode mode)
 {
 	collision.isCollision = isCollistion;
 	collision.other = other;
@@ -94,7 +135,7 @@ void ActorClass::SetCollistion(bool isCollistion, ActorClass * other ,CollisionM
 
 XMFLOAT3 operator+(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)
 {
-	return XMFLOAT3(vec1.x + vec2.x, vec1.y+ vec2.y, vec1.z + vec2.z);
+	return XMFLOAT3(vec1.x + vec2.x, vec1.y + vec2.y, vec1.z + vec2.z);
 }
 
 XMFLOAT3 operator-(const XMFLOAT3 & vec1, const XMFLOAT3 & vec2)

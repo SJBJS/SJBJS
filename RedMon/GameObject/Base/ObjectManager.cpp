@@ -58,6 +58,7 @@ ActorClass * ObjectManager::FindObjectWithTag(char * tag)
 
 bool ObjectManager::Initialize()
 {
+
 	return true;
 }
 
@@ -90,6 +91,17 @@ int ObjectManager::Size() const
 	if (!m_ObjectList)
 		return -1;
 	return m_ObjectList->size();
+}
+
+void ObjectManager::SetScreenSize(float x, float y)
+{
+	screenSize.x = x;
+	screenSize.y = y;
+}
+
+XMFLOAT2 ObjectManager::GetScreenSize()const
+{
+	return screenSize;
 }
 
 ObjectManager * ObjectManager::Instance()

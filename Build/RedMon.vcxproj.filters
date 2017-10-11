@@ -105,9 +105,6 @@
     <ClInclude Include="..\RedMon\Engine\Logic\Physics.h">
       <Filter>Engine\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\BossClass.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -126,13 +123,13 @@
     <ClInclude Include="..\RedMon\Engine\StopWatch.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Enemy.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h">
       <Filter>Engine\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Boss2.h">
+    <ClInclude Include="..\RedMon\GameObject\BackGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Objects.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

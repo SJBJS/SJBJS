@@ -1,9 +1,5 @@
 #include "../LogicAndPhysics.h"
-#include "../../../GameObject/PlayerClass.h"
-#include "../../../GameObject/BossClass.h"
-#include "../../../GameObject/Enemy.h"
-
-#include "../../../GameObject/Boss2.h"
+#include"RedMon\GameObject\Objects.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_Logic = 0;
@@ -19,7 +15,7 @@ bool LogicAndPhysics::Initialize()
 {
 	bool result;
 	
-	CreateObject();
+	CreatObject();
 
 	m_Logic = new Logic();
 	if (!m_Logic)
@@ -68,12 +64,4 @@ void LogicAndPhysics::Shutdown()
 		delete m_Physics;
 		m_Physics = 0;
 	}
-}
-void LogicAndPhysics::CreateObject()
-{
-	new PlayerClass;
-	new BossClass;
-	new Boss2;
-	for(int i = 0; i < 5; i++)
-		new EnemyClass;
 }

@@ -6,6 +6,7 @@
 #include <directxmath.h>
 #include"RedMon/Engine/inputclass.h"
 #include"RedMon\Engine\StopWatch.h"
+
 using namespace DirectX;
 using namespace std;
 
@@ -16,6 +17,7 @@ struct CollisionData {
 	bool isCollision;
 	ActorClass * other;
 	CollisionMode mode;
+	bool isPhysics;
 };
 class ActorClass
 {
@@ -28,6 +30,9 @@ protected :
 	char* tag;
 private: //private data.
 	CollisionData collision;
+	XMFLOAT2 imgOriginalSize;
+	XMFLOAT2 textureTranslate;
+	XMFLOAT4 textureUV;
 public: //public Function.
 	ActorClass();
 	~ActorClass();
@@ -36,10 +41,14 @@ public: //public Function.
 	virtual char* GetTextureAddress() const;
 	virtual XMFLOAT2 GetTextureWH() const;
 	virtual char* GetTag()const;
+
 	bool IsCollistion()const;
 	ActorClass* CollisionOther()const;
 	CollisionMode GetCollisionMode()const;
+	bool IsPhysics() const;
+	void SetPhysics(bool active);
 
+	void SetOriginalImgSize(XMFLOAT2 original);
 	void SetPosition(const float &, const float &);
 	void SetCollistion(bool isCollistion, ActorClass * other , CollisionMode mode);
 
@@ -52,6 +61,10 @@ public: //public Function.
 	virtual void OnDestory();
 
 	void Move(float x, float y);
+	void TextureTranslate(float x, float y);
+	void SetTextureUV(float u, float v, float w, float h);
+	XMFLOAT2 GetTextureTranlsate()const;
+	XMFLOAT4 GetTextureUV()const;
 private: //private Function.
 
 };

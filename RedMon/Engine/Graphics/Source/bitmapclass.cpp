@@ -22,7 +22,7 @@ BitmapClass::~BitmapClass()
 }
 
 
-bool BitmapClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int screenWidth, int screenHeight, char* textureFilename, int bitmapWidth, int bitmapHeight)
+bool BitmapClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int screenWidth, int screenHeight, char* textureFilename, int bitmapWidth, int bitmapHeight, XMFLOAT2& originalSize)
 {
 	bool result;
 
@@ -47,7 +47,7 @@ bool BitmapClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCo
 	}
 
 	// Load the texture for this bitmap.
-	result = LoadTexture(device, deviceContext, textureFilename);
+	result = LoadTexture(device, deviceContext, textureFilename, originalSize);
 	if(!result)
 	{
 		return false;
@@ -309,7 +309,7 @@ void BitmapClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 }
 
 
-bool BitmapClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
+bool BitmapClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename, XMFLOAT2& imgSize)
 {
 	bool result;
 
@@ -321,7 +321,7 @@ bool BitmapClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceC
 	}
 
 	// Initialize the texture object.
-	result = m_Texture->Initialize(device, deviceContext, filename);
+	result = m_Texture->Initialize(device, deviceContext, filename, imgSize);
 	if(!result)
 	{
 		return false;

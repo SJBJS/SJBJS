@@ -27,7 +27,7 @@ public: // public function.
 	bool Update(float dt);
 	void Shutdown();
 private:
-	void CreateObject();
+
 };
 
 #endif

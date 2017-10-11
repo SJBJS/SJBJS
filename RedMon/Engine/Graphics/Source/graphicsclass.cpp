@@ -60,8 +60,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-		// Initialize the model object.               //space~ space6 
-	result = m_BackGruond->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, "../RedMon/data/space1.tga", screenWidth, screenHeight);
+	// Initialize the model object.               //space~ space6 
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -92,17 +91,21 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 			return false;
 		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 		{
+			ActorClass * taget = ObjectManager::Instance()->at(i);
 			char textureAddress[50] = "../RedMon/";
-			char* objectAddress = ObjectManager::Instance()->at(i)->GetTextureAddress();
+			char* objectAddress = taget->GetTextureAddress();
 			strcat_s(textureAddress, objectAddress);
-			XMFLOAT2 textureWH = ObjectManager::Instance()->at(i)->GetTextureWH();
-			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y);
+			XMFLOAT2 textureWH = taget->GetTextureWH();
+			XMFLOAT2 imgSize;
+			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y,imgSize);
+			taget->SetOriginalImgSize(imgSize);
 			if (!result)
 			{
 				MessageBox(hwnd, L"Could not initialize the Objects",L"Error",MB_OK);
 			}
 		}
 	}
+	ObjectManager::Instance()->SetScreenSize(screenWidth, screenHeight);
 	return true;
 }
 
@@ -192,26 +195,15 @@ bool GraphicsClass::Render(float deltaTime)
 
 	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
-
-	result = m_BackGruond->Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(0,0), deltaTime);
-	if (!result)
-	{
-		return false;
-	}
-	// Render the bitmap with the texture shader.
-	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_BackGruond->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_BackGruond->GetTexture());
-	if (!result)
-	{
-		return false;
-	}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
-		XMFLOAT2 textureWH = ObjectManager::Instance()->at(i)->GetTextureWH();
-		XMFLOAT2 position = XMFLOAT2(ObjectManager::Instance()->at(i)->GetPosition().x - textureWH.x/2, ObjectManager::Instance()->at(i)->GetPosition().y - textureWH.y / 2);
+		ActorClass* taget = ObjectManager::Instance()->at(i);
+		XMFLOAT2 textureWH = taget->GetTextureWH();
+		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x - textureWH.x/2, taget->GetPosition().y - textureWH.y / 2);
 		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
 		if (!result)
 			return false;
-		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture());
+		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture(), taget->GetTextureTranlsate());
 		if (!result)
 			return false;
 	}
