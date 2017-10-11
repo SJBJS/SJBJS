@@ -132,6 +132,9 @@
     <ClInclude Include="..\RedMon\GameObject\Objects.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Box.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps">

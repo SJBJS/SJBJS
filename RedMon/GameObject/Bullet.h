@@ -30,6 +30,7 @@ public:
 			isStart = false;
 			position.x = -1000 ;
 			totalTime = 0;
+			SetPhysics(false);
 		}
 	};
 	void Fire(bool start) { isStart = start; }
@@ -47,6 +48,7 @@ public:
 	{
 		this->position = position;
 		this->rotate = rotate;
+		SetPhysics(true);
 		LocalMove(offset.x, offset.y);
 	};
 };

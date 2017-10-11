@@ -56,6 +56,11 @@ public:
 		{
 			Fire();
 		}
+		if (Input->IsKeyDown(DIK_K))
+			ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0);
+
+		//XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
+		//XMFLOAT3 dir = taget - position;
 
 		XMFLOAT3 dir(h, v, 0);
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
@@ -68,11 +73,11 @@ public:
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
-		Fire();
+		Rotate(180);
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{
-		Fire();
+		Rotate(180);
 	}
 	virtual void OnDestory()
 	{
