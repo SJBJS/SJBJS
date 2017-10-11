@@ -18,12 +18,11 @@ private:
 	static ObjectManager* objectManager;
 	XMFLOAT2 screenSize;
 public:
-
 	ActorClass * at(int idx);
-	void CreateObject(ActorClass * object);
+	void PushObject(ActorClass * object);
 
 	ActorClass *FindObjectWithTag(char * tag);
-
+	vector<ActorClass*>* FindObjectsWithTag(char * tag);
 	bool Initialize();
 	void Shutdown();
 

@@ -15,7 +15,7 @@ ActorClass::ActorClass()
 	collision.isPhysics = false;
 	textureTranslate = { 0,0 };
 	textureUV = { 0,0,1,1 };
-	ObjectManager::Instance()->CreateObject(this);
+	ObjectManager::Instance()->PushObject(this);
 }
 
 ActorClass::~ActorClass()

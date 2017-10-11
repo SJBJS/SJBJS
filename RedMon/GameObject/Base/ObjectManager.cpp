@@ -30,7 +30,7 @@ ActorClass * ObjectManager::at(int idx)
 	return m_ObjectList->at(idx);
 }
 
-void ObjectManager::CreateObject(ActorClass * object)
+void ObjectManager::PushObject(ActorClass * object)
 {
 	if (!object)
 		return;
@@ -64,6 +64,27 @@ ActorClass * ObjectManager::FindObjectWithTag(char * tag)
 	}
 	return nullptr;
 }
+
+vector<ActorClass*>* ObjectManager::FindObjectsWithTag(char * tag)
+{
+	vector<ActorClass*>* temp = new vector<ActorClass*>;
+	if (m_ObjectList->empty())
+		return false;
+
+	vector<ActorClass*>::iterator it;
+
+	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
+	{
+		if (!strcmp(tag, (*it)->GetTag()))
+		{
+			temp->push_back(*it);
+		}
+	}
+	if (!temp->empty())
+		return temp;
+	return nullptr;
+}
+
 
 
 bool ObjectManager::Initialize()
