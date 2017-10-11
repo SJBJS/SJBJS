@@ -6,7 +6,7 @@ class BackGround : public ActorClass
 		position = XMFLOAT3(0, 0, 0);
 		textureAddress = "data/space1.tga";
 		tag = "";
-		Wight = 1240;
+		Width = 1240;
 		Hight = 720;
 		SetPhysics(false);
 	}

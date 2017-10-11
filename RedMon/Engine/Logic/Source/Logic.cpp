@@ -19,7 +19,7 @@ void Logic::Update(float dt)
 		ActorClass * taget = ObjectManager::Instance()->at(i);
 		if (taget->IsCollistion())
 		{
-			ActorClass * other = ObjectManager::Instance()->at(i)->CollisionOther();
+			ActorClass * other = ObjectManager::Instance()->at(i)->GetCollisionOther();
 			switch (taget->GetCollisionMode())
 			{
 			case CollisionMode::Enter:

@@ -95,7 +95,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 			char textureAddress[50] = "../RedMon/";
 			char* objectAddress = taget->GetTextureAddress();
 			strcat_s(textureAddress, objectAddress);
-			XMFLOAT2 textureWH = taget->GetTextureWH();
+			XMFLOAT2 textureWH = taget->GetActorWH();
 			XMFLOAT2 imgSize;
 			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y,imgSize);
 			taget->SetOriginalImgSize(imgSize);
@@ -198,9 +198,12 @@ bool GraphicsClass::Render(float deltaTime)
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ActorClass* taget = ObjectManager::Instance()->at(i);
-		XMFLOAT2 textureWH = taget->GetTextureWH();
+		XMFLOAT2 textureWH = taget->GetActorWH();
 		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x - textureWH.x/2, taget->GetPosition().y - textureWH.y / 2);
-		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position, deltaTime);
+		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position,taget->GetTextureUV(), deltaTime);
+
+		//회전가능
+		//XMMATRIX W = XMMatrixMultiply(worldMatrix, XMMatrixRotationZ(-90 * 3.1415 /180));
 		if (!result)
 			return false;
 		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture(), taget->GetTextureTranlsate());

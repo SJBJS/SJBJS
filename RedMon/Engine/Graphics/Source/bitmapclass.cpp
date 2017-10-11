@@ -69,13 +69,13 @@ void BitmapClass::Shutdown()
 }
 
 
-bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, float deltaTime)
+bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, XMFLOAT4 textureUVWH, float deltaTime)
 {
 	bool result;
 
 
 	// Re-build the dynamic vertex buffer for rendering to possibly a different location on the screen.
-	result = UpdateBuffers(deviceContext, playerMove,deltaTime);
+	result = UpdateBuffers(deviceContext, playerMove, textureUVWH,deltaTime);
 	if(!result)
 	{
 		return false;
@@ -208,14 +208,14 @@ void BitmapClass::ShutdownBuffers()
 }
 
 
-bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, float deltaTime)
+bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, XMFLOAT2 playerMove, XMFLOAT4 textureUVWH, float deltaTime)
 {
 	float left, right, top, bottom;
 	VertexType* vertices;
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	VertexType* verticesPtr;
 	HRESULT result;
-	
+
 	// If it has changed then update the position it is being rendered to.
 	m_previousPosX = playerMove.x;
 	m_previousPosY = playerMove.y;
@@ -244,23 +244,23 @@ bool BitmapClass::UpdateBuffers(ID3D11DeviceContext* deviceContext, XMFLOAT2 pla
 	// Load the vertex array with data.
 	// First triangle.
 	vertices[0].position = XMFLOAT3(left, top, 0.0f);  // Top left.
-	vertices[0].texture = XMFLOAT2(0.0f, 0.0f);
+	vertices[0].texture = XMFLOAT2(textureUVWH.x, textureUVWH.y);
 
 	vertices[1].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[1].texture = XMFLOAT2(1.0f, 1.0f);
+	vertices[1].texture = XMFLOAT2(textureUVWH.x + textureUVWH.z, textureUVWH.y+ textureUVWH.w);
 
 	vertices[2].position = XMFLOAT3(left, bottom, 0.0f);  // Bottom left.
-	vertices[2].texture = XMFLOAT2(0.0f, 1.0f);
+	vertices[2].texture = XMFLOAT2(textureUVWH.x, textureUVWH.y+ textureUVWH.w);
 
 	// Second triangle.
 	vertices[3].position = XMFLOAT3(left, top, 0.0f);  // Top left.
-	vertices[3].texture = XMFLOAT2(0.0f, 0.0f);
+	vertices[3].texture = XMFLOAT2(textureUVWH.x, textureUVWH.y);
 
 	vertices[4].position = XMFLOAT3(right, top, 0.0f);  // Top right.
-	vertices[4].texture = XMFLOAT2(1.0f, 0.0f);
+	vertices[4].texture = XMFLOAT2(textureUVWH.x + textureUVWH.z, textureUVWH.y);
 
 	vertices[5].position = XMFLOAT3(right, bottom, 0.0f);  // Bottom right.
-	vertices[5].texture = XMFLOAT2(1.0f, 1.0f);
+	vertices[5].texture = XMFLOAT2(textureUVWH.x + textureUVWH.z, textureUVWH.y + textureUVWH.w);
 
 	// Lock the vertex buffer so it can be written to.
 	result = deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);

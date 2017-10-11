@@ -9,7 +9,7 @@ ActorClass::ActorClass()
 {
 	position.x = position.y = position.z = 0;
 	textureAddress = tag = "";
-	Wight = Hight = 0;
+	Width = Hight = 0;
 	collision.isCollision = false;
 	collision.other = nullptr;
 	collision.isPhysics = false;
@@ -30,9 +30,9 @@ char* ActorClass::GetTextureAddress() const
 	return textureAddress;
 }
 
-XMFLOAT2 ActorClass::GetTextureWH() const
+XMFLOAT2 ActorClass::GetActorWH() const
 {
-	return XMFLOAT2(Wight, Hight);
+	return XMFLOAT2(Width, Hight);
 }
 
 char * ActorClass::GetTag() const
@@ -45,7 +45,7 @@ bool ActorClass::IsCollistion() const
 	return collision.isCollision;
 }
 
-ActorClass * ActorClass::CollisionOther() const
+ActorClass * ActorClass::GetCollisionOther() const
 {
 	return collision.other;
 }
@@ -100,10 +100,11 @@ void ActorClass::TextureTranslate(float x, float y)
 
 void ActorClass::SetTextureUV(float u, float v, float w, float h)
 {
-	textureUV.x = u;
-	textureUV.y = v;
-	textureUV.z = w;
-	textureUV.w = h;
+
+	textureUV.x = u / imgOriginalSize.x;
+	textureUV.y = v / imgOriginalSize.y;
+	textureUV.z = w / imgOriginalSize.x;
+	textureUV.w = h / imgOriginalSize.y;
 
 }
 
@@ -115,11 +116,6 @@ XMFLOAT2 ActorClass::GetTextureTranlsate() const
 XMFLOAT4 ActorClass::GetTextureUV() const
 {
 	return textureUV;
-}
-
-bool ActorClass::operator<(const ActorClass & ref) const
-{
-	return position.z > ref.position.z;;
 }
 
 void ActorClass::SetOriginalImgSize(XMFLOAT2 original)

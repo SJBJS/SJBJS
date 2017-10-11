@@ -21,15 +21,21 @@ public:
 
 	ActorClass * at(int idx);
 	void CreateObject(ActorClass * object);
-	void ObjectSort();
+
 	ActorClass *FindObjectWithTag(char * tag);
+
 	bool Initialize();
 	void Shutdown();
 
 	bool IsEmpty()const;
 	int Size()const;
+
 	void SetScreenSize(float x, float y);
 	XMFLOAT2 GetScreenSize()const;
+
+	static bool comp(const ActorClass *t1, const ActorClass *t2);
+	void ObjectSort();
+
 	static ObjectManager* Instance();
 };
 

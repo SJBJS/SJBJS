@@ -23,10 +23,10 @@ class ActorClass
 {
 public: //public data.
 	
-protected :
+protected : //protected data.
 	XMFLOAT3 position;
 	char* textureAddress;
-	float Wight, Hight;
+	float Width, Hight;
 	char* tag;
 private: //private data.
 	CollisionData collision;
@@ -37,21 +37,32 @@ public: //public Function.
 	ActorClass();
 	~ActorClass();
 
+	// texture.
+	void TextureTranslate(float x, float y);
+	void SetTextureUV(float u, float v, float w, float h);
+	void SetOriginalImgSize(XMFLOAT2 original);
+	char* GetTextureAddress() const;
+	XMFLOAT2 GetTextureTranlsate()const;
+	XMFLOAT4 GetTextureUV()const;
+	
+	// Position, Move.
+	void SetPosition(const float &, const float &);
 	virtual XMFLOAT3 GetPosition() const;
-	virtual char* GetTextureAddress() const;
-	virtual XMFLOAT2 GetTextureWH() const;
-	virtual char* GetTag()const;
+	void Move(float x, float y);
 
+	// Collistion.
 	bool IsCollistion()const;
-	ActorClass* CollisionOther()const;
-	CollisionMode GetCollisionMode()const;
 	bool IsPhysics() const;
+	ActorClass* GetCollisionOther()const;
+	CollisionMode GetCollisionMode()const;
+	void SetCollistion(bool isCollistion, ActorClass * other, CollisionMode mode);
 	void SetPhysics(bool active);
 
-	void SetOriginalImgSize(XMFLOAT2 original);
-	void SetPosition(const float &, const float &);
-	void SetCollistion(bool isCollistion, ActorClass * other , CollisionMode mode);
+	// other.
+	XMFLOAT2 GetActorWH() const;
+	virtual char* GetTag()const;
 
+	// virtual Function.
 	virtual void Initialize();
 	virtual void Update(float dt);
 
@@ -60,13 +71,8 @@ public: //public Function.
 
 	virtual void OnDestory();
 
-	void Move(float x, float y);
-	void TextureTranslate(float x, float y);
-	void SetTextureUV(float u, float v, float w, float h);
-	XMFLOAT2 GetTextureTranlsate()const;
-	XMFLOAT4 GetTextureUV()const;
 
-	bool operator<(const ActorClass& ref)const;
+
 private: //private Function.
 
 };

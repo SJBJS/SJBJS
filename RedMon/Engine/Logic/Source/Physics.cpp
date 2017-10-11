@@ -31,7 +31,7 @@ bool Physics::Initialize()
 	for (int i = 0; i < objectSize; ++i)
 	{
 		ActorClass * temp = ObjectManager::Instance()->at(i);
-		b2Vec2 textureWH = { temp->GetTextureWH().x / 2, temp->GetTextureWH().y / 2 };
+		b2Vec2 textureWH = { temp->GetActorWH().x / 2, temp->GetActorWH().y / 2 };
 		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
 
 		b2BodyDef bodyDef;

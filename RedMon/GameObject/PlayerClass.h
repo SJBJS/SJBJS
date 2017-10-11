@@ -18,7 +18,7 @@ public:
 		position = XMFLOAT3(300, 600, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
-		Wight = 64;
+		Width = 64;
 		Hight = 64;
 		SetPhysics(false);
 		speed = 100.0f;
@@ -27,7 +27,7 @@ public:
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
 		for (int i = 0; i < bulletNum; ++i)
-		{ 
+		{
 			myBullet->Initialize();
 			myBullet[i].setWH(16, 16);
 			myBullet[i].setPower(0.5f);
@@ -40,7 +40,7 @@ public:
 		if (position.y < 0 || position.y > 1000)
 			position.y = 400;
 
-
+		SetTextureUV(0, 0, 276, 410);
 		float v = 0, h = 0;
 		if (Input->IsKeyPressed(DIK_W))
 			v -= 1.0f;

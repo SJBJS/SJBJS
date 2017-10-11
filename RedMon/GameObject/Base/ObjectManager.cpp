@@ -38,9 +38,14 @@ void ObjectManager::CreateObject(ActorClass * object)
 	m_ObjectList->push_back(object);
 }
 
+bool ObjectManager::comp(const ActorClass * t1, const ActorClass * t2)
+{
+	return t1->GetPosition().z < t2->GetPosition().z;
+}
+
 void ObjectManager::ObjectSort()
 {
-	sort(m_ObjectList->begin(),m_ObjectList->end());
+	sort(m_ObjectList->begin(),m_ObjectList->end(), ObjectManager::comp);
 }
 
 ActorClass * ObjectManager::FindObjectWithTag(char * tag)

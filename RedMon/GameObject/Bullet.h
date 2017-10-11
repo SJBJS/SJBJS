@@ -33,7 +33,7 @@ public:
 	bool IsFire()const { return isStart; }
 	void setWH(int wight, int hight)
 	{
-		this->Wight = wight;
+		this->Width = wight;
 		this->Hight = hight;
 	}
 	void setPower(float po)
