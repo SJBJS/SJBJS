@@ -97,11 +97,11 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 			strcat_s(textureAddress, objectAddress);
 			XMFLOAT2 textureWH = taget->GetActorWH();
 			XMFLOAT2 imgSize;
-			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y,imgSize);
+			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y, imgSize);
 			taget->SetOriginalImgSize(imgSize);
 			if (!result)
 			{
-				MessageBox(hwnd, L"Could not initialize the Objects",L"Error",MB_OK);
+				MessageBox(hwnd, L"Could not initialize the Objects", L"Error", MB_OK);
 			}
 		}
 	}
@@ -198,15 +198,16 @@ bool GraphicsClass::Render(float deltaTime)
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ActorClass* taget = ObjectManager::Instance()->at(i);
-		XMFLOAT2 textureWH = taget->GetActorWH();
-		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x - textureWH.x/2, taget->GetPosition().y - textureWH.y / 2);
-		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), position,taget->GetTextureUV(), deltaTime);
+		XMFLOAT2 ActorWH = taget->GetActorWH();
+		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x , taget->GetPosition().y );
+		float rotate = taget->GetRotate();
+		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(ObjectManager::Instance()->GetScreenSize().x/2 - ActorWH.x / 2, ObjectManager::Instance()->GetScreenSize().y/2 - ActorWH.y / 2), taget->GetTextureUV(), deltaTime);
 
 		//회전가능
-		//XMMATRIX W = XMMatrixMultiply(worldMatrix, XMMatrixRotationZ(-90 * 3.1415 /180));
+		XMMATRIX W = worldMatrix * XMMatrixRotationZ(rotate)* XMMatrixTranslation(position.x, position.y, 0);
 		if (!result)
 			return false;
-		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Objects[i].GetTexture(), taget->GetTextureTranlsate());
+		result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Objects[i].GetIndexCount(), W, viewMatrix, orthoMatrix, m_Objects[i].GetTexture(), taget->GetTextureTranlsate());
 		if (!result)
 			return false;
 	}

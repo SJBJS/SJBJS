@@ -25,6 +25,7 @@ public: //public data.
 	
 protected : //protected data.
 	XMFLOAT3 position;
+	float rotate;
 	char* textureAddress;
 	float Width, Hight;
 	char* tag;
@@ -47,8 +48,12 @@ public: //public Function.
 	
 	// Position, Move.
 	void SetPosition(const float &, const float &);
-	virtual XMFLOAT3 GetPosition() const;
+	XMFLOAT3 GetPosition() const;
+	float GetRotate() const;
+	void SetRotate(float rot);
 	void Move(float x, float y);
+	void LocalMove(float x, float y);
+	void Rotate(float angle);
 
 	// Collistion.
 	bool IsCollistion()const;

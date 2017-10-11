@@ -74,7 +74,7 @@ void Physics::Update()
 	{
 		ActorClass * temp = ObjectManager::Instance()->at(i);
 		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
-		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), 0);
+		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), temp->GetRotate());
 		if (!temp->IsPhysics())
 		{
 			m_objects[i]->SetActive(false);
