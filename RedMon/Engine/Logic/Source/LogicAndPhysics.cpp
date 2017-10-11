@@ -38,7 +38,8 @@ bool LogicAndPhysics::Initialize()
 	{
 		return false;
 	}
-
+	//정렬 기능 오류로 인해 주석처리.
+	//ObjectManager::Instance()->ObjectSort();
 	return true;
 }
 

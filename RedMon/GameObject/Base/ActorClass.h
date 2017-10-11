@@ -65,6 +65,8 @@ public: //public Function.
 	void SetTextureUV(float u, float v, float w, float h);
 	XMFLOAT2 GetTextureTranlsate()const;
 	XMFLOAT4 GetTextureUV()const;
+
+	bool operator<(const ActorClass& ref)const;
 private: //private Function.
 
 };

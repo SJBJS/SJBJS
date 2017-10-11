@@ -4,6 +4,7 @@
 #define OBJECTMANAGER_CLASS_H
 
 #include <vector>
+#include<algorithm>
 #include "ActorClass.h"
 
 class ObjectManager
@@ -20,6 +21,7 @@ public:
 
 	ActorClass * at(int idx);
 	void CreateObject(ActorClass * object);
+	void ObjectSort();
 	ActorClass *FindObjectWithTag(char * tag);
 	bool Initialize();
 	void Shutdown();

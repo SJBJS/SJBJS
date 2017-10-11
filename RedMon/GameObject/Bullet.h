@@ -15,7 +15,6 @@ public:
 		tag = "bullet";
 		isStart = false;
 		float totalTime;
-		SetPhysics(true);
 	};
 
 	virtual void Update(float dt)

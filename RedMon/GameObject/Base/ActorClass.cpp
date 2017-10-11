@@ -13,6 +13,8 @@ ActorClass::ActorClass()
 	collision.isCollision = false;
 	collision.other = nullptr;
 	collision.isPhysics = false;
+	textureTranslate = { 0,0 };
+	textureUV = { 0,0,1,1 };
 	ObjectManager::Instance()->CreateObject(this);
 }
 
@@ -113,6 +115,11 @@ XMFLOAT2 ActorClass::GetTextureTranlsate() const
 XMFLOAT4 ActorClass::GetTextureUV() const
 {
 	return textureUV;
+}
+
+bool ActorClass::operator<(const ActorClass & ref) const
+{
+	return position.z > ref.position.z;;
 }
 
 void ActorClass::SetOriginalImgSize(XMFLOAT2 original)

@@ -38,6 +38,11 @@ void ObjectManager::CreateObject(ActorClass * object)
 	m_ObjectList->push_back(object);
 }
 
+void ObjectManager::ObjectSort()
+{
+	sort(m_ObjectList->begin(),m_ObjectList->end());
+}
+
 ActorClass * ObjectManager::FindObjectWithTag(char * tag)
 {
 	if (m_ObjectList->empty())

@@ -20,7 +20,7 @@ public:
 		tag = "player";
 		Wight = 64;
 		Hight = 64;
-		SetPhysics(true);
+		SetPhysics(false);
 		speed = 100.0f;
 
 		bulletNum = 10;
