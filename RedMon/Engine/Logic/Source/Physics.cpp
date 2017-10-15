@@ -13,43 +13,24 @@ bool Physics::Initialize()
 {
 	if (!ObjectManager::Instance())
 		return false;
+	m_manager = ObjectManager::Instance();
+
 	settings = new Settings;
 	settings->hz = 60.0f;
-	
+
 	b2Vec2 gravity;
-	gravity.Set(0.0f, 0.0f);
+	gravity.Set(0.0f, -9.8f);
 	m_world = new b2World(gravity);
 
 	myListener = new Listener();
 	m_world->SetContactListener(myListener);
 
-	b2BodyDef bd;
-	b2Body* ground = m_world->CreateBody(&bd);
 
-	objectSize = ObjectManager::Instance()->Size();
+	objectSize = m_manager->Size();
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
 	{
-		ActorClass * temp = ObjectManager::Instance()->at(i);
-		b2Vec2 textureWH = { temp->GetActorWH().x / 2, temp->GetActorWH().y / 2 };
-		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
-
-		b2BodyDef bodyDef;
-		bodyDef.type = b2_dynamicBody;
-		bodyDef.bullet = false;
-		bodyDef.position.Set(position.x, position.y);
-		//bodyDef.allowSleep =false;
-		m_objects[i] = m_world->CreateBody(&bodyDef);
-		m_objects[i]->SetUserData(temp);
-		b2PolygonShape polygons;
-		polygons.SetAsBox(textureWH.x, textureWH.y);
-
-		b2FixtureDef fd;
-		fd.shape = &polygons;
-		fd.density = 3.0f;
-		fd.friction = 0.3f;
-		fd.restitution = 0.4f;
-		m_objects[i]->CreateFixture(&fd);
+		CreateObject(*(m_manager->at(i)), i);
 	}
 	return true;
 }
@@ -70,20 +51,9 @@ void Physics::Update()
 		}
 	}
 	// 물리 처리 전에 값 갱신.
-	for (int i = 0; i < objectSize; ++i)
-	{
-		ActorClass * temp = ObjectManager::Instance()->at(i);
-		b2Vec2 position = { temp->GetPosition().x, temp->GetPosition().y };
-		m_objects[i]->SetTransform(b2Vec2(position.x, position.y), -temp->GetRotate()* 3.1415/180);
-		if (!temp->IsPhysics())
-		{
-			m_objects[i]->SetActive(false);
-		}
-		else {
-			m_objects[i]->SetActive(true);
-		}
+	for (int i = 0; i < m_manager->Size(); ++i)
+		UpdateObject(*(m_manager->at(i)), i);
 
-	}
 	settings->velocityIterations = 8;
 	settings->positionIterations = 3;
 
@@ -92,38 +62,11 @@ void Physics::Update()
 	m_world->SetContinuousPhysics(settings->enableContinuous > 0);
 	m_world->SetSubStepping(settings->enableSubStepping > 0);
 
+	// 물리 업데이트.
 	m_world->Step(timeStep, settings->velocityIterations, settings->positionIterations);
 
 	//물리 처리 값을 저장.
-	for (int i = 0; i < objectSize; ++i)
-	{
-		b2Vec2 position = m_objects[i]->GetPosition();
-		ObjectManager::Instance()->at(i)->SetPosition(position.x, position.y);
-		ObjectManager::Instance()->at(i)->SetRotate(-m_objects[i]->GetAngle()/3.1415 * 180);
-	}
-	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
-	{
-		ActorClass * taget = ObjectManager::Instance()->at(i);
-		if (taget->IsCollistion())
-		{
-			ActorClass * other = ObjectManager::Instance()->at(i)->GetCollisionOther();
-			switch (taget->GetCollisionMode())
-			{
-			case CollisionMode::Enter:
-				taget->OnCollisionEnter(other);
-				break;
-			case CollisionMode::Stay:
-				break;
-			case CollisionMode::Exit:
-				taget->OnCollisionExit(other);
-				break;
-
-			default:
-				break;
-			}
-			ObjectManager::Instance()->at(i)->SetCollistion(false, nullptr, CollisionMode::None);
-		}
-	}
+	SaveObject();
 }
 
 void Physics::Shutdown()
@@ -149,5 +92,84 @@ void Physics::Shutdown()
 	{
 		delete settings;
 		settings = NULL;
+	}
+}
+
+void Physics::CreateObject(ActorClass & data, int idx)
+{
+	b2Vec2 textureWH = { data.GetActorWH().x / 2, data.GetActorWH().y / 2 };
+	b2Vec2 position = { data.GetPosition().x, data.GetPosition().y };
+	CollisionData collsionData = data.GetCollisionData();
+
+
+	b2BodyDef bodyDef;
+	bodyDef.type = static_cast<b2BodyType>(collsionData.type);
+	bodyDef.bullet = collsionData.bullet;
+	bodyDef.position.Set(position.x, position.y);
+	bodyDef.gravityScale = collsionData.gravityScale;
+
+	b2PolygonShape polygons;
+	polygons.SetAsBox(textureWH.x, textureWH.y);
+
+	b2FixtureDef fd;
+	fd.shape = &polygons;
+	fd.density = collsionData.density;
+	fd.friction = collsionData.friction;
+	fd.restitution = collsionData.restitution;
+
+	m_objects[idx] = m_world->CreateBody(&bodyDef);
+	m_objects[idx]->CreateFixture(&fd);
+	m_objects[idx]->SetUserData(&data);
+}
+
+void Physics::UpdateObject(ActorClass & data, int idx)
+{
+	CollisionData colldata = data.GetCollisionData();
+	b2Vec2 position = { data.GetPosition().x, data.GetPosition().y };
+	m_objects[idx]->SetTransform(b2Vec2(position.x, position.y), -data.GetRotate()* 3.1415 / 180);
+	m_objects[idx]->SetActive(data.IsPhysics());
+	m_objects[idx]->SetBullet(colldata.bullet);
+	m_objects[idx]->SetType(static_cast<b2BodyType>(colldata.type));
+	m_objects[idx]->SetGravityScale(colldata.gravityScale);
+	m_objects[idx]->GetFixtureList()->SetDensity(colldata.density);
+	m_objects[idx]->GetFixtureList()->SetFriction(colldata.friction);
+	m_objects[idx]->GetFixtureList()->SetRestitution(colldata.restitution);
+}
+
+void Physics::SaveObject()
+{
+	for (int i = 0; i < objectSize; ++i)
+	{
+		b2Vec2 position = m_objects[i]->GetPosition();
+		m_manager->at(i)->SetPosition(position.x, position.y);
+		if (m_manager->at(i)->GetCollisionData().isRotateFrozen) {
+			m_objects[i]->SetTransform(b2Vec2(position.x, position.y), -m_manager->at(i)->GetRotate()* 3.1415 / 180);
+		}
+		else {
+			m_manager->at(i)->SetRotate(-m_objects[i]->GetAngle() / 3.1415 * 180);
+		}
+	}
+	for (int i = 0; i < m_manager->Size(); ++i)
+	{
+		ActorClass * taget = m_manager->at(i);
+		if (taget->IsCollistion())
+		{
+			ActorClass * other = m_manager->at(i)->GetCollisionOther();
+			switch (taget->GetCollisionMode())
+			{
+			case CollisionMode::Enter:
+				taget->OnCollisionEnter(other);
+				break;
+			case CollisionMode::Stay:
+				break;
+			case CollisionMode::Exit:
+				taget->OnCollisionExit(other);
+				break;
+
+			default:
+				break;
+			}
+			m_manager->at(i)->SetCollistion(false, nullptr, CollisionMode::None);
+		}
 	}
 }

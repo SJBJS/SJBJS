@@ -21,7 +21,6 @@ public:
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
-
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{

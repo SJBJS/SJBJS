@@ -23,7 +23,6 @@ public:
 	virtual void BeginContact(b2Contact* contact) {
 		ActorClass * A = static_cast<ActorClass*>(contact->GetFixtureA()->GetBody()->GetUserData());
 		ActorClass * B = static_cast<ActorClass*>(contact->GetFixtureB()->GetBody()->GetUserData());
-
 		if (A != nullptr && B != nullptr) {
 			A->SetCollistion(true, B , CollisionMode::Enter);
 			B->SetCollistion(true, A, CollisionMode::Enter);

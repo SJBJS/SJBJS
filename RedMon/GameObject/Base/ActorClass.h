@@ -13,11 +13,20 @@ using namespace std;
 class ActorClass;
 
 enum CollisionMode { None, Enter, Stay, Exit };
+enum BodyType { StaticBody, KinematicBody, DynamicBody };
 struct CollisionData {
 	bool isCollision;
 	ActorClass * other;
 	CollisionMode mode;
 	bool isPhysics;
+	BodyType type;
+	bool bullet;
+	float density; // ¹Ðµµ.
+	float friction; // ¸¶Âû·Â.
+	float restitution; // Åº¼º·Â.
+	float gravityScale;
+	bool isRotateFrozen;
+	
 };
 class ActorClass
 {
@@ -46,7 +55,7 @@ public: //public Function.
 	XMFLOAT2 GetTextureTranlsate()const;
 	XMFLOAT4 GetTextureUV()const;
 	
-	// Position, Move.
+	// Position, Move, Rotate.
 	void SetPosition(const float &, const float &);
 	XMFLOAT3 GetPosition() const;
 	float GetRotate() const;
@@ -60,8 +69,15 @@ public: //public Function.
 	bool IsPhysics() const;
 	ActorClass* GetCollisionOther()const;
 	CollisionMode GetCollisionMode()const;
+	CollisionData GetCollisionData()const;
 	void SetCollistion(bool isCollistion, ActorClass * other, CollisionMode mode);
 	void SetPhysics(bool active);
+	void SetCollistionType(BodyType type);
+	void SetDensity(float d);
+	void SetFriction(float f);
+	void SetRestitution(float r);
+	void SetGravityScale(float s);
+	void SetRotateFrozen(bool isFrozen);
 
 	// other.
 	XMFLOAT2 GetActorWH() const;

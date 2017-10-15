@@ -23,6 +23,8 @@ public:
 		SetPhysics(true);
 		speed = 100.0f;
 
+		SetRotateFrozen(true);
+
 		bulletNum = 10;
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
@@ -68,7 +70,7 @@ public:
 		XMStoreFloat3(&normal, vNormal);
 		XMFLOAT3 result = normal * dt * speed;
 		//position += result;
-		LocalMove(result.x, result.y + 100*dt);
+		LocalMove(result.x, result.y );
 
 	};
 	virtual void OnCollisionEnter(ActorClass * other)

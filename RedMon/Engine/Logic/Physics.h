@@ -62,7 +62,6 @@ struct Settings
 	int32 pause;
 	int32 singleStep;
 };
-
 class Physics
 {
 private:
@@ -72,12 +71,18 @@ private:
 	size_t objectSize;
 
 	Listener *myListener;
+
+	ObjectManager* m_manager;
 public:
 	Physics();
 	~Physics();
 	bool Initialize();
 	void Update();
 	void Shutdown();
+private:
+	void CreateObject(ActorClass& data, int idx);
+	void UpdateObject(ActorClass& data, int idx);
+	void SaveObject();
 };
 
 #endif

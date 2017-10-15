@@ -8,11 +8,22 @@
 ActorClass::ActorClass()
 {
 	position.x = position.y = position.z = rotate = 0;
-	textureAddress = tag = "";
+
 	Width = Hight = 0;
+
 	collision.isCollision = false;
 	collision.other = nullptr;
 	collision.isPhysics = false;
+	collision.mode = CollisionMode::None;
+	collision.type = BodyType::DynamicBody;
+	collision.bullet = false;
+	collision.density = 0.7;
+	collision.friction = 1.0;
+	collision.restitution = 0.0;
+	collision.gravityScale = 0.0;
+	collision.isRotateFrozen = false;
+
+	textureAddress = tag = "";
 	textureTranslate = { 0,0 };
 	textureUV = { 0,0,1,1 };
 	ObjectManager::Instance()->PushObject(this);
@@ -63,6 +74,11 @@ CollisionMode ActorClass::GetCollisionMode() const
 	return collision.mode;
 }
 
+CollisionData ActorClass::GetCollisionData() const
+{
+	return collision;
+}
+
 bool ActorClass::IsPhysics() const
 {
 	return collision.isPhysics;
@@ -71,6 +87,36 @@ bool ActorClass::IsPhysics() const
 void ActorClass::SetPhysics(bool active)
 {
 	collision.isPhysics = active;
+}
+
+void ActorClass::SetCollistionType(BodyType type)
+{
+	collision.type = type;
+}
+
+void ActorClass::SetDensity(float d)
+{
+	collision.density = d;
+}
+
+void ActorClass::SetFriction(float f)
+{
+	collision.friction = f;
+}
+
+void ActorClass::SetRestitution(float r)
+{
+	collision.restitution = r;
+}
+
+void ActorClass::SetGravityScale(float s)
+{
+	collision.gravityScale = s;
+}
+
+void ActorClass::SetRotateFrozen(bool isFrozen)
+{
+	collision.isRotateFrozen = true;
 }
 
 void ActorClass::Initialize()
