@@ -32,7 +32,7 @@ public:
 		{
 			myBullet->Initialize();
 			myBullet[i].setWH(16, 16);
-			myBullet[i].setPower(0.5f);
+			myBullet[i].setPower(10.0f);
 		}
 
 	};

@@ -119,6 +119,11 @@ void ActorClass::SetRotateFrozen(bool isFrozen)
 	collision.isRotateFrozen = true;
 }
 
+void ActorClass::SetBullet(bool isBullet)
+{
+	collision.bullet = isBullet;
+}
+
 void ActorClass::Initialize()
 {
 }

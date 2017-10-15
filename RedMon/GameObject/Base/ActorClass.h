@@ -78,6 +78,7 @@ public: //public Function.
 	void SetRestitution(float r);
 	void SetGravityScale(float s);
 	void SetRotateFrozen(bool isFrozen);
+	void SetBullet(bool isBullet);
 
 	// other.
 	XMFLOAT2 GetActorWH() const;

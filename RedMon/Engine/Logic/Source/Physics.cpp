@@ -54,8 +54,8 @@ void Physics::Update()
 	for (int i = 0; i < m_manager->Size(); ++i)
 		UpdateObject(*(m_manager->at(i)), i);
 
-	settings->velocityIterations = 8;
-	settings->positionIterations = 3;
+	settings->velocityIterations = 8;  //바디들을 정상적으로 이동시키기 위해서 필요한 충돌들을 반복적으로 계산
+	settings->positionIterations = 60; //조인트 분리와, 겹침현상을 줄이기 위해서 바디의 위치를 반복적으로 적용
 
 	m_world->SetAllowSleeping(false);
 	m_world->SetWarmStarting(settings->enableWarmStarting > 0);
