@@ -17,7 +17,7 @@ public:
 
 	virtual void Update(float dt)
 	{
-
+		Move(-10 * dt, 0);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
