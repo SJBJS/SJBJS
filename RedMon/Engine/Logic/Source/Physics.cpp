@@ -101,6 +101,29 @@ void Physics::Update()
 		ObjectManager::Instance()->at(i)->SetPosition(position.x, position.y);
 		ObjectManager::Instance()->at(i)->SetRotate(-m_objects[i]->GetAngle()/3.1415 * 180);
 	}
+	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
+	{
+		ActorClass * taget = ObjectManager::Instance()->at(i);
+		if (taget->IsCollistion())
+		{
+			ActorClass * other = ObjectManager::Instance()->at(i)->GetCollisionOther();
+			switch (taget->GetCollisionMode())
+			{
+			case CollisionMode::Enter:
+				taget->OnCollisionEnter(other);
+				break;
+			case CollisionMode::Stay:
+				break;
+			case CollisionMode::Exit:
+				taget->OnCollisionExit(other);
+				break;
+
+			default:
+				break;
+			}
+			ObjectManager::Instance()->at(i)->SetCollistion(false, nullptr, CollisionMode::None);
+		}
+	}
 }
 
 void Physics::Shutdown()

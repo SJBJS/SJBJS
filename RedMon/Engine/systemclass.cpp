@@ -90,9 +90,6 @@ bool SystemClass::Initialize()
 	{
 		return false;
 	}
-
-
-
 	return true;
 }
 
