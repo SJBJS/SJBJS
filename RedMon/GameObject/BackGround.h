@@ -3,15 +3,15 @@
 class BackGround : public ActorClass
 {
 	virtual void Initialize() {
-		position = XMFLOAT3(0, 0, 0);
-		textureAddress = "data/space1.tga";
+		position = XMFLOAT3(0, -100, 0);
+		textureAddress = "data/ground.tga";
 		tag = "";
-		Width = 1240;
+		Width = 1280;
 		Hight = 720;
 		SetPhysics(false);
 	}
 	virtual void Update(float dt) {
-		TextureTranslate(1*dt, 0);
+		TextureTranslate(0.4*dt, 0);
 	}
 
 	virtual void OnCollisionEnter(ActorClass * other) {

@@ -16,7 +16,7 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-500, -200, 0);
+		position = XMFLOAT3(-500, -150, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
 		Width = 128;
@@ -46,10 +46,10 @@ public:
 			v += 2.0f;
 		if (Input->IsKeyPressed(DIK_S))
 			v -= 2.0f;*/
-		if (Input->IsKeyPressed(DIK_A))
+		/*if (Input->IsKeyPressed(DIK_A))
 			h += -2.0f;
 		if (Input->IsKeyPressed(DIK_D))
-			h += 2.0f;
+			h += 2.0f;*/
 		
 		if (Input->IsKeyPressed(DIK_Q))
 			Rotate(5 * dt);
@@ -58,8 +58,9 @@ public:
 
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{
-			power += 5;
+			power += 2;
 			Move(0, 40*dt*power);
+			if (power > 40) { power = 0; }
 			//Fire();
 		   
 			
@@ -79,12 +80,14 @@ public:
 		//position += result;
 		
 		LocalMove(result.x, result.y );
-		if (position.y < -200) {
-			SetPosition(-500, -200);
+
+		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용
+		if (position.y < -150) {
+			SetPosition(-500, -150);
 			
 		}
-		if (position.y >= -200) {
-			SetGravityScale(20.0);		
+		if (position.y >= -150) {
+			SetGravityScale(30.0);		
 			
 		}
 	};

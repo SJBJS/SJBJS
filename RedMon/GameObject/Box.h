@@ -4,8 +4,7 @@
 
 class Box : public ActorClass
 {
-private:
-	float speed;
+
 
 public:
 	virtual void Initialize()
@@ -14,8 +13,9 @@ public:
 		Width = 64;
 		Hight = 64;
 		//position = XMFLOAT3(100, 0, 0);
-	   
+		SetRotateFrozen(true);
 		SetPhysics(true);
+		SetGravityScale(0);
 		tag = "Box";
 		
 	};
@@ -23,7 +23,11 @@ public:
 	virtual void Update(float dt)
 	{
 	
-		Move(-100 * dt, 0);
+		Move(-400 * dt, 0);
+		if(position.x < -700)
+			SetPosition(700, -150);
+		if (position.y < -150)
+			SetPosition(position.x, -150);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
