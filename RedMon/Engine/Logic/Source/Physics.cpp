@@ -25,7 +25,6 @@ bool Physics::Initialize()
 	myListener = new Listener();
 	m_world->SetContactListener(myListener);
 
-
 	objectSize = m_manager->Size();
 	m_objects = new b2Body*[objectSize];
 	for (int i = 0; i < objectSize; ++i)
@@ -67,6 +66,9 @@ void Physics::Update()
 
 	//물리 처리 값을 저장.
 	SaveObject();
+
+	//물리 충돌 여부, 충돌 모드에 따라 OnCollision 호출.
+	UpdateOnCollision();
 }
 
 void Physics::Shutdown()
@@ -149,6 +151,10 @@ void Physics::SaveObject()
 			m_manager->at(i)->SetRotate(-m_objects[i]->GetAngle() / 3.1415 * 180);
 		}
 	}
+}
+
+void Physics::UpdateOnCollision()
+{
 	for (int i = 0; i < m_manager->Size(); ++i)
 	{
 		ActorClass * taget = m_manager->at(i);

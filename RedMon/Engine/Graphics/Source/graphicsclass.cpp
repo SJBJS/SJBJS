@@ -191,17 +191,14 @@ bool GraphicsClass::Render(float deltaTime)
 
 	m_Direct3D->TurnZBufferOff();
 	m_Direct3D->TurnOnAlphaBlending();
-	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-
-	// Put the bitmap vertex and index buffers on the graphics pipeline to prepare them for drawing.
 
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ActorClass* taget = ObjectManager::Instance()->at(i);
 		XMFLOAT2 ActorWH = taget->GetActorWH();
-		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x , taget->GetPosition().y );
+		XMFLOAT2 position = XMFLOAT2(taget->GetPosition().x, taget->GetPosition().y);
 		float rotate = taget->GetRotate();
-		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(ObjectManager::Instance()->GetScreenSize().x/2 - ActorWH.x / 2, ObjectManager::Instance()->GetScreenSize().y/2 - ActorWH.y / 2), taget->GetTextureUV(), deltaTime);
+		result = m_Objects[i].Render(m_Direct3D->GetDeviceContext(), XMFLOAT2(ObjectManager::Instance()->GetScreenSize().x / 2 - ActorWH.x / 2, ObjectManager::Instance()->GetScreenSize().y / 2 - ActorWH.y / 2), taget->GetTextureUV(), deltaTime);
 
 		//회전가능
 		XMMATRIX W = worldMatrix * XMMatrixRotationZ(rotate)* XMMatrixTranslation(position.x, position.y, 0);

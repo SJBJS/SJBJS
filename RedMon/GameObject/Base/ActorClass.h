@@ -45,7 +45,7 @@ private: //private data.
 	XMFLOAT4 textureUV;
 public: //public Function.
 	ActorClass();
-	~ActorClass();
+	virtual ~ActorClass();
 
 	// texture.
 	void TextureTranslate(float x, float y);

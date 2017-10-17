@@ -83,6 +83,7 @@ private:
 	void CreateObject(ActorClass& data, int idx);
 	void UpdateObject(ActorClass& data, int idx);
 	void SaveObject();
+	void UpdateOnCollision();
 };
 
 #endif
