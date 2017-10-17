@@ -11,20 +11,21 @@ private:
 	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
+	float power;
 	float speed;
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(0, 0, 0);
+		position = XMFLOAT3(-500, -200, 0);
 		textureAddress = "data/player1.tga";
 		tag = "player";
-		Width = 64;
-		Hight = 64;
+		Width = 128;
+		Hight = 128;
 		SetPhysics(true);
 		speed = 100.0f;
-
+		power = 0;
 		SetRotateFrozen(true);
-
+		SetGravityScale(1.0f);
 		bulletNum = 10;
 		shotNum = 0;
 		myBullet = new Bullet[bulletNum];
@@ -39,28 +40,34 @@ public:
 
 	virtual void Update(float dt)
 	{
+		
 		float v = 0, h = 0;
-		if (Input->IsKeyPressed(DIK_W))
-			v += 1.0f;
+		/*if (Input->IsKeyPressed(DIK_W))
+			v += 2.0f;
 		if (Input->IsKeyPressed(DIK_S))
-			v -= 1.0f;
+			v -= 2.0f;*/
 		if (Input->IsKeyPressed(DIK_A))
-			h += -1.0f;
+			h += -2.0f;
 		if (Input->IsKeyPressed(DIK_D))
-			h += 1.0f;
-
+			h += 2.0f;
+		
 		if (Input->IsKeyPressed(DIK_Q))
 			Rotate(5 * dt);
 		if (Input->IsKeyPressed(DIK_E))
 			Rotate(-5 * dt);
 
-		if (Input->IsKeyDown(DIK_SPACE))
+		if (Input->IsKeyPressed(DIK_SPACE))
 		{
-			Fire();
-		}
+			power += 5;
+			Move(0, 40*dt*power);
+			//Fire();
+		   
+			
+		}	
+		
 		if (Input->IsKeyDown(DIK_K))
 			ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0);
-
+		
 		//XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
 		//XMFLOAT3 dir = taget - position;
 
@@ -70,8 +77,16 @@ public:
 		XMStoreFloat3(&normal, vNormal);
 		XMFLOAT3 result = normal * dt * speed;
 		//position += result;
+		
 		LocalMove(result.x, result.y );
-
+		if (position.y < -200) {
+			SetPosition(-500, -200);
+			
+		}
+		if (position.y >= -200) {
+			SetGravityScale(20.0);		
+			
+		}
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
@@ -81,6 +96,14 @@ public:
 	}
 	virtual void OnDestory()
 	{
+	}
+	void Jump(bool jumping)
+	{
+		
+	}
+	void JumpEnd(float dt)
+	{
+		Move(0, -40 * dt);
 	}
 	void Fire()
 	{

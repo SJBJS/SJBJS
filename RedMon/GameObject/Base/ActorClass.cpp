@@ -20,7 +20,7 @@ ActorClass::ActorClass()
 	collision.density = 0.7;
 	collision.friction = 1.0;
 	collision.restitution = 0.0;
-	collision.gravityScale = 0.0;
+	collision.gravityScale = 0.0f;
 	collision.isRotateFrozen = false;
 
 	textureAddress = tag = "";
