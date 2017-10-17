@@ -14,11 +14,11 @@ void CreatObject()
 	new BackGround();
 	new PlayerClass();
 	(new Box())->SetPosition((rand()%500)+1,-200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
-	(new Box())->SetPosition(rand() % 1400 + 500, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 }

@@ -24,8 +24,10 @@ public:
 	{
 	
 		Move(-400 * dt, 0);
+		//왼쪽 바깥으로 박스가 나갈 경우 다시 리스폰
 		if(position.x < -700)
-			SetPosition(700, -150);
+			SetPosition(rand() % 1400 + 700, -200);			
+
 		if (position.y < -150)
 			SetPosition(position.x, -150);
 	};
