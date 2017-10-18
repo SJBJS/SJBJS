@@ -38,9 +38,9 @@ protected : //protected data.
 	char* textureAddress;
 	float Width, Hight;
 	char* tag;
+	XMFLOAT2 imgOriginalSize;
 private: //private data.
 	CollisionData collision;
-	XMFLOAT2 imgOriginalSize;
 	XMFLOAT2 textureTranslate;
 	XMFLOAT4 textureUV;
 public: //public Function.

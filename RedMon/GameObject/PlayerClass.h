@@ -35,7 +35,7 @@ public:
 			myBullet[i].setWH(16, 16);
 			myBullet[i].setPower(10.0f);
 		}
-
+		SetTextureUV(0, 0, imgOriginalSize.x/2, imgOriginalSize.y/2);
 	};
 
 	virtual void Update(float dt)
