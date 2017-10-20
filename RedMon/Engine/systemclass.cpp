@@ -64,7 +64,6 @@ bool SystemClass::Initialize()
 	{
 		m_StopWatch->start();
 	}
-
 	// Create the LogicAndPhysics.
 	m_LogicAndPhysics = new LogicAndPhysics();
 	if (!m_LogicAndPhysics)
@@ -91,9 +90,6 @@ bool SystemClass::Initialize()
 	{
 		return false;
 	}
-
-
-
 	return true;
 }
 

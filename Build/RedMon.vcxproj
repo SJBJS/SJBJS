@@ -46,15 +46,19 @@
     <ClInclude Include="..\RedMon\Engine\Logic\Logic.h" />
     <ClInclude Include="..\RedMon\Engine\Logic\LogicAndPhysics.h" />
     <ClInclude Include="..\RedMon\Engine\Logic\Physics.h" />
+    <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h" />
     <ClInclude Include="..\RedMon\Engine\StopWatch.h" />
     <ClInclude Include="..\RedMon\Engine\systemclass.h" />
+    <ClInclude Include="..\RedMon\GameObject\BackGround.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h" />
-    <ClInclude Include="..\RedMon\GameObject\BossClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\Box.h" />
     <ClInclude Include="..\RedMon\GameObject\Bullet.h" />
-    <ClInclude Include="..\RedMon\GameObject\Enemy.h" />
+    <ClInclude Include="..\RedMon\GameObject\Objects.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GameStart.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps" />

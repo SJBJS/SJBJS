@@ -5,15 +5,16 @@
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include "../../GameObject/Base/ActorClass.h"
-#include "../../GameObject/Base/ObjectManager.h"
+#include "RedMon/GameObject/Base/ActorClass.h"
+#include "RedMon/GameObject/Base/ObjectManager.h"
 #include <Box2D\Box2D.h>
-#include "PolyShapes.h"
+#include"RedMon\Engine\Logic\PolyShapes.h"
 using namespace std;
 
 /////////////////////////
 // CLASS
 /////////////////////////
+
 struct Settings
 {
 	Settings()
@@ -61,7 +62,6 @@ struct Settings
 	int32 pause;
 	int32 singleStep;
 };
-
 class Physics
 {
 private:
@@ -69,12 +69,21 @@ private:
 	b2Body ** m_objects;
 	Settings *settings;
 	size_t objectSize;
+
+	Listener *myListener;
+
+	ObjectManager* m_manager;
 public:
 	Physics();
 	~Physics();
 	bool Initialize();
 	void Update();
 	void Shutdown();
+private:
+	void CreateObject(ActorClass& data, int idx);
+	void UpdateObject(ActorClass& data, int idx);
+	void SaveObject();
+	void UpdateOnCollision();
 };
 
 #endif

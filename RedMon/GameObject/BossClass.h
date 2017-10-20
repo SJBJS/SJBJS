@@ -12,7 +12,7 @@ public:
 	virtual void Initialize()
 	{
 		player = dynamic_cast<PawnClass*>(ObjectManager::Instance()->FindObjectWithTag("player"));
-		position = XMFLOAT3(1000, 100, 0);
+		position = XMFLOAT3(100, 600, 0);
 		textureAddress = "data/boss1.tga";
 		Wight = 64;
 		Hight = 64;

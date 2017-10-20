@@ -25,6 +25,9 @@
     <Filter Include="FX">
       <UniqueIdentifier>{f5e58b47-5f17-4301-817a-e4d3540f95c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{d25950d8-ad8e-423e-bd4e-0d962f09b443}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\RedMon\Engine\inputclass.cpp">
@@ -105,9 +108,6 @@
     <ClInclude Include="..\RedMon\Engine\Logic\Physics.h">
       <Filter>Engine\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\BossClass.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -126,8 +126,23 @@
     <ClInclude Include="..\RedMon\Engine\StopWatch.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Enemy.h">
+    <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h">
+      <Filter>Engine\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\BackGround.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Objects.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Box.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStart.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>GameScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

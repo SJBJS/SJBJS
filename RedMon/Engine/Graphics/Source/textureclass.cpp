@@ -22,7 +22,7 @@ TextureClass::~TextureClass()
 }
 
 
-bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
+bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename,DirectX::XMFLOAT2 &imgSize)
 {
 	bool result;
 	int height, width;
@@ -38,6 +38,8 @@ bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceC
 	{
 		return false;
 	}
+	imgSize.x = width;
+	imgSize.y = height;
 
 	// Setup the description of the texture.
 	textureDesc.Height = height;
@@ -137,7 +139,7 @@ bool TextureClass::LoadTarga(char* filename, int& height, int& width)
 	{
 		return false;
 	}
-
+	
 	// Read in the file header.
 	count = (unsigned int)fread(&targaFileHeader, sizeof(TargaHeader), 1, filePtr);
 	if(count != 1)

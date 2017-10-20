@@ -1,8 +1,5 @@
 #include "../LogicAndPhysics.h"
-#include "../../../GameObject/PlayerClass.h"
-#include "../../../GameObject/BossClass.h"
-#include "../../../GameObject/Enemy.h"
-
+#include"RedMon\GameObject\Objects.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_Logic = 0;
@@ -18,7 +15,7 @@ bool LogicAndPhysics::Initialize()
 {
 	bool result;
 	
-	CreateObject();
+	CreatObject();
 
 	m_Logic = new Logic();
 	if (!m_Logic)
@@ -41,14 +38,15 @@ bool LogicAndPhysics::Initialize()
 	{
 		return false;
 	}
-
+	//정렬 기능 오류로 인해 주석처리.
+	ObjectManager::Instance()->ObjectSort();
 	return true;
 }
 
 bool LogicAndPhysics::Update(float dt)
 {
-	m_Logic->Update(dt);
 	m_Physics->Update();
+	m_Logic->Update(dt);
 
 	return true;
 }
@@ -67,11 +65,4 @@ void LogicAndPhysics::Shutdown()
 		delete m_Physics;
 		m_Physics = 0;
 	}
-}
-void LogicAndPhysics::CreateObject()
-{
-	new PlayerClass;
-	new BossClass;
-	for(int i = 0; i < 5; i++)
-		new EnemyClass;
 }

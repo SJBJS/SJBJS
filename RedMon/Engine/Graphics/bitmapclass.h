@@ -36,9 +36,9 @@ public:
 	BitmapClass(const BitmapClass&);
 	~BitmapClass();
 
-	bool Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int screenWidth, int screenHeight, char* textureFilename, int bitmapWidth, int bitmapHeight);
+	bool Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int screenWidth, int screenHeight, char* textureFilename, int bitmapWidth, int bitmapHeight, XMFLOAT2& originalSize);
 	void Shutdown();
-	bool Render(ID3D11DeviceContext*, XMFLOAT2 playerMove, float deltaTime);
+	bool Render(ID3D11DeviceContext*, XMFLOAT2 playerMove, XMFLOAT4 textureUVWH ,float deltaTime);
 
 	int GetIndexCount();
 	ID3D11ShaderResourceView* GetTexture();
@@ -46,10 +46,10 @@ public:
 private:
 	bool InitializeBuffers(ID3D11Device*);
 	void ShutdownBuffers();
-	bool UpdateBuffers(ID3D11DeviceContext*, XMFLOAT2 playerMove, float deltaTime);
+	bool UpdateBuffers(ID3D11DeviceContext*, XMFLOAT2 playerMove, XMFLOAT4 textureUVWH, float deltaTime);
 	void RenderBuffers(ID3D11DeviceContext*);
 
-	bool LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename);
+	bool LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename, XMFLOAT2& imgSize);
 	void ReleaseTexture();
 
 private:

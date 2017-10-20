@@ -14,7 +14,7 @@ void Logic::Update(float dt)
 {
 	if (ObjectManager::Instance()->IsEmpty())
 		return;
-
+	
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ObjectManager::Instance()->at(i)->Update(dt);

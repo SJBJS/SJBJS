@@ -7,13 +7,15 @@ class Bullet : public ActorClass
 private:
 	bool isStart;
 	float power;
+	float totalTime;
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-100, 0, 0);
+		position = XMFLOAT3(0, 0, 2);
 		textureAddress = "data/player.tga";
 		tag = "bullet";
 		isStart = false;
+		totalTime = 0;
 	};
 
 	virtual void Update(float dt)
@@ -21,27 +23,33 @@ public:
 		if (!isStart)
 			return;
 
-		position.y -= power;
-		if (this->position.y <= 0 || this->position.y >= 700)
+		LocalMove(0,power);
+		totalTime += dt;
+		if (totalTime > 3.0)
 		{
 			isStart = false;
-			position.x = -100;
+			position.x = -1000 ;
+			totalTime = 0;
+			SetPhysics(false);
 		}
 	};
 	void Fire(bool start) { isStart = start; }
 	bool IsFire()const { return isStart; }
 	void setWH(int wight, int hight)
 	{
-		this->Wight = wight;
+		this->Width = wight;
 		this->Hight = hight;
 	}
 	void setPower(float po)
 	{
 		this->power = po;
 	}
-	void Spwan(XMFLOAT3 & ref)
+	void Spwan(const XMFLOAT3 &position,const float & rotate, const XMFLOAT3 &offset)
 	{
-		position = ref;
+		this->position = position;
+		this->rotate = rotate;
+		SetPhysics(true);
+		LocalMove(offset.x, offset.y);
 	};
 };
 
