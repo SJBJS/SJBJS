@@ -1,5 +1,4 @@
 #include "ActorClass.h"
-#include"ObjectManager.h"
 
 /////////////////////////////////
 // ActorClass

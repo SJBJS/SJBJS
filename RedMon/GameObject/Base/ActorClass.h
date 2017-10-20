@@ -2,8 +2,8 @@
 #ifndef ACTOR_CLASS_H
 #define ACTOR_CLASS_H
 
-
 #include <directxmath.h>
+#include"ObjectManager.h"
 #include"RedMon/Engine/inputclass.h"
 #include"RedMon\Engine\StopWatch.h"
 

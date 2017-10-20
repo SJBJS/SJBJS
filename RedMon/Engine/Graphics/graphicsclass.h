@@ -12,7 +12,6 @@
 #include "cameraclass.h"
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
-#include "../../GameObject/Base/ActorClass.h"
 #include "../../GameObject/Base/ObjectManager.h"
 ///////////////////////
 // INCLUDES //
