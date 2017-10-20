@@ -57,6 +57,8 @@
     <ClInclude Include="..\RedMon\GameObject\Bullet.h" />
     <ClInclude Include="..\RedMon\GameObject\Objects.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GameStart.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps" />
