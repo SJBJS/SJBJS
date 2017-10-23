@@ -12,6 +12,11 @@ static vector<void(*)()> CallBack;
 
 static void Level0()
 { /* z값이 같을 경우 맨 마지막에 동적할당한 객체가 제일 앞에 그려집니다. */
+
+}
+
+static void Level1()
+{
 	srand((unsigned int)time(NULL));
 
 	new BackGround();
@@ -25,15 +30,9 @@ static void Level0()
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 }
-
-static void Level1()
-{
-	new BackGround;
-	new PlayerClass;
-}
 static void Level2()
 {
-	new PlayerClass;
+
 }
 
 static void CallFunc() {

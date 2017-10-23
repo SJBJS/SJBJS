@@ -141,6 +141,15 @@
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Ground.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\LeftGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\RightGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps">

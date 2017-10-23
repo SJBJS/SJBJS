@@ -54,8 +54,11 @@
     <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h" />
     <ClInclude Include="..\RedMon\GameObject\Box.h" />
     <ClInclude Include="..\RedMon\GameObject\Bullet.h" />
+    <ClInclude Include="..\RedMon\GameObject\Ground.h" />
+    <ClInclude Include="..\RedMon\GameObject\LeftGround.h" />
     <ClInclude Include="..\RedMon\GameObject\Objects.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
+    <ClInclude Include="..\RedMon\GameObject\RightGround.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameStart.h" />
   </ItemGroup>
