@@ -4,8 +4,6 @@
 
 class Box : public ActorClass
 {
-
-
 public:
 	virtual void Initialize()
 	{
@@ -14,6 +12,7 @@ public:
 		Hight = 64;
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
+		SetCollistionType(BodyType::StaticBody);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "Box";

@@ -1,11 +1,14 @@
-#pragma once
-
-#ifndef OBJECTMANAGER_CLASS_H
-#define OBJECTMANAGER_CLASS_H
+#ifndef __MYOBJECTMANAGER_H_
+#define __MYOBJECTMANAGER_H_
 
 #include <vector>
 #include<algorithm>
-#include "ActorClass.h"
+#include<DirectXMath.h>
+#include"ActorClass.h"
+using namespace std;
+using namespace DirectX;
+
+class ActorClass;
 
 class ObjectManager
 {
@@ -17,10 +20,13 @@ private:
 	vector<ActorClass*>* m_ObjectList;
 	static ObjectManager* objectManager;
 	XMFLOAT2 screenSize;
+	int curLevel;
+	int maxLevel;
+	bool isNewState;
 public:
 	ActorClass * at(int idx);
 	void PushObject(ActorClass * object);
-
+	
 	ActorClass *FindObjectWithTag(char * tag);
 	vector<ActorClass*>* FindObjectsWithTag(char * tag);
 	bool Initialize();
@@ -34,6 +40,11 @@ public:
 
 	static bool comp(const ActorClass *t1, const ActorClass *t2);
 	void ObjectSort();
+
+	void ChangeLevel(int levelNumber);
+	bool IsNewLevel()const;
+	int GetCurrentLevel()const;
+	void SetMaxLevel(int max);
 
 	static ObjectManager* Instance();
 };

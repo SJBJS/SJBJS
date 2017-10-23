@@ -1,11 +1,9 @@
-#pragma once
 #ifndef PHYSICS_H_
 #define PHYSICS_H_
 
 /////////////////////////
 // INCLUDE
 /////////////////////////
-#include "RedMon/GameObject/Base/ActorClass.h"
 #include "RedMon/GameObject/Base/ObjectManager.h"
 #include <Box2D\Box2D.h>
 #include"RedMon\Engine\Logic\PolyShapes.h"

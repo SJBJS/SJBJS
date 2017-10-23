@@ -1,11 +1,11 @@
 #include "ObjectManager.h"
-
 ObjectManager* ObjectManager::objectManager = nullptr;
 
 ObjectManager::ObjectManager()
 {
 	objectManager = this;
 	m_ObjectList = new vector<ActorClass*>();
+	curLevel = 0;
 }
 ObjectManager::~ObjectManager()
 {
@@ -89,7 +89,7 @@ vector<ActorClass*>* ObjectManager::FindObjectsWithTag(char * tag)
 
 bool ObjectManager::Initialize()
 {
-
+	isNewState = false;
 	return true;
 }
 
@@ -102,11 +102,13 @@ void ObjectManager::Shutdown()
 
 	for (it = m_ObjectList->begin(); it != m_ObjectList->end(); ++it)
 	{
-		if ((*it) != NULL)
+		if ((*it) != nullptr)
 		{
+			(*it)->OnDestory();
 			delete *it;
 		}
 	}
+
 	m_ObjectList->clear();
 }
 
@@ -133,6 +135,33 @@ void ObjectManager::SetScreenSize(float x, float y)
 XMFLOAT2 ObjectManager::GetScreenSize()const
 {
 	return screenSize;
+}
+
+void ObjectManager::ChangeLevel(int levelNumber)
+{
+	if (levelNumber < 0 || levelNumber >= maxLevel)
+	{
+		return;
+	}
+
+	isNewState = true;
+	curLevel = levelNumber;
+
+}
+
+bool ObjectManager::IsNewLevel() const
+{
+	return isNewState;
+}
+
+int ObjectManager::GetCurrentLevel() const
+{
+	return curLevel;
+}
+
+void ObjectManager::SetMaxLevel(int max)
+{
+	maxLevel = max;
 }
 
 ObjectManager * ObjectManager::Instance()

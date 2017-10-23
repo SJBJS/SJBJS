@@ -23,15 +23,4 @@ void Logic::Update(float dt)
 
 void Logic::Shutdown()
 {
-	DestoryObject();
-}
-
-
-void Logic::DestoryObject()
-{
-	if (!ObjectManager::Instance())
-		return;
-
-	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
-		ObjectManager::Instance()->at(i)->OnDestory();
 }

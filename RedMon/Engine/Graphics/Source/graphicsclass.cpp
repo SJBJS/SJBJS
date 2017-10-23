@@ -7,7 +7,6 @@ GraphicsClass::GraphicsClass()
 {
 	m_Direct3D = 0;
 	m_Camera = 0;
-	m_BackGruond = 0;
 	m_TextureShader = 0;
 	m_Objects = 0;
 }
@@ -53,19 +52,6 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	// Set the initial position of the camera.
 	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
 
-	// Create the model object.
-	m_BackGruond = new BitmapClass;
-	if (!m_BackGruond)
-	{
-		return false;
-	}
-
-	// Initialize the model object.               //space~ space6 
-	if (!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
-		return false;
-	}
 	// Create the texture shader object.
 	m_TextureShader = new TextureShaderClass;
 	if (!m_TextureShader)
@@ -82,30 +68,10 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Objects list setting.
-	if (!ObjectManager::Instance())
-		return false;
-	if (!ObjectManager::Instance()->IsEmpty())
-	{
-		m_Objects = new BitmapClass[ObjectManager::Instance()->Size()];
-		if (!m_Objects)
-			return false;
-		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
-		{
-			ActorClass * taget = ObjectManager::Instance()->at(i);
-			char textureAddress[50] = "../RedMon/";
-			char* objectAddress = taget->GetTextureAddress();
-			strcat_s(textureAddress, objectAddress);
-			XMFLOAT2 textureWH = taget->GetActorWH();
-			XMFLOAT2 imgSize;
-			result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y, imgSize);
-			taget->SetOriginalImgSize(imgSize);
-			if (!result)
-			{
-				MessageBox(hwnd, L"Could not initialize the Objects", L"Error", MB_OK);
-			}
-		}
-	}
+	ObjectReset(screenWidth, screenHeight);
 	ObjectManager::Instance()->SetScreenSize(screenWidth, screenHeight);
+	m_screenWidth = screenWidth;
+	m_screenHeight = screenHeight;
 	return true;
 }
 
@@ -128,14 +94,6 @@ void GraphicsClass::Shutdown()
 		delete[] m_Objects;
 		m_Objects = 0;
 	}
-	// Release the model object.
-	if (m_BackGruond)
-	{
-		m_BackGruond->Shutdown();
-		delete m_BackGruond;
-		m_BackGruond = 0;
-	}
-
 	// Release the camera object.
 	if (m_Camera)
 	{
@@ -192,6 +150,10 @@ bool GraphicsClass::Render(float deltaTime)
 	m_Direct3D->TurnZBufferOff();
 	m_Direct3D->TurnOnAlphaBlending();
 
+	//if (ObjectManager::Instance()->IsNewLevel())
+	//{
+	//	ObjectReset(m_screenWidth,m_screenHeight);
+	//}
 	for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
 	{
 		ActorClass* taget = ObjectManager::Instance()->at(i);
@@ -216,5 +178,33 @@ bool GraphicsClass::Render(float deltaTime)
 	m_Direct3D->EndScene();
 
 
+	return true;
+}
+
+bool GraphicsClass::ObjectReset(int screenWidth, int screenHeight)
+{
+	if (!ObjectManager::Instance())
+		return false;
+	if (!ObjectManager::Instance()->IsEmpty())
+	{
+		m_Objects = new BitmapClass[ObjectManager::Instance()->Size()];
+		if (!m_Objects)
+			return false;
+		for (int i = 0; i < ObjectManager::Instance()->Size(); ++i)
+		{
+			ActorClass * taget = ObjectManager::Instance()->at(i);
+			char textureAddress[50] = "../RedMon/";
+			char* objectAddress = taget->GetTextureAddress();
+			strcat_s(textureAddress, objectAddress);
+			XMFLOAT2 textureWH = taget->GetActorWH();
+			XMFLOAT2 imgSize;
+			bool result = m_Objects[i].Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, textureAddress, textureWH.x, textureWH.y, imgSize);
+			taget->SetOriginalImgSize(imgSize);
+			if (!result)
+			{
+				return false;
+			}
+		}
+	}
 	return true;
 }

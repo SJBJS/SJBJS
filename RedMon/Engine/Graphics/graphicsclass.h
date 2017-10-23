@@ -12,7 +12,6 @@
 #include "cameraclass.h"
 #include "bitmapclass.h"
 #include "textureshaderclass.h"
-#include "../../GameObject/Base/ActorClass.h"
 #include "../../GameObject/Base/ObjectManager.h"
 ///////////////////////
 // INCLUDES //
@@ -43,14 +42,15 @@ public:
 
 private:
 	bool Render(float deltaTime);
-
+	bool ObjectReset(int, int);
 private:
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
-	BitmapClass* m_BackGruond;
 	TextureShaderClass* m_TextureShader;
 
 	BitmapClass* m_Objects;
+	int m_screenWidth, m_screenHeight;
+
 };
 
 #endif

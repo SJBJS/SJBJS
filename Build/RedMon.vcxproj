@@ -52,11 +52,12 @@
     <ClInclude Include="..\RedMon\GameObject\BackGround.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h" />
     <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h" />
-    <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h" />
     <ClInclude Include="..\RedMon\GameObject\Box.h" />
     <ClInclude Include="..\RedMon\GameObject\Bullet.h" />
     <ClInclude Include="..\RedMon\GameObject\Objects.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GameStart.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps" />
@@ -67,7 +68,7 @@
     <ProjectGuid>{D38F563B-AE7A-427F-873A-D66F87004357}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>RedMon</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -86,7 +87,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -114,9 +115,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
