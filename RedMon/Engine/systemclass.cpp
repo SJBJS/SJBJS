@@ -38,6 +38,9 @@ bool SystemClass::Initialize()
 	// Initialize the windows api.
 	InitializeWindows(screenWidth, screenHeight);
 	
+	ObjectManager::Instance()->Initialize();
+	CallFunc();
+	(*GetCallBackVector())[ObjectManager::Instance()->GetCurrentLevel()]();
 
 	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass;
@@ -90,6 +93,8 @@ bool SystemClass::Initialize()
 	{
 		return false;
 	}
+	m_ScreenX = screenWidth;
+	m_ScreenY = screenHeight;
 	return true;
 }
 
@@ -190,13 +195,23 @@ bool SystemClass::Frame()
 	{
 		return false;
 	}
+	
 	// Do the frame processing for the graphics object.
 	result = m_Graphics->Frame(m_StopWatch->GetDeltaTime());
 	if (!result)
 	{
 		return false;
 	}
-
+	if (ObjectManager::Instance()->IsNewLevel())
+	{
+		m_LogicAndPhysics->Shutdown();
+		m_Graphics->Shutdown();
+		ObjectManager::Instance()->Shutdown();
+		(*GetCallBackVector())[ObjectManager::Instance()->GetCurrentLevel()]();
+		m_LogicAndPhysics->Initialize();
+		m_Graphics->Initialize(m_ScreenX, m_ScreenY, m_hwnd);
+		ObjectManager::Instance()->Initialize();
+	}
 	return true;
 }
 

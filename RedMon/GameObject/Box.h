@@ -4,8 +4,6 @@
 
 class Box : public ActorClass
 {
-
-
 public:
 	virtual void Initialize()
 	{

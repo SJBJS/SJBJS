@@ -1,4 +1,3 @@
-#pragma once
 #ifndef GAMESTART_H
 #define GAMESTART_H
 

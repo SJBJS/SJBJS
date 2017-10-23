@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _LOGIC_H_
 #define _LOGIC_H_
 
@@ -13,8 +12,6 @@ using namespace std;
 /////////////////////////
 class Logic
 {
-private:
-	void DestoryObject();
 public:
 	bool Initialize();
 	void Update(float dt);

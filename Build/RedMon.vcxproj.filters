@@ -108,20 +108,11 @@
     <ClInclude Include="..\RedMon\Engine\Logic\Physics.h">
       <Filter>Engine\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\Base\ActorClass.h">
-      <Filter>GameObject\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Base\PawnClass.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\Base\ObjectManager.h">
       <Filter>GameObject\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Bullet.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\RedMon\Engine\StopWatch.h">
       <Filter>Engine</Filter>
@@ -129,13 +120,7 @@
     <ClInclude Include="..\RedMon\Engine\Logic\PolyShapes.h">
       <Filter>Engine\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\BackGround.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\Objects.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\RedMon\GameObject\Box.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameStart.h">
@@ -143,6 +128,18 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\BackGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Box.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Bullet.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

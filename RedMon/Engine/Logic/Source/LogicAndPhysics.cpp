@@ -1,5 +1,4 @@
 #include "../LogicAndPhysics.h"
-#include"RedMon\GameObject\Objects.h"
 LogicAndPhysics::LogicAndPhysics()
 {
 	m_Logic = 0;
@@ -14,8 +13,6 @@ LogicAndPhysics::~LogicAndPhysics()
 bool LogicAndPhysics::Initialize()
 {
 	bool result;
-	
-	CreatObject();
 
 	m_Logic = new Logic();
 	if (!m_Logic)

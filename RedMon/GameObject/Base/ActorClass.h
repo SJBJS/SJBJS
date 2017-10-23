@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ACTOR_CLASS_H
-#define ACTOR_CLASS_H
 
 #include <directxmath.h>
 #include"ObjectManager.h"
@@ -106,6 +104,3 @@ XMFLOAT3 operator*(const XMFLOAT3 & vec1, const float & scalar);
 XMFLOAT3 operator/(const XMFLOAT3 & vec1, const float &scalar);
 XMFLOAT3 operator+=(XMFLOAT3 & vec1, const XMFLOAT3 &vec2);
 XMFLOAT3 operator-=(XMFLOAT3 & vec1, const XMFLOAT3 &vec2);
-
-
-#endif

@@ -24,6 +24,7 @@ using namespace DirectX;
 #include "Logic\LogicAndPhysics.h"
 #include "Graphics\graphicsclass.h"
 #include "StopWatch.h"
+#include"RedMon\GameObject\Objects.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: SystemClass
@@ -59,6 +60,7 @@ private:
 
 	XMFLOAT2 myVector;
 	bool isActive;
+	float m_ScreenX, m_ScreenY;
 };
 
 
