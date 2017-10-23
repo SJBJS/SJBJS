@@ -31,13 +31,17 @@ public:
 
 	virtual void Update(float dt)
 	{
-		if (Input->IsKeyDown(DIK_E))
+		if (Input->IsKeyDown(DIK_W))
 		{
 			ObjectManager::Instance()->ChangeLevel(1);
 		}
 		if (Input->IsKeyDown(DIK_Q))
 		{
 			ObjectManager::Instance()->ChangeLevel(0);
+		}
+		if (Input->IsKeyDown(DIK_E))
+		{
+			ObjectManager::Instance()->ChangeLevel(2);
 		}
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{

@@ -41,7 +41,7 @@ bool SystemClass::Initialize()
 	ObjectManager::Instance()->Initialize();
 	CallFunc();
 	(*GetCallBackVector())[ObjectManager::Instance()->GetCurrentLevel()]();
-
+	ObjectManager::Instance()->SetMaxLevel((*GetCallBackVector()).size());
 	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass;
 	if (!m_Input)

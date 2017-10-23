@@ -139,7 +139,7 @@ XMFLOAT2 ObjectManager::GetScreenSize()const
 
 void ObjectManager::ChangeLevel(int levelNumber)
 {
-	if (levelNumber < 0 || levelNumber >= LevelNum)
+	if (levelNumber < 0 || levelNumber >= maxLevel)
 	{
 		return;
 	}
@@ -157,6 +157,11 @@ bool ObjectManager::IsNewLevel() const
 int ObjectManager::GetCurrentLevel() const
 {
 	return curLevel;
+}
+
+void ObjectManager::SetMaxLevel(int max)
+{
+	maxLevel = max;
 }
 
 ObjectManager * ObjectManager::Instance()

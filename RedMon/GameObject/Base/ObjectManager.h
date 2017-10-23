@@ -17,12 +17,11 @@ private:
 	ObjectManager(const ObjectManager& other) = delete;
 	~ObjectManager();
 
-	enum {LevelNum = 2};
-
 	vector<ActorClass*>* m_ObjectList;
 	static ObjectManager* objectManager;
 	XMFLOAT2 screenSize;
 	int curLevel;
+	int maxLevel;
 	bool isNewState;
 public:
 	ActorClass * at(int idx);
@@ -45,6 +44,7 @@ public:
 	void ChangeLevel(int levelNumber);
 	bool IsNewLevel()const;
 	int GetCurrentLevel()const;
+	void SetMaxLevel(int max);
 
 	static ObjectManager* Instance();
 };

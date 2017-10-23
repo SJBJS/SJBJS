@@ -31,9 +31,14 @@ static void Level1()
 	new BackGround;
 	new PlayerClass;
 }
+static void Level2()
+{
+	new PlayerClass;
+}
 
 static void CallFunc() {
 	CallBack.push_back(Level0);
 	CallBack.push_back(Level1);
+	CallBack.push_back(Level2);
 }
 static vector<void(*)()>* GetCallBackVector() { return &CallBack; }
