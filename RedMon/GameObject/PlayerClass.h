@@ -11,19 +11,22 @@ private:
 	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
-	float power;
 	float speed;
+	bool jumping;
+	
+	
 public:
 	virtual void Initialize()
 	{
 		position = XMFLOAT3(-500, -150, 0);
-		textureAddress = "data/player1.tga";
+		
+		textureAddress = "data/Spritep.tga";
+		jumping = false;
 		tag = "player";
 		Width = 128;
 		Hight = 128;
 		SetPhysics(true);
-		speed = 100.0f;
-		power = 0;
+		speed = 100.0f;		
 		SetRotateFrozen(true);
 		SetGravityScale(1.0f);
 		bulletNum = 10;
@@ -35,13 +38,17 @@ public:
 			myBullet[i].setWH(16, 16);
 			myBullet[i].setPower(10.0f);
 		}
-		SetTextureUV(0, 0, imgOriginalSize.x/2, imgOriginalSize.y/2);
+		
 	};
 
 	virtual void Update(float dt)
 	{
 		
+		static int i = 0;
+		i += 100;
+		SetTextureUV(0 + i, 0, 32, imgOriginalSize.y);
 		float v = 0, h = 0;
+			
 		/*if (Input->IsKeyPressed(DIK_W))
 			v += 2.0f;
 		if (Input->IsKeyPressed(DIK_S))
@@ -51,20 +58,24 @@ public:
 		if (Input->IsKeyPressed(DIK_D))
 			h += 2.0f;*/
 		
-		if (Input->IsKeyPressed(DIK_Q))
+		/*if (Input->IsKeyPressed(DIK_Q))
 			Rotate(5 * dt);
 		if (Input->IsKeyPressed(DIK_E))
-			Rotate(-5 * dt);
-
-		if (Input->IsKeyPressed(DIK_SPACE))
-		{
-			power += 2;
-			Move(0, 40*dt*power);
-			if (power > 40) { power = 0; }
-			//Fire();
-		   
-			
-		}	
+			Rotate(-5 * dt);*/
+		if (!jumping) {
+			if (position.y <= -150) {
+				if (Input->IsKeyDown(DIK_SPACE))
+				{
+					jumping = true;
+				}
+			}
+		}
+		if (position.y < 50){
+			if (jumping) {
+				Move(0, 20);
+			}
+		}
+		
 		
 		if (Input->IsKeyDown(DIK_K))
 			ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0);
@@ -80,16 +91,20 @@ public:
 		//position += result;
 		
 		LocalMove(result.x, result.y );
-
+		
 		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용
+		//바닥 기준 y높이 -150
 		if (position.y < -150) {
 			SetPosition(-500, -150);
 			
 		}
-		if (position.y >= -150) {
-			SetGravityScale(30.0);		
-			
+		
+		if (position.y >50) {
+			SetGravityScale(100.0);
+			jumping = false;
 		}
+		
+		
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
@@ -100,14 +115,7 @@ public:
 	virtual void OnDestory()
 	{
 	}
-	void Jump(bool jumping)
-	{
-		
-	}
-	void JumpEnd(float dt)
-	{
-		Move(0, -40 * dt);
-	}
+	
 	void Fire()
 	{
 		if (myBullet[shotNum].IsFire())
