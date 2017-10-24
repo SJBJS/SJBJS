@@ -21,8 +21,7 @@ static void Level0()
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
-	(new Box())->SetPosition(rand() % 1400 + 700, -150);
-	(new Box())->SetPosition(rand() % 1400 + 700, -150);
+	
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -200);
 	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -200);

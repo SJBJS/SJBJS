@@ -18,9 +18,9 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-500, -150, 0);
+		position = XMFLOAT3(-500, -120, 0);
 		
-		textureAddress = "data/runner.tga";
+		textureAddress = "data/Spritep.tga";
 		jumping = false;
 		tag = "player";
 		Width = 128;
@@ -55,16 +55,17 @@ public:
 		if (Input->IsKeyPressed(DIK_E))
 			Rotate(-5 * dt);*/
 		if (!jumping) {
-			if (position.y <= -150) {
+			Move(0, -2);
+			if (position.y <= -120) {
 				if (Input->IsKeyDown(DIK_SPACE))
 				{
 					jumping = true;
 				}
 			}
 		}
-		if (position.y < 70){
+		if (position.y < 100){
 			if (jumping) {
-				Move(0, 20);
+				Move(0, 25);
 			}
 		}
 		
@@ -86,13 +87,14 @@ public:
 		
 		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용
 		//바닥 기준 y높이 -150
-		if (position.y < -150) {
-			SetPosition(-500, -150);
+		if (position.y < -120) {
+			SetPosition(-500, -120);
 			
 		}
 		
-		if (position.y >70) {
-			SetGravityScale(100.0);
+		if (position.y >100) {
+			
+			SetGravityScale(200.0);
 			jumping = false;
 		}
 		
