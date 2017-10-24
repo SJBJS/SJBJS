@@ -20,7 +20,7 @@ public:
 	{
 		position = XMFLOAT3(-500, -150, 0);
 		
-		textureAddress = "data/Spritep.tga";
+		textureAddress = "data/runner.tga";
 		jumping = false;
 		tag = "player";
 		Width = 128;
@@ -31,13 +31,13 @@ public:
 		SetGravityScale(1.0f);
 		bulletNum = 10;
 		shotNum = 0;
-		myBullet = new Bullet[bulletNum];
+		/*myBullet = new Bullet[bulletNum];
 		for (int i = 0; i < bulletNum; ++i)
 		{
 			myBullet->Initialize();
 			myBullet[i].setWH(16, 16);
 			myBullet[i].setPower(10.0f);
-		}
+		}*/
 		
 	};
 
@@ -46,17 +46,9 @@ public:
 		
 		static int i = 0;
 		i += 100;
-		SetTextureUV(0 + i, 0, 32, imgOriginalSize.y);
+		SetTextureUV(0 + i, 0, 64, imgOriginalSize.y);
 		float v = 0, h = 0;
 			
-		/*if (Input->IsKeyPressed(DIK_W))
-			v += 2.0f;
-		if (Input->IsKeyPressed(DIK_S))
-			v -= 2.0f;*/
-		/*if (Input->IsKeyPressed(DIK_A))
-			h += -2.0f;
-		if (Input->IsKeyPressed(DIK_D))
-			h += 2.0f;*/
 		
 		/*if (Input->IsKeyPressed(DIK_Q))
 			Rotate(5 * dt);
@@ -70,7 +62,7 @@ public:
 				}
 			}
 		}
-		if (position.y < 50){
+		if (position.y < 70){
 			if (jumping) {
 				Move(0, 20);
 			}
@@ -99,7 +91,7 @@ public:
 			
 		}
 		
-		if (position.y >50) {
+		if (position.y >70) {
 			SetGravityScale(100.0);
 			jumping = false;
 		}
