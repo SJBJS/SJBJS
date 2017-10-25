@@ -82,3 +82,34 @@ public:
 	}
 
 };
+class HPbar : public ActorClass
+{
+public:
+	virtual void Initialize()
+	{
+		textureAddress = "data/hart.tga"; //필수로 적어주셔야 오류가 없습니다.
+		Width = 40;
+		Hight = 40;
+		//position = XMFLOAT3(100, 0, 0);		
+		SetPhysics(false);
+		tag = "HP";
+
+	};
+
+	virtual void Update(float dt)
+	{
+
+		
+	};
+	virtual void OnCollisionEnter(ActorClass * other)
+	{
+	}
+	virtual void OnCollisionExit(ActorClass * other)
+	{
+
+	}
+	virtual void OnDestory()
+	{
+	}
+
+};
