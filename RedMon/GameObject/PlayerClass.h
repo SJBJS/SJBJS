@@ -11,16 +11,17 @@ private:
 	size_t shotNum;
 	Bullet * myBullet;
 	float Windowx;
-	float speed;
-	bool jumping;
+	float speed; 
+	bool jumping;  //점프중인지 판단
+	float HP; //생명력
 	
 	
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-500, -120, 0);
-		
+		position = XMFLOAT3(-500, -120, 0);		
 		textureAddress = "data/Spritep.tga";
+		HP = 3;
 		jumping = false;
 		tag = "player";
 		Width = 128;
@@ -76,8 +77,10 @@ public:
 		//충돌감지
 		XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
 		XMFLOAT3 dir1 = taget - position; 
-		if (dir1.x < 60) { ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0); };
-
+		if (dir1.x < 60) { ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0); 
+		ObjectManager::Instance()->FindObjectWithTag("HP")->SetPosition(1200, 0);
+		};
+		
 		
 		XMFLOAT3 taget2 = ObjectManager::Instance()->FindObjectWithTag("sharp")->GetPosition();
 		XMFLOAT3 dir2 = taget2 - position;
