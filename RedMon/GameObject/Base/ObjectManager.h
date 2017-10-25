@@ -28,7 +28,7 @@ public:
 	void PushObject(ActorClass * object);
 	
 	ActorClass *FindObjectWithTag(char * tag);
-	vector<ActorClass*>* FindObjectsWithTag(char * tag);
+	vector<ActorClass*> FindObjectsWithTag(char * tag);
 	bool Initialize();
 	void Shutdown();
 
