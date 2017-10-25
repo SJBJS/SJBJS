@@ -14,12 +14,13 @@ ActorClass::ActorClass()
 	collision.other = nullptr;
 	collision.isPhysics = false;
 	collision.mode = CollisionMode::None;
-	collision.type = BodyType::DynamicBody;
-	collision.bullet = false;
-	collision.density = 0.7;
+	collision.type = BodyType::StaticBody;
+	collision.shape = ShapeType::BoxShape;
+	collision.bullet = true;
+	collision.density = 1.0;
 	collision.friction = 1.0;
-	collision.restitution = 0.0;
-	collision.gravityScale = 0.0f;
+	collision.restitution = 0.7;
+	collision.gravityScale = 1.0f;
 	collision.isRotateFrozen = false;
 
 	textureAddress = tag = "";
@@ -91,6 +92,11 @@ void ActorClass::SetPhysics(bool active)
 void ActorClass::SetCollistionType(BodyType type)
 {
 	collision.type = type;
+}
+
+void ActorClass::SetCollistionShape(ShapeType shape)
+{
+	collision.shape = shape;
 }
 
 void ActorClass::SetDensity(float d)
