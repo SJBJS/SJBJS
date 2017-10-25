@@ -35,11 +35,16 @@ static void Level1()
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 
 	int i = rand() % 1400 + 700;
-	(new Ground())->SetPosition(i, 50);
-	(new RightGround())->SetPosition(i, 50);
-	(new LeftGround())->SetPosition(i, 50);
+
+	Ground *m_ground = new Ground();
+	LeftGround *m_leftground = new LeftGround();
+	RightGround *m_rightground = new RightGround();
+
+	m_ground->SetPosition(i, 50);
+	m_leftground->SetPosition(i, 50);
+	m_rightground->SetPosition(i, 50);
 	
-	
+	m_ground->SetLeftRight(m_leftground, m_rightground);
 
 }
 static void Level2()

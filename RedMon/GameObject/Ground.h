@@ -22,25 +22,22 @@ class Ground : public ActorClass
 	virtual void Update(float dt) {
 
 		srand((unsigned int)time(NULL));
+
 		Move(-400 * dt, 0);
 
-		if(position.x < -700)
+		if(position.x < -900)
 		{
 			int i = rand() % 1400 + 700;
-			int j = rand() % 70 + 25;
+			int j = rand() % 100 + 25;
 			
 			SetPosition(i, j);
 			
 			m_left->SetPosition(i, j);
-			m_right->SetPosition(i, j);
+			m_right->SetPosition(i + 10, j);
 		}
 	}
 
-	virtual void SetLeftRight(LeftGround * left, RightGround * right)
-	{
-		m_left = left;
-		m_right = right;
-	}
+
 
 	virtual void OnCollisionEnter(ActorClass * other) {
 
@@ -51,5 +48,13 @@ class Ground : public ActorClass
 
 	virtual void OnDestory() {
 
+	}
+
+public:
+
+	void SetLeftRight(LeftGround * left, RightGround * right)
+	{
+		m_left = left;
+		m_right = right;
 	}
 };
