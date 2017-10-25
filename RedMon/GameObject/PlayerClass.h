@@ -24,7 +24,8 @@ public:
 		speed = 100.0f;
 		power = 0;
 		SetRotateFrozen(true);
-		SetGravityScale(1.0f);
+		SetCollistionType(BodyType::DynamicBody);
+		SetGravityScale(100.0);
 		bulletNum = 10;
 		shotNum = 0;
 	};
@@ -58,10 +59,6 @@ public:
 		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용
 		if (position.y < -150) {
 			SetPosition(-500, -150);
-			
-		}
-		if (position.y >= -150) {
-			SetGravityScale(30.0);		
 			
 		}
 	};

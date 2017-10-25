@@ -16,7 +16,7 @@ bool Physics::Initialize()
 	m_manager = ObjectManager::Instance();
 
 	settings = new Settings;
-	settings->hz = 60.0f;
+	settings->hz = 144.0;
 
 	b2Vec2 gravity;
 	gravity.Set(0.0f, -9.8f);
@@ -110,8 +110,21 @@ void Physics::CreateObject(ActorClass & data, int idx)
 	bodyDef.position.Set(position.x, position.y);
 	bodyDef.gravityScale = collsionData.gravityScale;
 
+
 	b2PolygonShape polygons;
-	polygons.SetAsBox(textureWH.x, textureWH.y);
+	switch(collsionData.shape)
+	{
+	case ShapeType::BoxShape:
+		polygons.SetAsBox(textureWH.x, textureWH.y);
+		break;
+	case ShapeType::TriangleShape:
+		b2Vec2 vertices[3];
+		vertices[0].Set(0, textureWH.y /2 );//middle top.
+		vertices[1].Set(-textureWH.x/2, -textureWH.y/2);//left botton.
+		vertices[2].Set(textureWH.x / 2, -textureWH.y / 2);//right botton.
+		polygons.Set(vertices, 3);
+		break;
+	}
 
 	b2FixtureDef fd;
 	fd.shape = &polygons;

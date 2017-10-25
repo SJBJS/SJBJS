@@ -12,12 +12,14 @@ class ActorClass;
 
 enum CollisionMode { None, Enter, Stay, Exit };
 enum BodyType { StaticBody, KinematicBody, DynamicBody };
+enum ShapeType{BoxShape, TriangleShape};
 struct CollisionData {
 	bool isCollision;
 	ActorClass * other;
 	CollisionMode mode;
 	bool isPhysics;
 	BodyType type;
+	ShapeType shape;
 	bool bullet;
 	float density; // ¹Ðµµ.
 	float friction; // ¸¶Âû·Â.
@@ -71,6 +73,7 @@ public: //public Function.
 	void SetCollistion(bool isCollistion, ActorClass * other, CollisionMode mode);
 	void SetPhysics(bool active);
 	void SetCollistionType(BodyType type);
+	void SetCollistionShape(ShapeType shape);
 	void SetDensity(float d);
 	void SetFriction(float f);
 	void SetRestitution(float r);
