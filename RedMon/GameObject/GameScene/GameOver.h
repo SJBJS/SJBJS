@@ -1,7 +1,7 @@
 #pragma once
-#include"RedMon\GameObject\Base\ActorClass.h"
+#include "RedMon\GameObject\Base\ActorClass.h"
 
-class GameStart : public ActorClass
+class GameOver : public ActorClass
 {
 	virtual void Initialize() {
 		position = XMFLOAT3(0, -100, 0);
@@ -11,7 +11,6 @@ class GameStart : public ActorClass
 		Hight = 720;
 		SetPhysics(false);
 	}
-
 	virtual void Update(float dt) {
 	}
 

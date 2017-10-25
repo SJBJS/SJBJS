@@ -1,5 +1,5 @@
 #pragma once
-#include"RedMon\GameObject\Base\ActorClass.h"
+#include "RedMon\GameObject\Base\ActorClass.h"
 
 class GameStart : public ActorClass
 {
@@ -11,8 +11,11 @@ class GameStart : public ActorClass
 		Hight = 720;
 		SetPhysics(false);
 	}
-
 	virtual void Update(float dt) {
+		if (Input->IsKeyDown(DIK_RETURN))
+		{
+			ObjectManager::Instance()->ChangeLevel(1);
+		}
 	}
 
 	virtual void OnCollisionEnter(ActorClass * other) {

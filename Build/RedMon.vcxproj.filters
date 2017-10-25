@@ -25,8 +25,8 @@
     <Filter Include="FX">
       <UniqueIdentifier>{f5e58b47-5f17-4301-817a-e4d3540f95c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameScene">
-      <UniqueIdentifier>{d25950d8-ad8e-423e-bd4e-0d962f09b443}</UniqueIdentifier>
+    <Filter Include="GameObject\GameScene">
+      <UniqueIdentifier>{e5a649ee-36aa-4ad1-895b-df8db9d9517c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,12 +123,6 @@
     <ClInclude Include="..\RedMon\GameObject\Objects.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameStart.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\BackGround.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -140,6 +134,21 @@
     </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\Ground.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\LeftGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\RightGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\GameScene\GameStart.h">
+      <Filter>GameObject\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\GameScene\GameOver.h">
+      <Filter>GameObject\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
