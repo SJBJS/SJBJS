@@ -16,9 +16,9 @@ static void Level0()
 
 	new BackGround();
 	new PlayerClass();
-	(new Box())->SetPosition((rand() % 500) + 1, -210);
-	(new Box())->SetPosition(rand() % 1400 + 700, -150);
-	(new Box())->SetPosition(rand() % 1400 + 700, -150);
+	//(new Box())->SetPosition((rand() % 500) + 1, -210);
+	//(new Box())->SetPosition(rand() % 1400 + 700, -150);
+	//(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	(new Box())->SetPosition(rand() % 1400 + 700, -150);
 	

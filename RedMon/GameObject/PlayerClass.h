@@ -45,7 +45,7 @@ public:
 	{
 		
 		static int i = 0;
-		i += 100;
+		i = 50;
 		SetTextureUV(0 + i, 0, 64, imgOriginalSize.y);
 		float v = 0, h = 0;
 			
@@ -63,7 +63,7 @@ public:
 				}
 			}
 		}
-		if (position.y < 100){
+		if (position.y < 150){
 			if (jumping) {
 				Move(0, 25);
 			}
@@ -73,8 +73,16 @@ public:
 		if (Input->IsKeyDown(DIK_K))
 			ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0);
 		
-		//XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
-		//XMFLOAT3 dir = taget - position;
+		//충돌감지
+		XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
+		XMFLOAT3 dir1 = taget - position; 
+		if (dir1.x < 60) { ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0); };
+
+		
+			XMFLOAT3 taget2 = ObjectManager::Instance()->FindObjectWithTag("sharp")->GetPosition();
+			XMFLOAT3 dir2 = taget2 - position;
+			if (dir1.x < 40) { ObjectManager::Instance()->FindObjectWithTag("sharp")->SetPosition(100, 0); };
+		
 
 		XMFLOAT3 dir(h, v, 0);
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
@@ -92,7 +100,7 @@ public:
 			
 		}
 		
-		if (position.y >100) {
+		if (position.y >150) {
 			
 			SetGravityScale(200.0);
 			jumping = false;
