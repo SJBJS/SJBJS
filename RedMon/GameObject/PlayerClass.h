@@ -71,6 +71,11 @@ public:
 	void Fire()
 	{
 	}
+
+	void Die()
+	{
+		ObjectManager::Instance()->ChangeLevel(2);
+	}
 };
 
 #endif // !PLAYER_CLASS_H
