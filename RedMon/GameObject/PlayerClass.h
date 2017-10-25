@@ -79,9 +79,9 @@ public:
 		if (dir1.x < 60) { ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0); };
 
 		
-			XMFLOAT3 taget2 = ObjectManager::Instance()->FindObjectWithTag("sharp")->GetPosition();
-			XMFLOAT3 dir2 = taget2 - position;
-			if (dir1.x < 40) { ObjectManager::Instance()->FindObjectWithTag("sharp")->SetPosition(100, 0); };
+		XMFLOAT3 taget2 = ObjectManager::Instance()->FindObjectWithTag("sharp")->GetPosition();
+		XMFLOAT3 dir2 = taget2 - position;
+		if (dir1.x < 40) { ObjectManager::Instance()->FindObjectWithTag("sharp")->SetPosition(100, 0); };
 		
 
 		XMFLOAT3 dir(h, v, 0);
