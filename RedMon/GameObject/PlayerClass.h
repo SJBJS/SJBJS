@@ -31,28 +31,13 @@ public:
 
 	virtual void Update(float dt)
 	{
-		if (Input->IsKeyDown(DIK_W))
-		{
-			ObjectManager::Instance()->ChangeLevel(1);
-		}
-		if (Input->IsKeyDown(DIK_Q))
-		{
-			ObjectManager::Instance()->ChangeLevel(0);
-		}
-		if (Input->IsKeyDown(DIK_E))
-		{
-			ObjectManager::Instance()->ChangeLevel(2);
-		}
 		if (Input->IsKeyPressed(DIK_SPACE))
 		{
 			power += 2;
 			Move(0, 40*dt*power);
 			if (power > 40) { power = 0; }
 			//Fire();
-		   
-			
 		}	
-		
 
 
 		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용

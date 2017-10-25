@@ -4,6 +4,9 @@
 #include"PlayerClass.h"
 #include"Bullet.h"
 #include"Box.h"
+#include"Ground.h"
+#include"GameScene\GameStart.h"
+#include"GameScene\GameOver.h"
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -11,8 +14,8 @@ using namespace std;
 static vector<void(*)()> CallBack;
 
 static void Level0()
-{ /* z값이 같을 경우 맨 마지막에 동적할당한 객체가 제일 앞에 그려집니다. */
-
+{
+	new GameStart();
 }
 
 static void Level1()
@@ -21,6 +24,7 @@ static void Level1()
 
 	new BackGround();
 	new PlayerClass();
+
 	(new Box())->SetPosition((rand() % 500) + 1, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
@@ -29,10 +33,18 @@ static void Level1()
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
+
+	int i = rand() % 1400 + 700;
+	(new Ground())->SetPosition(i, 50);
+	(new RightGround())->SetPosition(i, 50);
+	(new LeftGround())->SetPosition(i, 50);
+	
+	
+
 }
 static void Level2()
 {
-
+	new GameOver();
 }
 
 static void CallFunc() {
