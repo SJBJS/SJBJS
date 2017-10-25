@@ -9,7 +9,7 @@ ActorClass::ActorClass()
 	position.x = position.y = position.z = rotate = 0;
 
 	Width = Hight = 0;
-
+	
 	collision.isCollision = false;
 	collision.other = nullptr;
 	collision.isPhysics = false;
