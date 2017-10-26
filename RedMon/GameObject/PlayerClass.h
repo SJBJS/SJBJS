@@ -22,7 +22,7 @@ public:
 	virtual void Initialize()
 	{
 		position = XMFLOAT3(-500, -150, 0);		
-		textureAddress = "data/Spritep.tga";
+		textureAddress = "data/runner.tga";
 		HP = 3;
 		jumping = false;
 		tag = "player";
@@ -49,7 +49,7 @@ public:
 		
 		static int i = 0;
 		i = 50;
-		SetTextureUV(0 + i, 0, 64, imgOriginalSize.y);
+		SetTextureUV(0 + i, 0, imgOriginalSize.x, imgOriginalSize.y);
 		float v = 0, h = 0;
 			
 		
@@ -79,14 +79,12 @@ public:
 		}
 		
 		
-		
-		
 		vector<ActorClass*>target = ObjectManager::Instance()->FindObjectsWithTag("Box");
 		for (int i = 0; i < 3; i++) {
 			XMFLOAT3 targetposition = target[i]->GetPosition();
 			XMFLOAT3 dir1 = targetposition - position;
 			if (dir1.x < 20) {
-				if (dir1.y < 1) {
+				if (dir1.y < 20) {
 					HP--;
 					target[i]->SetPosition(500, -200);
 				}
