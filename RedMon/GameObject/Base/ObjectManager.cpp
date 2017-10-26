@@ -65,11 +65,11 @@ ActorClass * ObjectManager::FindObjectWithTag(char * tag)
 	return nullptr;
 }
 
-vector<ActorClass*>* ObjectManager::FindObjectsWithTag(char * tag)
+vector<ActorClass*> ObjectManager::FindObjectsWithTag(char * tag)
 {
-	vector<ActorClass*>* temp = new vector<ActorClass*>;
+	vector<ActorClass*> temp;
 	if (m_ObjectList->empty())
-		return false;
+		return temp;
 
 	vector<ActorClass*>::iterator it;
 
@@ -77,12 +77,12 @@ vector<ActorClass*>* ObjectManager::FindObjectsWithTag(char * tag)
 	{
 		if (!strcmp(tag, (*it)->GetTag()))
 		{
-			temp->push_back(*it);
+			temp.push_back(*it);
 		}
 	}
-	if (!temp->empty())
+	if (!temp.empty())
 		return temp;
-	return nullptr;
+	return temp;
 }
 
 
