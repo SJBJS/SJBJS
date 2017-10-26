@@ -87,6 +87,10 @@ public:
 				if (dir1.y < 20) {
 					HP--;
 					target[i]->SetPosition(500, -200);
+					if (HP <= 0)
+					{
+						OnDie();
+					}
 				}
 			};
 		}
@@ -135,6 +139,11 @@ public:
 		
 		myBullet[shotNum].Spwan(this->position,this->rotate,XMFLOAT3(0, 60, 0));
 		shotNum = (shotNum + 1) % bulletNum;
+	}
+
+	void OnDie()
+	{
+		ObjectManager::Instance()->ChangeLevel(2);
 	}
 };
 
