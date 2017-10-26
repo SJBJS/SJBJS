@@ -25,15 +25,15 @@ static void Level1()
 	new BackGround();
 	new PlayerClass();
 
-	(new Box())->SetPosition((rand() % 500) + 1, -200);
+	(new Box())->SetPosition((rand() % 500) + 1, -200);	
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
 	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-	(new Box())->SetPosition(rand() % 1400 + 700, -200);
-
+	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -200);
+	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -200);
+	
+	(new HPbar())->SetPosition(-500, 300);
+	(new HPbar())->SetPosition(-550, 300);
+	(new HPbar())->SetPosition(-600, 300);
 	int i = rand() % 1400 + 700;
 
 	Ground *m_ground = new Ground();

@@ -4,6 +4,8 @@
 
 #include "Base\PawnClass.h"
 #include "Bullet.h"
+
+#include <windows.h>
 class PlayerClass : public PawnClass
 {
 private:
@@ -19,7 +21,7 @@ private:
 public:
 	virtual void Initialize()
 	{
-		position = XMFLOAT3(-500, -120, 0);		
+		position = XMFLOAT3(-500, -150, 0);		
 		textureAddress = "data/Spritep.tga";
 		HP = 3;
 		jumping = false;
@@ -64,27 +66,32 @@ public:
 				}
 			}
 		}
-		if (position.y < 150){
+		if (position.y < 180){
 			if (jumping) {
 				Move(0, 25);
 			}
 		}
+		//남은 HP만큼 왼쪽상단 체력바 제거
+		for (int i = 0; i < 3 - HP; i++) {
+
+			vector<ActorClass*>playerHP1 = ObjectManager::Instance()->FindObjectsWithTag("HP");
+			playerHP1[i]->SetPosition(1200, 0);
+		}
 		
 		
-		if (Input->IsKeyDown(DIK_K))
-			ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0);
-		
-		//충돌감지
-		XMFLOAT3 taget =  ObjectManager::Instance()->FindObjectWithTag("Box")->GetPosition();
-		XMFLOAT3 dir1 = taget - position; 
-		if (dir1.x < 60) { ObjectManager::Instance()->FindObjectWithTag("Box")->SetPosition(100, 0); 
-		ObjectManager::Instance()->FindObjectWithTag("HP")->SetPosition(1200, 0);
-		};
 		
 		
-		XMFLOAT3 taget2 = ObjectManager::Instance()->FindObjectWithTag("sharp")->GetPosition();
-		XMFLOAT3 dir2 = taget2 - position;
-		if (dir1.x < 40) { ObjectManager::Instance()->FindObjectWithTag("sharp")->SetPosition(100, 0); };
+		vector<ActorClass*>target = ObjectManager::Instance()->FindObjectsWithTag("Box");
+		for (int i = 0; i < 3; i++) {
+			XMFLOAT3 targetposition = target[i]->GetPosition();
+			XMFLOAT3 dir1 = targetposition - position;
+			if (dir1.x < 20) {
+				if (dir1.y < 1) {
+					HP--;
+					target[i]->SetPosition(500, -200);
+				}
+			};
+		}
 		
 
 		XMFLOAT3 dir(h, v, 0);
@@ -97,9 +104,9 @@ public:
 		LocalMove(result.x, result.y );
 		
 		///플레이어 포지션 바닥에 붙어 닿을시 위치 처음으로 고정  점프동안에는 중력계속적용
-		//바닥 기준 y높이 -150
-		if (position.y < -120) {
-			SetPosition(-500, -120);
+		//바닥 기준 y높이 -180
+		if (position.y < -180) {
+			SetPosition(-500, -180);
 			
 		}
 		
@@ -113,6 +120,7 @@ public:
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
+		
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{

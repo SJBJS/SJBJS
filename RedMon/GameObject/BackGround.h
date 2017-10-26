@@ -3,7 +3,7 @@
 class BackGround : public ActorClass
 {
 	virtual void Initialize() {
-		position = XMFLOAT3(0, -85, 0);
+		position = XMFLOAT3(0, -145, 0);
 		textureAddress = "data/ground.tga";
 		tag = "";
 		Width = 1280;

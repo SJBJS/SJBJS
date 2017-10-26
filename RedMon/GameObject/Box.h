@@ -13,6 +13,7 @@ public:
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
+		SetCollistionShape(ShapeType::BoxShape);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "Box";
@@ -25,10 +26,10 @@ public:
 		Move(-383 * dt, 0);
 		//왼쪽 바깥으로 박스가 나갈 경우 다시 리스폰
 		if(position.x < -700)
-			SetPosition(rand() % 1400 + 700, -120);
+			SetPosition(rand() % 1400 + 700, -175);
 
 		if (position.y < -120)
-			SetPosition(position.x, -120);
+			SetPosition(position.x, -175);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
@@ -65,10 +66,10 @@ public:
 		Move(-383 * dt, 0);
 		//왼쪽 바깥으로 박스가 나갈 경우 다시 리스폰
 		if (position.x < -700)
-			SetPosition(rand() % 1400 + 700, -100);
+			SetPosition(rand() % 1400 + 700, -150);
 
 		if (position.y < -150)
-			SetPosition(position.x, -100);
+			SetPosition(position.x, -150);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
