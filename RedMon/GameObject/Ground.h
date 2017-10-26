@@ -28,7 +28,7 @@ class Ground : public ActorClass
 		if(position.x < -900)
 		{
 			int i = rand() % 1400 + 700;
-			int j = rand() % 100 + 25;
+			int j = rand() % 25 + -25;
 			
 			SetPosition(i, j);
 			

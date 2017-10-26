@@ -40,9 +40,9 @@ static void Level1()
 	LeftGround *m_leftground = new LeftGround();
 	RightGround *m_rightground = new RightGround();
 
-	m_ground->SetPosition(i, 50);
-	m_leftground->SetPosition(i, 50);
-	m_rightground->SetPosition(i, 50);
+	m_ground->SetPosition(i, 0);
+	m_leftground->SetPosition(i, 0);
+	m_rightground->SetPosition(i, 0);
 	
 	m_ground->SetLeftRight(m_leftground, m_rightground);
 
