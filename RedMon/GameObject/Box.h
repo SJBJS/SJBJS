@@ -8,8 +8,8 @@ public:
 	virtual void Initialize()
 	{
 		textureAddress = "data/Sprite_Spike_001.tga"; //필수로 적어주셔야 오류가 없습니다.
-		Width = 64;
-		Hight = 128;
+		Width = 42;
+		Hight = 64;
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
@@ -26,10 +26,10 @@ public:
 		Move(-383 * dt, 0);
 		//왼쪽 바깥으로 박스가 나갈 경우 다시 리스폰
 		if(position.x < -700)
-			SetPosition(rand() % 1400 + 700, -175);
+			SetPosition(rand() % 1400 + 700, -210);
 
 		if (position.y < -120)
-			SetPosition(position.x, -175);
+			SetPosition(position.x, -210);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
@@ -49,8 +49,8 @@ public:
 	virtual void Initialize()
 	{
 		textureAddress = "data/Sprite_Spike_001.tga"; //필수로 적어주셔야 오류가 없습니다.
-		Width = 90;
-		Hight = 180;
+		Width = 84;
+		Hight = 128;
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
@@ -66,10 +66,10 @@ public:
 		Move(-383 * dt, 0);
 		//왼쪽 바깥으로 박스가 나갈 경우 다시 리스폰
 		if (position.x < -700)
-			SetPosition(rand() % 1400 + 700, -150);
+			SetPosition(rand() % 1400 + 700, -180);
 
 		if (position.y < -150)
-			SetPosition(position.x, -150);
+			SetPosition(position.x, -180);
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{

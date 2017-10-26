@@ -22,7 +22,7 @@ public:
 	virtual void Initialize()
 	{
 		position = XMFLOAT3(-500, -150, 0);		
-		textureAddress = "data/runner.tga";
+		textureAddress = "data/Spritep.tga";
 		HP = 3;
 		jumping = false;
 		tag = "player";
