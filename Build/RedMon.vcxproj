@@ -63,6 +63,7 @@
     <ClInclude Include="..\RedMon\GameObject\Objects.h" />
     <ClInclude Include="..\RedMon\GameObject\PlayerClass.h" />
     <ClInclude Include="..\RedMon\GameObject\RightGround.h" />
+    <ClInclude Include="..\RedMon\GameObject\StageFlag.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\RedMon\texture.ps" />

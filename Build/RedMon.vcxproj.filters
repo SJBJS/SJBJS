@@ -159,6 +159,7 @@
     <ClInclude Include="..\RedMon\GameObject\GameScene\Stage\Stage01.h">
       <Filter>GameObject\GameScene\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\StageFlag.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
