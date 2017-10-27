@@ -22,6 +22,7 @@ public:
 	virtual void Initialize()
 	{
 		position = XMFLOAT3(-500, -150, 0);		
+		SetCollistionShape(ShapeType::BoxShape);
 		textureAddress = "data/Spritep.tga";
 		HP = 3;
 		jumping = false;
@@ -32,6 +33,7 @@ public:
 		speed = 100.0f;		
 		SetRotateFrozen(true);
 		SetGravityScale(1.0f);
+		
 		bulletNum = 10;
 		shotNum = 0;
 		/*myBullet = new Bullet[bulletNum];
@@ -78,7 +80,7 @@ public:
 			playerHP1[i]->SetPosition(1200, 0);
 		}
 		
-		
+		/*
 		vector<ActorClass*>target = ObjectManager::Instance()->FindObjectsWithTag("Box");
 		for (int i = 0; i < 3; i++) {
 			XMFLOAT3 targetposition = target[i]->GetPosition();
@@ -94,7 +96,7 @@ public:
 				}
 			};
 		}
-		
+		*/
 
 		XMFLOAT3 dir(h, v, 0);
 		XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));

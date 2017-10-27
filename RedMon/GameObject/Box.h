@@ -13,7 +13,7 @@ public:
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
-		
+		SetCollistionShape(ShapeType::BoxShape);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "Box";
@@ -54,6 +54,7 @@ public:
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
+		SetCollistionShape(ShapeType::BoxShape);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "sharp";
