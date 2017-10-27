@@ -5,8 +5,11 @@
 #include"Bullet.h"
 #include"Box.h"
 #include"Ground.h"
+#include"StageFlag.h"
 #include"GameScene\GameStart.h"
 #include"GameScene\GameOver.h"
+#include"GameScene\GameStage.h"
+#include"GameScene\Stage\Stage01.h"
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -46,15 +49,26 @@ static void Level1()
 	
 	m_ground->SetLeftRight(m_leftground, m_rightground);
 
+
 }
 static void Level2()
 {
 	new GameOver();
 }
 
+
+static void Level3()
+{
+
+
+}
+
+
 static void CallFunc() {
+
 	CallBack.push_back(Level0);
 	CallBack.push_back(Level1);
 	CallBack.push_back(Level2);
+	CallBack.push_back(Level3);
 }
 static vector<void(*)()>* GetCallBackVector() { return &CallBack; }
