@@ -19,8 +19,6 @@ static vector<void(*)()> CallBack;
 static void Level0()
 {
 	new GameStart();
-	new PlayerClass;
-	(new Box())->SetPosition(500,-280);
 }
 
 static void Level1()

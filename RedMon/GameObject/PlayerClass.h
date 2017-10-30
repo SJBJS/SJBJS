@@ -4,6 +4,7 @@
 
 #include "Base\PawnClass.h"
 #include "Bullet.h"
+#include"StageFlag.h"
 
 #include <windows.h>
 class PlayerClass : public PawnClass
@@ -81,6 +82,8 @@ public:
 	{
 		if (other->GetTag() == "Ground")
 			jumping = false;
+		else if (other->GetTag() == "Flag")
+			ObjectManager::Instance()->ChangeLevel(3);
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{
