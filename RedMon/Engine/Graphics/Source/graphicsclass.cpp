@@ -25,7 +25,7 @@ GraphicsClass::~GraphicsClass()
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
-
+	m_hwnd = hwnd;
 
 	// Create the Direct3D object.
 	m_Direct3D = new D3DClass;
@@ -202,6 +202,7 @@ bool GraphicsClass::ObjectReset(int screenWidth, int screenHeight)
 			taget->SetOriginalImgSize(imgSize);
 			if (!result)
 			{
+				MessageBox(m_hwnd, L"Error ObjectReset. Please check if 24bit is correct.", L"Error", MB_OK);
 				return false;
 			}
 		}

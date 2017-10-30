@@ -51,6 +51,8 @@ private:
 	BitmapClass* m_Objects;
 	int m_screenWidth, m_screenHeight;
 
+	HWND m_hwnd;
+
 };
 
 #endif
