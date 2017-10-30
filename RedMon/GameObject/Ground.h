@@ -12,7 +12,7 @@ class Ground : public ActorClass
 
 	virtual void Initialize() {
 		textureAddress = "data/Sprite_highground_001.tga";
-		tag = "";
+		tag = "Ground";
 		Width = 256;
 		Hight = 64;
 		SetPhysics(true);

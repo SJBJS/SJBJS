@@ -16,7 +16,7 @@ bool Physics::Initialize()
 	m_manager = ObjectManager::Instance();
 
 	settings = new Settings;
-	settings->hz = 144.0;
+	settings->hz = 60.0;
 
 	b2Vec2 gravity;
 	gravity.Set(0.0f, -9.8f);
@@ -37,7 +37,7 @@ bool Physics::Initialize()
 void Physics::Update()
 {
 	float32 timeStep = settings->hz > 0.0f ? 1.0f / 60 : float32(0.0f);
-
+	
 	if (settings->pause)
 	{
 		if (settings->singleStep)
@@ -112,6 +112,7 @@ void Physics::CreateObject(ActorClass & data, int idx)
 
 
 	b2PolygonShape polygons;
+
 	switch(collsionData.shape)
 	{
 	case ShapeType::BoxShape:
