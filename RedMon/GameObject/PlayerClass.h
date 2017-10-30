@@ -12,6 +12,7 @@ private:
 	float Windowx;
 	float power;
 	float speed;
+	int score;
 public:
 	virtual void Initialize()
 	{
@@ -27,6 +28,7 @@ public:
 		SetGravityScale(1.0f);
 		bulletNum = 10;
 		shotNum = 0;
+		score = 0;
 	};
 
 	virtual void Update(float dt)
@@ -47,11 +49,16 @@ public:
 		}
 		if (position.y >= -150) {
 			SetGravityScale(30.0);		
-			
 		}
+
+		score += 5;
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
+		if (other->GetTag() == "Flag")
+		{
+			ObjectManager::Instance()->ChangeLevel(3);
+		}
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{

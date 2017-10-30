@@ -49,6 +49,9 @@ static void Level1()
 	
 	m_ground->SetLeftRight(m_leftground, m_rightground);
 
+	StageFlag *m_flag = new StageFlag();
+	m_flag->SetPosition(5000, -200);
+	
 
 }
 static void Level2()

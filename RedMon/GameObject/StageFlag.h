@@ -26,10 +26,6 @@ public:
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
 	{
-		if (other->GetTag() == "player")
-		{
-			ObjectManager::Instance()->ChangeLevel(3);
-		}
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{
@@ -47,4 +43,5 @@ public:
 	{
 		return stage;
 	}
+
 };
