@@ -15,7 +15,7 @@ private:
 	float HP; //ปýธํทย
 	float myGrivity;
 	float Accel;
-
+	int i = 0;
 public:
 	virtual void Initialize()
 	{
@@ -25,21 +25,25 @@ public:
 		SetPhysics(true);
 		SetRotateFrozen(true);
 		SetGravityScale(234.0f);
-		textureAddress = "data/Spritep.tga";
+		textureAddress = "data/run_32b.tga";
 		HP = 3;
 		jumping = false;
 		tag = "player";
-		Width = 128;
-		Hight = 128;
+		Width = 80;
+		Hight = 96;
 		speed = 100.0f;
 		Accel = 0;
 		myGrivity = -9.8;
-
+		
 	};
 
 	virtual void Update(float dt)
 	{
-
+		
+		i += 64;
+		
+		SetTextureUV(15+i, 0, 32, imgOriginalSize.y/2);
+		//TextureTranslate(2*dt, 0);
 
 		if (!jumping) {
 			if (Input->IsKeyDown(DIK_SPACE))
@@ -81,6 +85,14 @@ public:
 	{
 		if (other->GetTag() == "Ground")
 			jumping = false;
+		if (other->GetTag() == "Box")
+			HP--;
+		if (other->GetTag() == "sharp")
+		{
+			HP--;
+			if(HP <= 0)
+				OnDie();
+		}
 	}
 	virtual void OnCollisionExit(ActorClass * other)
 	{

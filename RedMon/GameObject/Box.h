@@ -54,7 +54,7 @@ public:
 		//position = XMFLOAT3(100, 0, 0);
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
-		SetCollistionShape(ShapeType::BoxShape);
+		SetCollistionShape(ShapeType::TriangleShape);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "sharp";
