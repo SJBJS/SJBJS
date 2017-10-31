@@ -37,22 +37,34 @@ static void Level1()
 	(new HPbar())->SetPosition(-500, 300);
 	(new HPbar())->SetPosition(-550, 300);
 	(new HPbar())->SetPosition(-600, 300);
-	int i = rand() % 1400 + 700;
+
+	int i = 0;
 
 	Ground *m_ground = new Ground();
 	LeftGround *m_leftground = new LeftGround();
 	RightGround *m_rightground = new RightGround();
 
-	m_ground->SetPosition(i, 0);
-	m_leftground->SetPosition(i, 0);
-	m_rightground->SetPosition(i, 0);
+	m_ground->SetPosition(i, -230);
+	m_leftground->SetPosition(i, -230);
+	m_rightground->SetPosition(i, -230);
 	
 	m_ground->SetLeftRight(m_leftground, m_rightground);
+
+	int j = 1100;
+
+	Ground *ground = new Ground();
+	LeftGround *leftground = new LeftGround();
+	RightGround *rightground = new RightGround();
+
+	ground->SetPosition(j, -230);
+	leftground->SetPosition(j, -230);
+	rightground->SetPosition(j, -230);
+
+	ground->SetLeftRight(leftground, rightground);
 
 	StageFlag *m_flag = new StageFlag();
 	m_flag->SetPosition(5000, -200);
 	
-
 }
 static void Level2()
 {
