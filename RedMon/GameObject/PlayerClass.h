@@ -72,9 +72,10 @@ public:
 		XMFLOAT3 result = normal * dt * speed;
 
 		LocalMove(result.x, result.y + myGrivity*dt);
-		if (position.y < -180) {
-			position.y = -180;
-			jumping = false;
+
+		if (position.y <= -300)
+		{
+			OnDie();
 		}
 
 	};

@@ -13,7 +13,7 @@ class Ground : public ActorClass
 	virtual void Initialize() {
 		textureAddress = "data/Sprite_highground_001.tga";
 		tag = "Ground";
-		Width = 256;
+		Width = 512;
 		Hight = 64;
 		SetPhysics(true);
 		SetHandleCount(0);
@@ -28,7 +28,7 @@ class Ground : public ActorClass
 		if(position.x < -900)
 		{
 			int i = rand() % 1400 + 700;
-			int j = rand() % 25 + -25;
+			int j = rand() % -200 + -230;
 			
 			SetPosition(i, j);
 			
