@@ -28,6 +28,9 @@
     <Filter Include="GameObject\GameScene">
       <UniqueIdentifier>{e5a649ee-36aa-4ad1-895b-df8db9d9517c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\GameScene\Stage">
+      <UniqueIdentifier>{14cb469f-2717-4a32-acbe-2e5917c97bc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\RedMon\Engine\inputclass.cpp">
@@ -149,6 +152,15 @@
     </ClInclude>
     <ClInclude Include="..\RedMon\GameObject\GameScene\GameOver.h">
       <Filter>GameObject\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\GameScene\GameStage.h">
+      <Filter>GameObject\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\GameScene\Stage\Stage01.h">
+      <Filter>GameObject\GameScene\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RedMon\GameObject\StageFlag.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
