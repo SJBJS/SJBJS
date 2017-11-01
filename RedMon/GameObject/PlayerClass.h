@@ -59,7 +59,6 @@ public:
 		}
 		//남은 HP만큼 왼쪽상단 체력바 제거
 		for (int i = 0; i < 3 - HP; i++) {
-
 			vector<ActorClass*>playerHP1 = ObjectManager::Instance()->FindObjectsWithTag("HP");
 			playerHP1[i]->SetPosition(1200, 0);
 		}

@@ -2,6 +2,7 @@
 #include"Base\ActorClass.h"
 #include"LeftGround.h"
 #include"RightGround.h"
+#include <random>
 #include <cstdlib>
 #include <ctime>
 
@@ -21,26 +22,21 @@ class Ground : public ActorClass
 	}
 	virtual void Update(float dt) {
 
-		srand((unsigned int)time(NULL));
-
 		Move(-400 * dt, 0);
 
-		if(position.x < -900)
+		if (position.x < -900)
 		{
-			int i = rand() % 1400 + 700;
-			int j = rand() % -200 + -230;
-			
-			SetPosition(i, j);
-			
-			m_left->SetPosition(i, j);
-			m_right->SetPosition(i + 10, j);
+			move();
 		}
 	}
 
 
 
 	virtual void OnCollisionEnter(ActorClass * other) {
-
+		if(other->GetTag() == "Ground")
+		{
+			move();
+		}
 	}
 	virtual void OnCollisionExit(ActorClass * other) {
 
@@ -48,6 +44,32 @@ class Ground : public ActorClass
 
 	virtual void OnDestory() {
 
+	}
+
+	void move()
+	{
+		random_device rd;
+		mt19937 gen(rd());
+		uniform_int_distribution<> dist1(780, 1400);
+		uniform_int_distribution<> dist2(0, 4);
+
+		int i = dist1(gen);
+		int j = dist2(gen);
+
+		if (j <= 3)
+		{
+			SetPosition(i, -300);
+
+			m_left->SetPosition(i, -300);
+			m_right->SetPosition(i + 10, -300);
+		}
+		else
+		{
+			SetPosition(i, -50);
+
+			m_left->SetPosition(i, -50);
+			m_right->SetPosition(i + 10, -50);
+		}
 	}
 
 public:

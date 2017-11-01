@@ -28,42 +28,39 @@ static void Level1()
 	new BackGround();
 	new PlayerClass();
 
-	(new Box())->SetPosition((rand() % 500) + 1, -280);	
-	(new Box())->SetPosition(rand() % 1400 + 700, -280);
-	(new Box())->SetPosition(rand() % 1400 + 700, -280);
-	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -230);
-	(new Sharpbox())->SetPosition(rand() % 1400 + 700, -230);
 	
 	(new HPbar())->SetPosition(-500, 300);
 	(new HPbar())->SetPosition(-550, 300);
 	(new HPbar())->SetPosition(-600, 300);
 
-	int i = 0;
 
-	Ground *m_ground = new Ground();
-	LeftGround *m_leftground = new LeftGround();
-	RightGround *m_rightground = new RightGround();
+	(new Sharpbox())->SetPosition(rand() % 1400 + 800, -230);
+	(new Sharpbox())->SetPosition(rand() % 1400 + 800, -230);
+	(new Sharpbox())->SetPosition(rand() % 1400 + 800, -230);
+	(new Sharpbox())->SetPosition(rand() % 1400 + 800, -230);
+	(new Sharpbox())->SetPosition(rand() % 1400 + 800, -230);
 
-	m_ground->SetPosition(i, -230);
-	m_leftground->SetPosition(i, -230);
-	m_rightground->SetPosition(i, -230);
-	
-	m_ground->SetLeftRight(m_leftground, m_rightground);
 
-	int j = 1100;
 
-	Ground *ground = new Ground();
-	LeftGround *leftground = new LeftGround();
-	RightGround *rightground = new RightGround();
+	Ground *m_ground[3];
+	LeftGround *m_leftground[3];
+	RightGround *m_rightground[3];
 
-	ground->SetPosition(j, -230);
-	leftground->SetPosition(j, -230);
-	rightground->SetPosition(j, -230);
+	for (int i = 0; i < 3; i++) {
 
-	ground->SetLeftRight(leftground, rightground);
+		m_ground[i] = new Ground();
+		m_leftground[i] = new LeftGround();
+		m_rightground[i] = new RightGround();
+
+		m_ground[i]->SetPosition((i * 100) * 8, -300);
+		m_leftground[i]->SetPosition((i * 100) * 8, -300);
+		m_rightground[i]->SetPosition((i * 100) * 8, -300);
+
+		m_ground[i]->SetLeftRight(m_leftground[i], m_rightground[i]);
+	}
 
 	StageFlag *m_flag = new StageFlag();
-	m_flag->SetPosition(5000, -200);
+	m_flag->SetPosition(10000, -300);
 	
 }
 static void Level2()

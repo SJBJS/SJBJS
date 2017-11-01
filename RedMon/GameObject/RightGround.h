@@ -4,7 +4,7 @@ class RightGround : public ActorClass
 {
 	virtual void Initialize() {
 		textureAddress = "data/Sprite_highground_003.tga";
-		tag = "Ground";
+		tag = "RightGround";
 		Width = 512;
 		Hight = 64;
 		SetPhysics(true);
