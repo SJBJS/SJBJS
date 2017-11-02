@@ -9,9 +9,9 @@ class StageFlag : public ActorClass
 public:
 	virtual void Initialize()
 	{
-		textureAddress = "data/player1.tga";
-		Width = 64;
-		Hight = 64;
+		textureAddress = "data/flag.tga";
+		Width = 20;
+		Hight = 700;
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
 		SetPhysics(true);

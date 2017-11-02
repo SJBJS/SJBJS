@@ -50,16 +50,14 @@ public:
 	virtual void Initialize()
 	{
 		textureAddress = "data/Sprite_Spike_001.tga"; //필수로 적어주셔야 오류가 없습니다.
-		Width = 84;
-		Hight = 128;
+		Width = 42;
+		Hight = 64;
 		SetRotateFrozen(true);
 		SetCollistionType(BodyType::StaticBody);
 		SetCollistionShape(ShapeType::TriangleShape);
 		SetPhysics(true);
 		SetGravityScale(0);
 		tag = "sharp";
-
-
 	};
 
 	virtual void Update(float dt)
@@ -74,6 +72,28 @@ public:
 		if (position.x >= 700)
 		{
 			move();
+		}	
+
+		if (position.x > 750)
+		{
+			for (int i = 0; i < 5; i++) {
+				vector<ActorClass*>SpikeSet = ObjectManager::Instance()->FindObjectsWithTag("sharp");
+				XMFLOAT3 SpikeSetpos = SpikeSet[i]->GetPosition();
+				XMFLOAT3 dir = position - SpikeSetpos;
+				XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
+				XMFLOAT3 normal;
+				XMStoreFloat3(&normal, vNormal);
+				if (normal.x < 21)
+				{
+					random_device rd;
+					mt19937 gen(rd());
+					uniform_int_distribution<> dist(-21, 42);
+
+					int i = dist(gen);
+
+					position.x += i;
+				}
+			}
 		}
 	};
 	virtual void OnCollisionEnter(ActorClass * other)
@@ -98,14 +118,14 @@ public:
 
 			random_device rd;
 			mt19937 gen(rd());
-			uniform_int_distribution<> dist(0, 2);
+			uniform_int_distribution<> dist(0, 3);
 
 			int i = dist(gen);
 
 			vector<ActorClass*>SpikeSet = ObjectManager::Instance()->FindObjectsWithTag("Ground");
 			XMFLOAT3 SpikeSetpos = SpikeSet[i]->GetPosition();
 			if (SpikeSetpos.x >= 700) {
-				SetPosition(SpikeSet[i]->GetPosition().x + rand() % 75 + -75, SpikeSet[i]->GetPosition().y + 70);
+				SetPosition(SpikeSet[i]->GetPosition().x + rand() % 50 + -50, SpikeSet[i]->GetPosition().y + 50);
 			}
 		}
 	}
@@ -119,7 +139,6 @@ public:
 		textureAddress = "data/hart.tga"; //필수로 적어주셔야 오류가 없습니다.
 		Width = 40;
 		Hight = 40;
-		//position = XMFLOAT3(100, 0, 0);		
 		SetPhysics(false);
 		tag = "HP";
 

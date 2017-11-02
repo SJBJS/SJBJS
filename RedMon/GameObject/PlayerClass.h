@@ -96,7 +96,7 @@ public:
 				OnDie();
 		}
 
-		else if (other->GetTag() == "Flag")
+		if (other->GetTag() == "Flag")
 			ObjectManager::Instance()->ChangeLevel(3);
 
 	}

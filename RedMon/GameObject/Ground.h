@@ -28,15 +28,27 @@ class Ground : public ActorClass
 		{
 			move();
 		}
+		if (position.x > 800)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				vector<ActorClass*>SpikeSet = ObjectManager::Instance()->FindObjectsWithTag("Ground");
+				XMFLOAT3 SpikeSetpos = SpikeSet[i]->GetPosition();
+				if (SpikeSetpos.x >= 400 && SpikeSetpos.x <= 700) {
+					XMFLOAT3 dir = position - SpikeSetpos;
+					XMVECTOR vNormal = XMVector2Normalize(XMLoadFloat3(&dir));
+					XMFLOAT3 normal;
+					XMStoreFloat3(&normal, vNormal);
+					if (normal.x > 300)
+					{
+						position.x == 800;
+					}
+				}
+			}
+		}
 	}
 
-
-
 	virtual void OnCollisionEnter(ActorClass * other) {
-		if(other->GetTag() == "Ground")
-		{
-			move();
-		}
 	}
 	virtual void OnCollisionExit(ActorClass * other) {
 
@@ -50,13 +62,13 @@ class Ground : public ActorClass
 	{
 		random_device rd;
 		mt19937 gen(rd());
-		uniform_int_distribution<> dist1(780, 1400);
-		uniform_int_distribution<> dist2(0, 4);
+		uniform_int_distribution<> dist1(800, 1400);
+		uniform_int_distribution<> dist2(0, 2);
 
 		int i = dist1(gen);
 		int j = dist2(gen);
 
-		if (j <= 3)
+		if (j <= 1)
 		{
 			SetPosition(i, -300);
 
@@ -65,10 +77,10 @@ class Ground : public ActorClass
 		}
 		else
 		{
-			SetPosition(i, -50);
+			SetPosition(i, -75);
 
-			m_left->SetPosition(i, -50);
-			m_right->SetPosition(i + 10, -50);
+			m_left->SetPosition(i, -75);
+			m_right->SetPosition(i + 10, -75);
 		}
 	}
 
